@@ -1,4 +1,4 @@
-package gromcode;
+package lesson4;
 import java.util.Arrays;
 import java.util.Scanner;
 

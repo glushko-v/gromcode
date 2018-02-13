@@ -1,4 +1,4 @@
-package gromcode;
+package lesson4;
 
 public class test {
     public static int findDivCount (short a, short b, int n) {

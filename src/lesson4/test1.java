@@ -1,4 +1,4 @@
-package gromcode;
+package lesson4;
 
 public class test1 {
     public static long sum (int from, int to) {
