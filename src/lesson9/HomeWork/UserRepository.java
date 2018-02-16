@@ -11,9 +11,11 @@ public class UserRepository {
         return users;
     }
 
-    public User[] getUsernames(){
-        return users;
+    public String[] getUsernames() {
+        String[] userNames = {"John", "Jack", "Dan", "Bill", "Hannah"};
+        return userNames;
+
     }
 
-    
+
 }
