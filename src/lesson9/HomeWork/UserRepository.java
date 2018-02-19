@@ -7,22 +7,25 @@ public class UserRepository {
         this.users = users;
     }
 
+
     public User[] getUsers() {
         return users;
     }
 
-    public String[] getUserNames() {
-        String[] userNames = {"John", "Jack", "Dan", "Bill", "Hannah"};
-        return userNames;
+    public User[] getUserNames() {
+        for (User names : users) {
+            User name = names;
+        }
 
+        return users;
     }
 
-    public long[] getUserIds(){
-        long[] userIds = {5648, 98751, 112, 3654, 882};
-        return userIds;
+    public User[] getUserIds() {
+        for (User ids : users) {
+            User id = ids;
+        }
+        return users;
     }
-
-    
 
 
 }
