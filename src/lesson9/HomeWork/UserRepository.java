@@ -7,25 +7,59 @@ public class UserRepository {
         this.users = users;
     }
 
+    public int countUsers() {
+        int count = 0;
+        for (User index: users){
+            if (index != null) count++;
+        }
+        return count;
+    }
+
+
 
     public User[] getUsers() {
         return users;
     }
 
-    public User[] getUserNames() {
-        for (User names : users) {
-            User name = names;
+    public String[] getUserNames() {
+        String[] names = new String[countUsers()];
+
+        int index = 0;
+        for (User user: users) {
+            if (user != null){
+             names[index] = user.getName();
+            }
+        }
+        return names;
+
         }
 
-        return users;
-    }
 
-    public User[] getUserIds() {
-        for (User ids : users) {
-            User id = ids;
+
+
+    public long[] getUserIds() {
+        long[] ids = new long[countUsers()];
+
+        int index = 0;
+        for (User user: users) {
+            if (user != null) ids[index] = user.getId();
         }
-        return users;
+
+        return ids;
     }
 
+
+    public String getUserNameById(long id){
+        int index = 0;
+        String name = null;
+        for (User users: users) {
+            if (users.getId() != id) index++;
+            if (users.getId() == id) name = users.getName();
+
+        }
+
+            return name;
+
+    }
 
 }
