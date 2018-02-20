@@ -73,7 +73,7 @@ public class UserRepository {
     }
 
 
-    public User findById(long id) {
+    private User findById(long id) {
 
         for (User user : users) {
             if (user != null) {
