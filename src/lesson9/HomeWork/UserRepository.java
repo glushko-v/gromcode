@@ -73,7 +73,7 @@ public class UserRepository {
     }
 
 
-    public User getUserById(long id) {
+    public User findById(long id) {
 
         for (User user : users) {
             if (user != null) {
@@ -96,12 +96,11 @@ public class UserRepository {
     }
 
     public User save(User user) {
-        User[] users = new User[countUsers()];
-        for (User userEl : users) {
-            if (userEl != null) return null; // все ячейки заняты
-            if (userEl == null) user = userEl; // есть ячейки null
-            if (userEl == user) return null; // если юзер есть в массиве
-
+        long id = user.getId();
+        for (User element: users) {
+            if (user == findById(id)) user = element;
+            if (user != findById(id)) user = null;
+            if (user == element) user = null;
         }
         return user;
     }
