@@ -100,7 +100,7 @@ public class UserRepository {
         for (User element : users) { //перебираем элементы массива users
             if (element == findById(id)) user = element;
             if (element != findById(id)) user = null;
-            if (user == element) user = null;
+            if (element == user) user = null;
 
         }
         return user;
