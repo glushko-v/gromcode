@@ -50,7 +50,9 @@ public class UserRepository {
         int index = 0;
         String name = null;
         for (User user : users) {
-            if (user.getId() == id) name = user.getName();
+            if (user != null) {
+                if (user.getId() == id) name = user.getName();
+            }
 
         }
         return name;
