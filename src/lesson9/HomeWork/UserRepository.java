@@ -96,7 +96,7 @@ public class UserRepository {
     }
 
     public User save(User user) {
-        
+        User[] users = new User[countUsers()];
         for (User userEl : users) {
             if (userEl != null) return null; // все ячейки заняты
             if (userEl == null) user = userEl; // есть ячейки null
