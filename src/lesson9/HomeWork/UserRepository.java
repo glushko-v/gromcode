@@ -75,7 +75,7 @@ public class UserRepository {
 
     public User getUserById(long id) {
 
-        for (User user: users) {
+        for (User user : users) {
             if (user != null) {
                 if (user.getId() == id) return user;
             }
@@ -84,10 +84,10 @@ public class UserRepository {
         return null;
     }
 
-    public User getUserBySessionId(String sessionId){
+    public User getUserBySessionId(String sessionId) {
 
-        for (User user: users) {
-            if (user != null){
+        for (User user : users) {
+            if (user != null) {
                 if (user.getSessionId() == sessionId) return user;
             }
 
@@ -95,8 +95,16 @@ public class UserRepository {
         return null;
     }
 
+    public User save(User user) {
+        
+        for (User userEl : users) {
+            if (userEl != null) return null; // все ячейки заняты
+            if (userEl == null) user = userEl; // есть ячейки null
+            if (userEl == user) return null; // если юзер есть в массиве
 
-
+        }
+        return user;
+    }
 
 }
 
