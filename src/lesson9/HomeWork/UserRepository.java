@@ -97,9 +97,9 @@ public class UserRepository {
 
     public User save(User user) {
         long id = user.getId();
-        for (User element: users) {
+        for (User element : users) {
             if (user == findById(id)) user = element;
-            if (element != null) user = null; //if(user != findById(id))
+            if (user != findById(id)) user = null;
             if (user == element) user = null;
         }
         return user;
