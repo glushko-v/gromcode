@@ -60,6 +60,42 @@ public class UserRepository {
 
     }
 
+    public User getUserByName(String name) {
+
+        for (User user : users) {
+            if (user != null) {
+                if (user.getName() == name) return user;
+
+            }
+
+        }
+        return null;
+    }
+
+
+    public User getUserById(long id) {
+
+        for (User user: users) {
+            if (user != null) {
+                if (user.getId() == id) return user;
+            }
+
+        }
+        return null;
+    }
+
+    public User getUserBySessionId(String sessionId){
+
+        for (User user: users) {
+            if (user != null){
+                if (user.getSessionId() == sessionId) return user;
+            }
+
+        }
+        return null;
+    }
+
+
 
 
 }
