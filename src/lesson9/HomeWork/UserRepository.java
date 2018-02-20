@@ -99,7 +99,7 @@ public class UserRepository {
         long id = user.getId();
         for (User element: users) {
             if (user == findById(id)) user = element;
-            if (user != findById(id)) user = null;
+            if (element != null) user = null; //if(user != findById(id))
             if (user == element) user = null;
         }
         return user;
