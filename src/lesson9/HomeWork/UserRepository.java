@@ -52,8 +52,6 @@ public class UserRepository {
         for (User user : users) {
             if (user.getId() == id) name = user.getName();
 
-
-
         }
         return name;
 
