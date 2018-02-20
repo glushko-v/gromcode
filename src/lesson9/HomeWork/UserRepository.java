@@ -9,12 +9,11 @@ public class UserRepository {
 
     public int countUsers() {
         int count = 0;
-        for (User index: users){
-            if (index != null) count++;
+        for (User user : users) {
+            if (user != null) count++;
         }
         return count;
     }
-
 
 
     public User[] getUsers() {
@@ -25,23 +24,21 @@ public class UserRepository {
         String[] names = new String[countUsers()];
 
         int index = 0;
-        for (User user: users) {
-            if (user != null){
-             names[index] = user.getName();
+        for (User user : users) {
+            if (user != null) {
+                names[index] = user.getName();
             }
         }
         return names;
 
-        }
-
-
+    }
 
 
     public long[] getUserIds() {
         long[] ids = new long[countUsers()];
 
         int index = 0;
-        for (User user: users) {
+        for (User user : users) {
             if (user != null) ids[index] = user.getId();
         }
 
@@ -49,17 +46,22 @@ public class UserRepository {
     }
 
 
-    public String getUserNameById(long id){
+    public String getUserNameById(long id) {
         int index = 0;
         String name = null;
-        for (User users: users) {
-            if (users.getId() != id) index++;
-            if (users.getId() == id) name = users.getName();
+        for (User user : users) {
+            if (user.getId() == id) name = user.getName();
+
+
 
         }
+        return name;
 
-            return name;
 
     }
 
+
+
 }
+
+
