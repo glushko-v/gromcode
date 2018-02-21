@@ -100,7 +100,7 @@ public class UserRepository {
         for (User element : users) {
             findById(id);
             if (user == element) return null;
-            if (element == null) element = user;
+            else user = element;
 
 
 
