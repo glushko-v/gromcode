@@ -95,12 +95,14 @@ public class UserRepository {
         return null;
     }
 
-    public User save(User user) { // в параметрах указывается юзер
-        long id = user.getId(); // получаем id и присваиваем его переменной
-        for (User element : users) { //перебираем элементы массива users
-            if (element == findById(id)) user = element;
-            if (element != findById(id)) user = null;
-            if (element == user) user = null;
+    public User save(User user) {
+        long id = user.getId();
+        for (User element : users) {
+            if (element == null) element = findById(id);
+            if (element != null) {
+                if (element == findById(id)) return null;
+            }
+
 
         }
         return user;
