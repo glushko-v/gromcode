@@ -112,16 +112,17 @@ public class UserRepository {
 
     public User update(User user){
         if (user == null) return null;
-        if (findById(user.getId()) != user) return null;
+        
         for (int i = 0; i <users.length; i++) {
-            if (users[i] == user) {
+            if (users[i] == findById(user.getId())) {
                 users[i] = user;
+                return user;
 
             }
 
 
         }
-        return user;
+        return null;
 
     }
 
