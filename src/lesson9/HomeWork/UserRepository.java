@@ -109,6 +109,14 @@ public class UserRepository {
         return null;
     }
 
+    private void delete(long id){
+        for (int i = 0; i <users.length; i++) {
+            if (users[i] == findById(id)) users[i] = null;
+        }
+
+
+    }
+
 }
 
 
