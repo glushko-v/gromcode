@@ -96,16 +96,17 @@ public class UserRepository {
     }
 
     public User save(User user) {
-        long id = user.getId();
-        findById(id);
-        for (User element : users) {
+        if (user == null) return null;
+        if (findById(user.getId()) != null) return null;
 
-            if (element == null) element = user;
-            else return null;
-
+        for (int i = 0; i <users.length; i++) {
+            if (users[i] == null) {
+                users[i] = user;
+                return user;
+            }
 
         }
-        return user;
+        return null;
     }
 
 }
