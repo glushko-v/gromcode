@@ -114,9 +114,10 @@ public class UserRepository {
         if (user == null) return null;
         if (user != findById(user.getId())) return null;
         for (int i = 0; i <users.length; i++) {
-            if (user == users[i]) users[i] = user;
+            if (users[i] == user) users[i] = user;
+            return user;
         }
-        return user;
+        return null;
 
     }
 
