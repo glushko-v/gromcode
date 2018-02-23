@@ -73,7 +73,7 @@ public class UserRepository {
     }
 
 
-    private User findById(long id) {
+    public User findById(long id) {
 
         for (User user : users) {
             if (user != null) {
@@ -117,16 +117,12 @@ public class UserRepository {
             if (users[i] == findById(user.getId())) {
                 users[i] = user;
                 return users[i];
-            }
-            else return null;
+            } else return null;
 
         }
 
         return null;
     }
-
-
-
 
 
     public void delete(long id) {
