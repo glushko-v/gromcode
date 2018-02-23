@@ -99,7 +99,7 @@ public class UserRepository {
         if (user == null) return null;
         if (findById(user.getId()) != null) return null;
 
-        for (int i = 0; i <users.length; i++) {
+        for (int i = 0; i < users.length; i++) {
             if (users[i] == null) {
                 users[i] = user;
                 return user;
@@ -110,25 +110,27 @@ public class UserRepository {
     }
 
 
-    public User update(User user){
+    public User update(User user) {
         if (user == null) return null;
         if (findById(user.getId()) != user) return null;
-        for (int i = 0; i <users.length; i++) {
+        for (int i = 0; i < users.length; i++) {
             if (users[i] == findById(user.getId())) {
-                users[i] = user;
-                return user;
 
+                users[i] = findById(user.getId());
+                return user;
             }
 
-
         }
-        return null;
 
+        return null;
     }
 
 
-    public void delete(long id){
-        for (int i = 0; i <users.length; i++) {
+
+
+
+    public void delete(long id) {
+        for (int i = 0; i < users.length; i++) {
             if (users[i] == findById(id)) users[i] = null;
         }
 
