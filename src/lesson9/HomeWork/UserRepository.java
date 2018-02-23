@@ -118,6 +118,7 @@ public class UserRepository {
                 users[i] = user;
                 return users[i];
             }
+            else return null;
 
         }
 
