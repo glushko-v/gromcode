@@ -116,7 +116,7 @@ public class UserRepository {
         for (int i = 0; i < users.length; i++) {
             if (users[i] == findById(user.getId())) {
 
-                users[i] = findById(user.getId());
+                user = users[i]
                 return user;
             }
 
