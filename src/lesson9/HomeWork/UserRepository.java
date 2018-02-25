@@ -73,7 +73,7 @@ public class UserRepository {
     }
 
 
-    private User findById(long id) {
+    public User findById(long id) {
 
         for (User user : users) {
             if (user != null) {
@@ -96,16 +96,41 @@ public class UserRepository {
     }
 
     public User save(User user) {
-        long id = user.getId();
-        findById(id);
-        for (User element : users) {
+        if (user == null) return null;
+        if (findById(user.getId()) != null) return null;
 
-            if (element == null) element = user;
-            else return null;
-
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] == null) {
+                users[i] = user;
+                return user;
+            }
 
         }
-        return user;
+        return null;
+    }
+
+
+    public User update(User user) {
+        if (user == null) return null;
+
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] == findById(user.getId())) {
+                users[i] = user;
+                return users[i];
+            } else return null;
+
+        }
+
+        return null;
+    }
+
+
+    public void delete(long id) {
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] == findById(id)) users[i] = null;
+        }
+
+
     }
 
 }
