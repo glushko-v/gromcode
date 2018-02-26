@@ -1,4 +1,4 @@
-package lesson10;
+package lesson10.polyexample;
 
 public class Human {
     private String name;

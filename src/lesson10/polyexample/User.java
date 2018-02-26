@@ -1,4 +1,4 @@
-package lesson10;
+package lesson10.polyexample;
 
 public class User extends Human {
 

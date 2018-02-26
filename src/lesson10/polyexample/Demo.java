@@ -1,4 +1,4 @@
-package lesson10;
+package lesson10.polyexample;
 
 public class Demo {
     public static void main(String[] args) {
