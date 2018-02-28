@@ -23,6 +23,7 @@ public abstract class Order {
     }
 
     abstract void validateOrder();
+
     abstract void calculatePrice();
 
 
@@ -74,7 +75,7 @@ public abstract class Order {
         this.totalPrice = totalPrice;
     }
 
-    void confirmShipping(){
+    void confirmShipping() {
         if (dateShipped == null) dateShipped = new Date();
     }
 }

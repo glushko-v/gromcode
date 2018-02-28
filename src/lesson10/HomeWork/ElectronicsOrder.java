@@ -4,11 +4,12 @@ import java.util.Date;
 
 public class ElectronicsOrder extends Order {
 
-    public ElectronicsOrder(String itemName, Date dateCreated, String shipFromCity, String shipToCity, int basePrice, Customer customerOwned) {
-        super(itemName, dateCreated, shipFromCity, shipToCity, basePrice, customerOwned);
-    }
-
     private int guaranteeMonths;
+
+    public ElectronicsOrder(String itemName, Date dateCreated, String shipFromCity, String shipToCity, int basePrice, Customer customerOwned, int guaranteeMonths) {
+        super(itemName, dateCreated, shipFromCity, shipToCity, basePrice, customerOwned);
+        this.guaranteeMonths = guaranteeMonths;
+    }
 
     @Override
     void calculatePrice() {
