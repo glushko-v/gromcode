@@ -24,7 +24,7 @@ public abstract class Order {
 
     void validateOrder(){}
 
-    abstract void calculatePrice();
+    void calculatePrice(){}
 
 
     public String getItemName() {
