@@ -24,10 +24,14 @@ public class ElectronicsOrder extends Order {
 
         String[] cities = {"Kiev", "Odessa", "Dnepr", "Kharkov"};
 
-        for (String city: cities) {
-            if (city != getShipFromCity()) break;
-            if (city != getShipToCity()) break;
+
+        for (String city : cities) {
+            if (city == getShipFromCity()) setDateConfirmed(new Date());
+            if (city == getShipToCity()) setDateConfirmed(new Date());
 
         }
+        if (getBasePrice() >= 100) setDateConfirmed(new Date());
+        
+
     }
 }
