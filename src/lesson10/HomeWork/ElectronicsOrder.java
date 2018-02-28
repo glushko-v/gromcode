@@ -12,7 +12,9 @@ public class ElectronicsOrder extends Order {
 
     @Override
     void calculatePrice() {
-        int price = getBasePrice();
+        double shipPrice = getTotalPrice() - getBasePrice();
+        if (getShipToCity() != "Kiev" || getShipToCity() != "Odessa") shipPrice = getBasePrice()*0.15;
+        else shipPrice = getBasePrice()*0.1;
     }
 
     @Override
@@ -31,6 +33,7 @@ public class ElectronicsOrder extends Order {
 
         }
         if (getBasePrice() >= 100) setDateConfirmed(new Date());
+        if (getCustomerOwned().getGender() == "Female") setDateConfirmed(new Date());
         
 
     }
