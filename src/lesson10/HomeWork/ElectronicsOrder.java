@@ -20,10 +20,6 @@ public class ElectronicsOrder extends Order {
 
     @Override
     void validateOrder() {
-        //проверить равен ли getShipFromCity одному из четырех городов
-        //проверить равен ли getShipToCity одному из четырех городов
-        //проверить минимальную цену заказа
-        //проверить пол
 
         String[] cities = {"Kiev", "Odessa", "Dnepr", "Kharkov"};
 
