@@ -17,10 +17,11 @@ public class ElectronicsOrder extends Order {
 
         String[] cities = {"Киев", "Одесса", "Днепр", "Харьков"};
 
-        for (String city: cities) {
-            if (getShipToCity() == city) {
-                if (getShipFromCity() == city)
-                    setDateConfirmed(new Date());
+        for (int i = 0; i < cities.length; i++) {
+            for (int j = 0; j < cities.length; j++) {
+                if (getShipToCity() == cities[i]){
+                    if (getShipFromCity() == cities[j]) setDateConfirmed(new Date());
+                }
             }
         }
 
