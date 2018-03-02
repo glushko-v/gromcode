@@ -22,11 +22,7 @@ public class FurnitureOrder extends Order {
 
     @Override
     void calculatePrice() {
-        double commission;
-        double priceWithComm;
-        if (getTotalPrice() < 5000) commission = 0.05;
-        else commission = 0.02;
-
-        priceWithComm = getTotalPrice()*commission;
+        if (getBasePrice() < 5000) setTotalPrice((getBasePrice()*0.05) + getBasePrice());
+        else setTotalPrice((getBasePrice()*0.02) + getBasePrice());
     }
 }
