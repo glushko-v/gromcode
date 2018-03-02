@@ -15,13 +15,20 @@ public class ElectronicsOrder extends Order {
     @Override
     void validateOrder() {
 
+        String[] cities = {"Киев", "Одесса", "Днепр", "Харьков"};
 
-        if (getShipFromCity() == "Киев" || getShipFromCity() == "Одесса" || getShipFromCity() == "Днепр" ||
-                getShipFromCity() == "Харьков")
-            setDateConfirmed(new Date());
-        if (getShipToCity() == "Киев" || getShipToCity() == "Одесса" || getShipToCity() == "Днепр" ||
-                getShipToCity() == "Харьков")
-            setDateConfirmed(new Date());
+        for (String city: cities) {
+            if (getShipToCity() == city && getShipFromCity() == city)
+                setDateConfirmed(new Date());
+        }
+
+
+//        if (getShipFromCity() == "Киев" || getShipFromCity() == "Одесса" || getShipFromCity() == "Днепр" ||
+//                getShipFromCity() == "Харьков")
+//            setDateConfirmed(new Date());
+//        if (getShipToCity() == "Киев" || getShipToCity() == "Одесса" || getShipToCity() == "Днепр" ||
+//                getShipToCity() == "Харьков")
+//            setDateConfirmed(new Date());
         if (getBasePrice() >= 100) setDateConfirmed(new Date());
         getCustomerOwned().getName();
         if (getCustomerOwned().getGender() == "Женский") setDateConfirmed(new Date());
