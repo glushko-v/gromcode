@@ -15,16 +15,7 @@ public class ElectronicsOrder extends Order {
     @Override
     void validateOrder() {
 
-//        String[] cities = {"Kiev", "Odessa", "Dnepr", "Kharkov"};
-//
-//
-//        for (String city : cities) {
-//            if (city == getShipFromCity()) setDateConfirmed(new Date());
-//            if (city == getShipToCity()) setDateConfirmed(new Date());
-//
-//        }
-//        if (getBasePrice() >= 100) setDateConfirmed(new Date());
-//        if (getCustomerOwned().getGender() == "Female") setDateConfirmed(new Date());
+
         if (getShipFromCity() == "Kiev" || getShipFromCity() == "Odessa" || getShipFromCity() == "Dnepr" || getShipFromCity() == "Kharkov")
             setDateConfirmed(new Date());
         if (getShipToCity() == "Kiev" || getShipToCity() == "Odessa" || getShipToCity() == "Dnepr" || getShipToCity() == "Kharkov")
@@ -38,7 +29,10 @@ public class ElectronicsOrder extends Order {
     @Override
     void calculatePrice() {
 
-        if (getShipToCity() != "Kiev" || getShipToCity() != "Odessa") setTotalPrice(getTotalPrice()*0.15);
-        else setTotalPrice(getBasePrice() * 0.1);
+        if (getShipToCity() != "Kiev" || getShipToCity() != "Odessa")
+            setTotalPrice((getBasePrice() * 0.15) + getBasePrice());
+        else setTotalPrice((getBasePrice() * 0.1) + getBasePrice());
+
+        if (getTotalPrice() > 1000) setTotalPrice(getTotalPrice() * 0.95);
     }
 }
