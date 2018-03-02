@@ -24,7 +24,7 @@ public class ElectronicsOrder extends Order {
             setDateConfirmed(new Date());
         if (getBasePrice() >= 100) setDateConfirmed(new Date());
         getCustomerOwned().getName();
-        if (getCustomerOwned().getGender() == "женский") setDateConfirmed(new Date());
+        if (getCustomerOwned().getGender() == "Женский") setDateConfirmed(new Date());
 
     }
 
