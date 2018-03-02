@@ -16,22 +16,22 @@ public class ElectronicsOrder extends Order {
     void validateOrder() {
 
 
-        if (getShipFromCity() == "Kiev" || getShipFromCity() == "Odessa" || getShipFromCity() == "Dnepr" ||
-                getShipFromCity() == "Kharkov")
+        if (getShipFromCity() == "Киев" || getShipFromCity() == "Одесса" || getShipFromCity() == "Днепр" ||
+                getShipFromCity() == "Харьков")
             setDateConfirmed(new Date());
-        if (getShipToCity() == "Kiev" || getShipToCity() == "Odessa" || getShipToCity() == "Dnepr" ||
-                getShipToCity() == "Kharkov")
+        if (getShipToCity() == "Киев" || getShipToCity() == "Одесса" || getShipToCity() == "Днепр" ||
+                getShipToCity() == "Харьков")
             setDateConfirmed(new Date());
         if (getBasePrice() >= 100) setDateConfirmed(new Date());
         getCustomerOwned().getName();
-        if (getCustomerOwned().getGender() == "Female") setDateConfirmed(new Date());
+        if (getCustomerOwned().getGender() == "женский") setDateConfirmed(new Date());
 
     }
 
     @Override
     void calculatePrice() {
 
-        if (getShipToCity() != "Kiev" || getShipToCity() != "Odessa")
+        if (getShipToCity() != "Киев" || getShipToCity() != "Одесса")
             setTotalPrice((getBasePrice() * 0.15) + getBasePrice());
         else setTotalPrice((getBasePrice() * 0.1) + getBasePrice());
 
