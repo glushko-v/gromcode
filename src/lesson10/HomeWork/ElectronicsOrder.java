@@ -18,8 +18,10 @@ public class ElectronicsOrder extends Order {
         String[] cities = {"Киев", "Одесса", "Днепр", "Харьков"};
 
         for (String city: cities) {
-            if (getShipToCity() == city && getShipFromCity() == city)
-                setDateConfirmed(new Date());
+            if (getShipToCity() == city) {
+                if (getShipFromCity() == city)
+                    setDateConfirmed(new Date());
+            }
         }
 
 
