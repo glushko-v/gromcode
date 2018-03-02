@@ -22,9 +22,9 @@ public abstract class Order {
         this.customerOwned = customerOwned;
     }
 
-    abstract public void validateOrder();
+    abstract void validateOrder();
 
-    abstract public void calculatePrice();
+    abstract void calculatePrice();
 
 
     public String getItemName() {
