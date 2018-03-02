@@ -16,9 +16,11 @@ public class ElectronicsOrder extends Order {
     void validateOrder() {
 
 
-        if (getShipFromCity() == "Kiev" || getShipFromCity() == "Odessa" || getShipFromCity() == "Dnepr" || getShipFromCity() == "Kharkov")
+        if (getShipFromCity() == "Kiev" || getShipFromCity() == "Odessa" || getShipFromCity() == "Dnepr" ||
+                getShipFromCity() == "Kharkov")
             setDateConfirmed(new Date());
-        if (getShipToCity() == "Kiev" || getShipToCity() == "Odessa" || getShipToCity() == "Dnepr" || getShipToCity() == "Kharkov")
+        if (getShipToCity() == "Kiev" || getShipToCity() == "Odessa" || getShipToCity() == "Dnepr" ||
+                getShipToCity() == "Kharkov")
             setDateConfirmed(new Date());
         if (getBasePrice() >= 100) setDateConfirmed(new Date());
         getCustomerOwned().getName();
