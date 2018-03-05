@@ -16,15 +16,24 @@ public class ElectronicsOrder extends Order {
     void validateOrder() {
 
 
-        if (getShipFromCity() == "Киев" || getShipFromCity() == "Одесса" || getShipFromCity() == "Днепр" ||
-                getShipFromCity() == "Харьков") {
-            if (getShipToCity() == "Киев" || getShipToCity() == "Одесса" || getShipToCity() == "Днепр" ||
-                    getShipToCity() == "Харьков")
-                setDateConfirmed(new Date());
-        }
+
         if (getBasePrice() >= 100) setDateConfirmed(new Date());
         getCustomerOwned().getName();
         if (getCustomerOwned().getGender() == "Женский") setDateConfirmed(new Date());
+
+        if (getShipFromCity() == "Киев" && getShipToCity() == "Одесса") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Одесса" && getShipToCity() == "Киев") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Киев" && getShipToCity() == "Днепр") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Днепр" && getShipToCity() == "Киев") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Киев" && getShipToCity() == "Харьков") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Харьков" && getShipToCity() == "Киев") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Одесса" && getShipToCity() == "Днепр") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Днепр" && getShipToCity() == "Одесса") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Харьков" && getShipToCity() == "Одесса") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Одесса" && getShipToCity() == "Харьков") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Днепр" && getShipToCity() == "Харьков") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Харьков" && getShipToCity() == "Днепр") setDateConfirmed(new Date());
+
 
     }
 
