@@ -15,14 +15,6 @@ public class ElectronicsOrder extends Order {
     @Override
     void validateOrder() {
 
-//        if (getShipToCity() == "Киев") setDateConfirmed(new Date());
-//        else if (getShipToCity() == "Одесса") setDateConfirmed(new Date());
-//        else if (getShipToCity() == "Днепр") setDateConfirmed(new Date());
-//        else if (getShipToCity() == "Харьков") setDateConfirmed(new Date());
-//        else if (getShipFromCity() == "Киев") setDateConfirmed(new Date());
-//        else if (getShipFromCity() == "Одесса") setDateConfirmed(new Date());
-//        else if (getShipFromCity() == "Днепр") setDateConfirmed(new Date());
-//        else if (getShipFromCity() == "Харьков") setDateConfirmed(new Date());
 
         getCustomerOwned().getName();
 
