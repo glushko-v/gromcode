@@ -75,7 +75,7 @@ public abstract class Order {
         this.totalPrice = totalPrice;
     }
 
-    void confirmShipping() {
+    public void confirmShipping() {
         if (dateShipped == null) dateShipped = new Date();
     }
 }
