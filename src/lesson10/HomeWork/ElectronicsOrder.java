@@ -43,16 +43,17 @@ public class ElectronicsOrder extends Order {
     @Override
     public void calculatePrice() {
 
-//        if (getBasePrice() < 1000) {
-//            if (getShipToCity() == "Киев" || getShipToCity() == "Одесса")
-//                setTotalPrice(getBasePrice()*1.1);
-//            else setTotalPrice(getBasePrice()*1.15);
-//        }
-//        else setTotalPrice(getTotalPrice()*0.95);
+        double shippingPrice;
+        if (getShipToCity() != "Киев" || getShipToCity() != "Одесса") shippingPrice = getBasePrice()*0.15;
+        else shippingPrice = getBasePrice()*0.1;
 
-        if (getShipToCity() == "Киев" || getShipToCity() == "Одесса") setTotalPrice(getBasePrice() * 1.1);
-        else setTotalPrice(getBasePrice()*1.15);
-        if (getBasePrice() > 1000) setTotalPrice(getTotalPrice()*0.95);
+        if (getBasePrice() > 1000) setTotalPrice((getBasePrice() + shippingPrice)*0.95);
+        else setTotalPrice(getBasePrice() + shippingPrice);
+
+
+//        if (getShipToCity() == "Киев" || getShipToCity() == "Одесса") setTotalPrice(getBasePrice() * 1.1);
+//        else setTotalPrice(getBasePrice()*1.15);
+//        if (getBasePrice() > 1000) setTotalPrice(getTotalPrice()*0.95);
 
 
     }
