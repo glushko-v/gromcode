@@ -13,7 +13,7 @@ public class ElectronicsOrder extends Order {
 
 
     @Override
-    void validateOrder() {
+    public void validateOrder() {
 
 
         getCustomerOwned().getName();
@@ -41,7 +41,7 @@ public class ElectronicsOrder extends Order {
     }
 
     @Override
-    void calculatePrice() {
+    public void calculatePrice() {
 
 //        if (getBasePrice() < 1000) {
 //            if (getShipToCity() == "Киев" || getShipToCity() == "Одесса")
