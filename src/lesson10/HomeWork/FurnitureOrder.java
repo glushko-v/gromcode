@@ -13,12 +13,18 @@ public class FurnitureOrder extends Order {
     @Override
     void validateOrder() {
 
-        
-        if (getBasePrice() >= 500) {
-            if (getCustomerOwned().getName() != "Test") {
-                if (getShipFromCity() == "Киев" || getShipFromCity() == "Львов") setDateConfirmed(new Date());
+        if (getShipFromCity() == "Киев" || getShipFromCity() == "Львов") {
+            if (getBasePrice() >= 500) {
+                if (getCustomerOwned().getName() != "Тест") setDateConfirmed(new Date());
             }
         }
+
+
+//        if (getBasePrice() >= 500) {
+//            if (getCustomerOwned().getName() != "Test") {
+//                if (getShipFromCity() == "Киев" || getShipFromCity() == "Львов") setDateConfirmed(new Date());
+//            }
+//        }
 
     }
 
