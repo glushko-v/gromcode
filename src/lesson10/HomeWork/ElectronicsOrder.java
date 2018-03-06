@@ -15,21 +15,36 @@ public class ElectronicsOrder extends Order {
     @Override
     void validateOrder() {
 
-        if (getShipToCity() == "Киев") setDateConfirmed(new Date());
-        else if (getShipToCity() == "Одесса") setDateConfirmed(new Date());
-        else if (getShipToCity() == "Днепр") setDateConfirmed(new Date());
-        else if (getShipToCity() == "Харьков") setDateConfirmed(new Date());
-        else if (getShipFromCity() == "Киев") setDateConfirmed(new Date());
-        else if (getShipFromCity() == "Одесса") setDateConfirmed(new Date());
-        else if (getShipFromCity() == "Днепр") setDateConfirmed(new Date());
-        else if (getShipFromCity() == "Харьков") setDateConfirmed(new Date());
+//        if (getShipToCity() == "Киев") setDateConfirmed(new Date());
+//        else if (getShipToCity() == "Одесса") setDateConfirmed(new Date());
+//        else if (getShipToCity() == "Днепр") setDateConfirmed(new Date());
+//        else if (getShipToCity() == "Харьков") setDateConfirmed(new Date());
+//        else if (getShipFromCity() == "Киев") setDateConfirmed(new Date());
+//        else if (getShipFromCity() == "Одесса") setDateConfirmed(new Date());
+//        else if (getShipFromCity() == "Днепр") setDateConfirmed(new Date());
+//        else if (getShipFromCity() == "Харьков") setDateConfirmed(new Date());
 
-
-        if (getBasePrice() >= 100) setDateConfirmed(new Date());
         getCustomerOwned().getName();
-        if (getCustomerOwned().getGender() == "Женский") setDateConfirmed(new Date());
 
-
+        if (getBasePrice() >= 100) {
+            if (getCustomerOwned().getGender() == "Женский") {
+                switch (getShipFromCity()) {
+                    case "Киев":
+                        if (getShipToCity() == "Одесса" || getShipToCity() == "Днепр" || getShipToCity() == "Харьков")
+                            setDateConfirmed(new Date());
+                    case "Одесса":
+                        if (getShipToCity() == "Киев" || getShipToCity() == "Днепр" || getShipToCity() == "Харьков")
+                            setDateConfirmed(new Date());
+                    case "Харьков":
+                        if (getShipToCity() == "Одесса" || getShipToCity() == "Днепр" || getShipToCity() == "Киев")
+                            setDateConfirmed(new Date());
+                    case "Днепр":
+                        if (getShipToCity() == "Одесса" || getShipToCity() == "Киев" || getShipToCity() == "Харьков")
+                            setDateConfirmed(new Date());
+                    default: break;
+                }
+            }
+        }
     }
 
     @Override
