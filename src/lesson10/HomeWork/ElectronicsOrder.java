@@ -54,7 +54,7 @@ public class ElectronicsOrder extends Order {
 
         if (basePrice > 1000)
             bonus = (basePrice + commission)*0.01*5;
-        setTotalPrice(basePrice + commission + bonus);
+        setTotalPrice(basePrice + commission - bonus);
 
 
 //        double shippingPrice;
