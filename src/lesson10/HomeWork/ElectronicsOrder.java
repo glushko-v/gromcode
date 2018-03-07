@@ -42,18 +42,27 @@ public class ElectronicsOrder extends Order {
 
     @Override
     public void calculatePrice() {
+        String city = getShipToCity();
+        if (city == null) return;
+        int basePrice = getBasePrice();
+        double commission;
+        double bonus = 0;
 
-        double shippingPrice;
-        if (getShipToCity() != "Киев" || getShipToCity() != "Одесса") shippingPrice = getBasePrice()*0.15;
-        else shippingPrice = getBasePrice()*0.1;
+        if (city.equalsIgnoreCase("Киев") || city.equalsIgnoreCase("Одесса"))
+            commission = (basePrice * 0.01 * 10);
+        else commission = (basePrice * 0.01 * 15);
 
-        if (getBasePrice() > 1000) setTotalPrice((getBasePrice() + shippingPrice)*0.95);
-        else setTotalPrice(getBasePrice() + shippingPrice);
+        if (basePrice > 1000)
+            bonus = (basePrice + commission)*0.01*5;
+        setTotalPrice(basePrice + commission + bonus);
 
 
-//        if (getShipToCity() == "Киев" || getShipToCity() == "Одесса") setTotalPrice(getBasePrice() * 1.1);
-//        else setTotalPrice(getBasePrice()*1.15);
-//        if (getBasePrice() > 1000) setTotalPrice(getTotalPrice()*0.95);
+//        double shippingPrice;
+//        if (getShipToCity() != "Киев" || getShipToCity() != "Одесса") shippingPrice = getBasePrice() * 0.15;
+//        else shippingPrice = getBasePrice() * 0.1;
+//
+//        if (getBasePrice() > 1000) setTotalPrice((getBasePrice() + shippingPrice) * 0.95);
+//        else setTotalPrice(getBasePrice() + shippingPrice);
 
 
     }
