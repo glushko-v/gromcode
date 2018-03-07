@@ -46,7 +46,7 @@ public class ElectronicsOrder extends Order {
         if (city == null) return;
         int basePrice = getBasePrice();
         double commission;
-        double bonus = 0;
+        double bonus = 0D;
 
         if (city.equalsIgnoreCase("Киев") || city.equalsIgnoreCase("Одесса"))
             commission = (basePrice * 0.01 * 10);
