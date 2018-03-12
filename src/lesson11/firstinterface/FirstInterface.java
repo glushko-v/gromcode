@@ -1,4 +1,4 @@
-package lesson11;
+package lesson11.firstinterface;
 
 public interface FirstInterface {
 
