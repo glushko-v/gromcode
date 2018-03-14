@@ -17,7 +17,7 @@ public class BookingComAPI implements API {
         int index = 0;
         Room[] roomsFound = new Room[index];
 
-        
+
         for (Room room : rooms) {
             if (room == null) return null;
             if (persons == room.getPersons()) {
