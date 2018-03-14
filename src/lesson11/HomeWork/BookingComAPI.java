@@ -9,13 +9,15 @@ public class BookingComAPI implements API {
         this.rooms = rooms;
     }
 
+
+
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
 
         int index = 0;
         Room[] roomsFound = new Room[index];
 
-
+        if (rooms == null) return null;
         for (Room room : rooms) {
             if (room == null) return null;
             if (persons == room.getPersons()) {
