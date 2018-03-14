@@ -26,4 +26,6 @@ public class FileReader implements Readable {
         System.out.println(file.getSize());
         System.out.println();
     }
+
+
 }
