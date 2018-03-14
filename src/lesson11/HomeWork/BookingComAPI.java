@@ -1,10 +1,14 @@
 package lesson11.HomeWork;
 
+import java.util.Date;
+
 public class BookingComAPI implements API {
     private Room[] rooms;
 
     public BookingComAPI(Room[] rooms) {
-        this.rooms = rooms;
+        Room room1 = new Room(123, 200, 2, null, "Hilton", "Paris");
+        Room room2 = new Room(65312, 300, 3, new Date(), "Kempinsky", "Moscow");
+        
     }
 
     @Override
