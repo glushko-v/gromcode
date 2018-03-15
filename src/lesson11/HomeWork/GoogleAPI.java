@@ -7,6 +7,8 @@ public class GoogleAPI implements API {
         this.rooms = rooms;
     }
 
+
+
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int index = 0;
@@ -14,18 +16,19 @@ public class GoogleAPI implements API {
 
 
         for (Room room : rooms) {
-            if (room == null) return null;
-            if (price == room.getPrice()) {
-                if (persons == room.getPersons()) {
-                    if (city == room.getCityName()) {
-                        if (hotel == room.getHotelName()) {
-                            roomsFound[index] = room;
-                            index++;
+            if (room != null) {
+                if (price == room.getPrice()) {
+                    if (persons == room.getPersons()) {
+                        if (city == room.getCityName()) {
+                            if (hotel == room.getHotelName()) {
+                                roomsFound[index] = room;
+                                index++;
+                            }
                         }
                     }
                 }
-            }
 
+            }
         }
         return roomsFound;
     }
