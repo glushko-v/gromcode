@@ -12,7 +12,7 @@ public class TripAdvisorAPI implements API {
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int index = 0;
-        Room[] roomsFound = new Room[index];
+        Room[] roomsFound = new Room[rooms.length];
 
 
         for (Room room : rooms) {
@@ -20,10 +20,7 @@ public class TripAdvisorAPI implements API {
                 if (price == room.getPrice()) {
                     if (city == room.getCityName()) {
                         if (hotel == room.getHotelName()) {
-                            if (persons == room.getPersons()) {
-                                roomsFound[index] = room;
-                                index++;
-                            } else if (persons <= (room.getPersons() + 1) || persons >= (room.getPersons() - 1)) {
+                            if (persons <= (room.getPersons() + 1) || persons >= (room.getPersons() - 1)) {
                                 roomsFound[index] = room;
                                 index++;
                             }
