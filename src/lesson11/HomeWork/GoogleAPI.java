@@ -12,7 +12,7 @@ public class GoogleAPI implements API {
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int index = 0;
-        Room[] roomsFound = new Room[index];
+        Room[] roomsFound = new Room[rooms.length];
 
 
         for (Room room : rooms) {
