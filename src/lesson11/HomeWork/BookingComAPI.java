@@ -10,11 +10,6 @@ public class BookingComAPI implements API {
     }
 
 
-
-    public Room[] getRooms() {
-        return rooms;
-    }
-
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
 
@@ -39,7 +34,6 @@ public class BookingComAPI implements API {
         }
         return roomsFound;
     }
-
 
 
     @Override

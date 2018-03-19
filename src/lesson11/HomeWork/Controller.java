@@ -11,7 +11,9 @@ public class Controller {
 
 
     Room[] requestRooms(int price, int persons, String city, String hotel) {
-        
+
+
+
         Room[] roomsFound = new Room[apis.length];
 
 
