@@ -13,7 +13,6 @@ public class Controller {
     Room[] requestRooms(int price, int persons, String city, String hotel) {
 
 
-
         Room[] roomsFound = new Room[apis.length];
 
 
@@ -27,15 +26,16 @@ public class Controller {
 
     Room[] check(API api1, API api2) {
 
-        Room[] roomsFound = new Room[apis.length];
+        Room[] roomsFound = new Room[api1.getAll().length];
         Room[] api1Rooms = api1.getAll();
         Room[] api2Rooms = api2.getAll();
-
 
 
         if (api1Rooms == null || api2Rooms == null) return null;
 
         if (api1Rooms == api2Rooms) roomsFound = api1Rooms;
+
+
         return roomsFound;
     }
 
