@@ -24,10 +24,12 @@ public class Controller {
     }
 
     Room[] check(API api1, API api2) {
-        int index = 0;
+
         Room[] roomsFound = new Room[apis.length];
         Room[] api1Rooms = api1.getAll();
         Room[] api2Rooms = api2.getAll();
+
+        
 
         if (api1Rooms == null || api2Rooms == null) return null;
 
