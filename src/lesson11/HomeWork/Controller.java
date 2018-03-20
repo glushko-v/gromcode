@@ -13,8 +13,7 @@ public class Controller {
     Room[] requestRooms(int price, int persons, String city, String hotel) {
 
         int index = 0;
-        for (API api: apis) {
-            api.findRooms(price, persons, city, hotel);
+        for (API api : apis) {
             index++;
         }
         Room[] roomsFound = new Room[index];
