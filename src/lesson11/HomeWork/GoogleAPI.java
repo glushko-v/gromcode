@@ -8,20 +8,15 @@ public class GoogleAPI implements API {
     }
 
 
-
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int index = 0;
-        Room[] roomsFound = new Room[rooms.length];
-
-
         for (Room room : rooms) {
             if (room != null) {
                 if (price == room.getPrice()) {
                     if (persons == room.getPersons()) {
                         if (city == room.getCityName()) {
                             if (hotel == room.getHotelName()) {
-                                roomsFound[index] = room;
                                 index++;
                             }
                         }
@@ -29,7 +24,29 @@ public class GoogleAPI implements API {
                 }
 
             }
+
         }
+        Room[] roomsFound = new Room[index];
+        int count = 0;
+
+        for (Room room : rooms) {
+            if (room != null) {
+                if (price == room.getPrice()) {
+                    if (persons == room.getPersons()) {
+                        if (city == room.getCityName()) {
+                            if (hotel == room.getHotelName()) {
+                                roomsFound[count] = room;
+                                count++;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+
         return roomsFound;
     }
 
