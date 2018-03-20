@@ -14,7 +14,7 @@ public class Controller {
 
         int index = 0;
         for (API api : apis) {
-            index++;
+            if (api.findRooms(price, persons, city, hotel) != null) index++;
         }
         Room[] roomsFound = new Room[index];
 
