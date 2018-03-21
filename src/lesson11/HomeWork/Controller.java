@@ -29,20 +29,19 @@ public class Controller {
 
     Room[] check(API api1, API api2) {
 
-        int index = 0;
+
         Room[] api1Rooms = api1.getAll();
         Room[] api2Rooms = api2.getAll();
+        Room[] roomsFound = new Room[api1Rooms.length];
 
-        for (API api : apis) {
-            if (api.getAll() == api1Rooms && api.getAll() == api2Rooms) index++;
-        }
 
-        Room[] roomsFound = new Room[index];
 
         if (api1Rooms == null || api2Rooms == null) return null;
 
+        for (API api: apis) {
+            if (api.getAll() == api1Rooms && api.getAll() == api2Rooms) roomsFound = api1Rooms;
+        }
 
-        if (api1Rooms == api2Rooms) roomsFound = api1Rooms;
 
 
         return roomsFound;
