@@ -36,10 +36,8 @@ public class Controller {
 
 
 
+        if (api1Rooms == api2Rooms) roomsFound = api1Rooms;
 
-        for (API api: apis) {
-            if (api.getAll() == api1Rooms && api.getAll() == api2Rooms) roomsFound = api1Rooms;
-        }
 
 
 
