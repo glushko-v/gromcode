@@ -33,7 +33,7 @@ public class Controller {
         Room[] api1Rooms = api1.getAll();
         Room[] api2Rooms = api2.getAll();
 
-        for (API api: apis) {
+        for (API api : apis) {
             if (api.getAll() == api1Rooms && api.getAll() == api2Rooms) index++;
         }
 
@@ -41,10 +41,8 @@ public class Controller {
 
         if (api1Rooms == null || api2Rooms == null) return null;
 
-        for (API api: apis) {
-            if (api.getAll() == api1Rooms && api.getAll() == api2Rooms) roomsFound = api1Rooms;
-        }
 
+        if (api1Rooms == api2Rooms) roomsFound = api1Rooms;
 
 
         return roomsFound;
