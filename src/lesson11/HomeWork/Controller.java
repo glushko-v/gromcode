@@ -34,9 +34,12 @@ public class Controller {
         Room[] api2Rooms = api2.getAll();
         Room[] roomsFound = new Room[api1Rooms.length];
 
+        for (Room room: api1Rooms){
+            if (api1.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName()) ==
+                    api2.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName()))
+                roomsFound = api1.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName());
+        }
 
-
-        if (api1Rooms == api2Rooms) roomsFound = api1Rooms;
 
 
 
