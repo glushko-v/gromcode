@@ -12,9 +12,11 @@ public class Controller {
 
     Room[] requestRooms(int price, int persons, String city, String hotel) {
 
+
         int index = 0;
         for (API api : apis) {
-            if (api.findRooms(price, persons, city, hotel) != null) index++;
+            api.findRooms(price, persons, city, hotel);
+            index++;
         }
         Room[] roomsFound = new Room[index];
 
