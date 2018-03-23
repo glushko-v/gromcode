@@ -37,18 +37,28 @@ public class Controller {
 
         for (Room room : api1Rooms) {
             for (Room room1 : api2Rooms) {
-                if (api1.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName()) ==
-                        api2.findRooms(room1.getPrice(), room1.getPersons(), room1.getCityName(), room1.getHotelName()))
-                    index++;
+                if (room.getPersons() == room1.getPersons()){
+                    if (room.getPrice() == room1.getPrice()){
+                        if (room.getCityName() == room1.getCityName()){
+                            if (room.getHotelName() == room1.getHotelName()) index++;
+                        }
+                    }
+                }
             }
         }
         Room[] roomsFound = new Room[index];
 
         for (Room room : api1Rooms) {
             for (Room room1 : api2Rooms) {
-                if (api1.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName()) ==
-                        api2.findRooms(room1.getPrice(), room1.getPersons(), room1.getCityName(), room1.getHotelName()))
-                    roomsFound = api1.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName());
+                if (room.getPersons() == room1.getPersons()) {
+                    if (room.getPrice() == room1.getPrice()) {
+                        if (room.getCityName() == room1.getCityName()) {
+                            if (room.getHotelName() == room1.getHotelName())
+                                roomsFound = api1.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName());
+                        }
+                    }
+                }
+
             }
         }
 
