@@ -56,14 +56,18 @@ public class Controller {
             }
         }
         Room[] roomsFound = new Room[index];
+        int count = 0;
 
         for (Room room : api1Rooms) {
             for (Room room1 : api2Rooms) {
                 if (room.getPersons() == room1.getPersons()) {
                     if (room.getPrice() == room1.getPrice()) {
                         if (room.getCityName() == room1.getCityName()) {
-                            if (room.getHotelName() == room1.getHotelName())
-                                roomsFound = api1.findRooms(room.getPrice(), room.getPersons(), room.getCityName(), room.getHotelName());
+                            if (room.getHotelName() == room1.getHotelName()){
+                                roomsFound[count] = room;
+                                count++;
+                            }
+
                         }
                     }
                 }
