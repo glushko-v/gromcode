@@ -14,16 +14,23 @@ public class Controller {
 
 
         int index = 0;
+
         for (API api : apis) {
-            api.findRooms(price, persons, city, hotel);
-            index++;
+            for (Room room : api.getAll()) {
+                if (room.getPrice() == price && room.getPersons() == persons &&
+                        room.getCityName() == city && room.getHotelName() == hotel) index++;
+            }
         }
+
+
         Room[] roomsFound = new Room[index];
 
 
         for (API api : apis) {
-            roomsFound = api.findRooms(price, persons, city, hotel);
+            for (Room room : api.getAll()) {
+                roomsFound = api.findRooms(price, persons, city, hotel);
 
+            }
         }
         return roomsFound;
 
@@ -39,9 +46,9 @@ public class Controller {
 
         for (Room room : api1Rooms) {
             for (Room room1 : api2Rooms) {
-                if (room.getPersons() == room1.getPersons()){
-                    if (room.getPrice() == room1.getPrice()){
-                        if (room.getCityName() == room1.getCityName()){
+                if (room.getPersons() == room1.getPersons()) {
+                    if (room.getPrice() == room1.getPrice()) {
+                        if (room.getCityName() == room1.getCityName()) {
                             if (room.getHotelName() == room1.getHotelName()) index++;
                         }
                     }
