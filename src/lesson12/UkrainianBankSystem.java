@@ -20,14 +20,22 @@ public class UkrainianBankSystem implements BankSystem {
         if (!checkWithdraw(user, amount)) return;
 
 
-        user.setBalance(user.getBalance() - amount - amount*user.getBank().getCommission(amount));
+        user.setBalance(user.getBalance() - amount - amount * user.getBank().getCommission(amount));
 
     }
 
 
     @Override
     public void fund(User user, int amount) {
-        //TODO homework
+
+//        int limitOfFunding = user.getBank().getLimitOfFunding();
+//        if (amount + user.getBank().getCommission(amount) > limitOfFunding){
+//            printFundingErrorMsg(amount, user);
+//        }
+        if (!checkFundingLimits(user, amount)) return;
+
+        user.setBalance(user.getBalance() + amount - amount * user.getBank().getCommission(amount));
+
     }
 
     @Override
@@ -35,20 +43,26 @@ public class UkrainianBankSystem implements BankSystem {
 
         if (!checkWithdraw(fromUser, amount)) return;
 
-        //TODO check fund rules
+        if (!checkFundingLimits(toUser, amount)) return;
 
-        fromUser.setBalance(fromUser.getBalance() - amount - amount*fromUser.getBank().getCommission(amount));
+        fromUser.setBalance(fromUser.getBalance() - amount - amount * fromUser.getBank().getCommission(amount));
+
+        toUser.setBalance(toUser.getBalance() + amount - amount * toUser.getBank().getCommission(amount));
+
+
 
         //TODO withdraw and funds
 
-        withdraw(fromUser, amount);
-        fund(toUser, amount);
+//        withdraw(fromUser, amount);
+//        fund(toUser, amount);
 
     }
 
     @Override
     public void paySalary(User user) {
-        //TODO homework
+
+        double salaryPaid = user.getSalary() + user.getBalance();
+        user.setBalance(salaryPaid);
 
     }
 
@@ -56,10 +70,22 @@ public class UkrainianBankSystem implements BankSystem {
         System.err.println("Can't withdraw money " + amount + " from user" + user.toString());
     }
 
+    private void printFundingErrorMsg(int amount, User user) {
+        System.err.println("Can't fund " + amount + " to user" + user.toString());
+    }
+
     private boolean checkWithdraw(User user, int amount) {
         return checkWithdrawLimits(user, amount, user.getBank().getLimitOfWithdrawal()) &&
                 checkWithdrawLimits(user, amount, user.getBalance());
 
+    }
+
+    private boolean checkFundingLimits(User user, int amount) {
+        if (amount + user.getBank().getCommission(amount) > user.getBank().getLimitOfFunding()) {
+            printFundingErrorMsg(amount, user);
+            return false;
+        }
+        return true;
     }
 
     private boolean checkWithdrawLimits(User user, int amount, double limit) {
