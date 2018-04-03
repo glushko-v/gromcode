@@ -34,7 +34,7 @@ public class UkrainianBankSystem implements BankSystem {
 //        }
         if (!checkFundingLimits(user, amount)) return;
 
-        user.setBalance(user.getBalance() + amount - amount * user.getBank().getCommission(amount));
+        user.setBalance(user.getBalance() + amount);
 
     }
 
@@ -45,16 +45,20 @@ public class UkrainianBankSystem implements BankSystem {
 
         if (!checkFundingLimits(toUser, amount)) return;
 
-        withdraw(fromUser, amount);
-        fund(toUser, amount);
+        if(fromUser.getBank().getCurrency() == toUser.getBank().getCurrency()) {
+            withdraw(fromUser, amount);
+            fund(toUser, amount);
+        }
+        else System.err.println("Can't transfer money from " + fromUser.getName() + " to user " + toUser.getName());
 
     }
 
     @Override
     public void paySalary(User user) {
 
-        double salaryPaid = user.getSalary() + user.getBalance();
-        user.setBalance(salaryPaid);
+        if (!checkFundingLimits(user, user.getSalary())) return;
+
+        fund(user, user.getSalary());
 
     }
 
