@@ -38,6 +38,7 @@ public class ElectronicsOrder extends Order {
                 }
             }
         }
+
     }
 
     @Override
@@ -57,13 +58,7 @@ public class ElectronicsOrder extends Order {
         setTotalPrice(basePrice + commission - bonus);
 
 
-//        double shippingPrice;
-//        if (getShipToCity() != "Киев" || getShipToCity() != "Одесса") shippingPrice = getBasePrice() * 0.15;
-//        else shippingPrice = getBasePrice() * 0.1;
-//
-//        if (getBasePrice() > 1000) setTotalPrice((getBasePrice() + shippingPrice) * 0.95);
-//        else setTotalPrice(getBasePrice() + shippingPrice);
-
 
     }
+
 }
