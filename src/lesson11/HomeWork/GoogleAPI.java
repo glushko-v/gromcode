@@ -1,5 +1,7 @@
 package lesson11.HomeWork;
 
+import java.util.Arrays;
+
 public class GoogleAPI implements API {
     private Room[] rooms;
 
@@ -54,6 +56,8 @@ public class GoogleAPI implements API {
     public Room[] getAll() {
         return rooms;
     }
+
+
 }
 
 
