@@ -19,6 +19,7 @@ public class Demo {
 
         GoogleAPI googleAPI = new GoogleAPI(rooms);
         System.out.println(Arrays.deepToString(googleAPI.getAll()));
+        System.out.println(Arrays.deepToString(googleAPI.findRooms(200,3, "Kiev", "Swissotel")));
 
 
     }
