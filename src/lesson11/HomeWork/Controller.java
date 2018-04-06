@@ -46,10 +46,12 @@ public class Controller {
 
         for (Room room : api1Rooms) {
             for (Room room1 : api2Rooms) {
-                if (room.getPersons() == room1.getPersons()) {
-                    if (room.getPrice() == room1.getPrice()) {
-                        if (room.getCityName() == room1.getCityName()) {
-                            if (room.getHotelName() == room1.getHotelName()) index++;
+                if (room != null && room1 != null) {
+                    if (room.getPersons() == room1.getPersons()) {
+                        if (room.getPrice() == room1.getPrice()) {
+                            if (room.getCityName() == room1.getCityName()) {
+                                if (room.getHotelName() == room1.getHotelName()) index++;
+                            }
                         }
                     }
                 }
@@ -60,18 +62,20 @@ public class Controller {
 
         for (Room room : api1Rooms) {
             for (Room room1 : api2Rooms) {
-                if (room.getPersons() == room1.getPersons()) {
-                    if (room.getPrice() == room1.getPrice()) {
-                        if (room.getCityName() == room1.getCityName()) {
-                            if (room.getHotelName() == room1.getHotelName()){
-                                roomsFound[count] = room;
-                                count++;
-                            }
+                if (room != null && room1 != null) {
+                    if (room.getPersons() == room1.getPersons()) {
+                        if (room.getPrice() == room1.getPrice()) {
+                            if (room.getCityName() == room1.getCityName()) {
+                                if (room.getHotelName() == room1.getHotelName()) {
+                                    roomsFound[count] = room;
+                                    count++;
+                                }
 
+                            }
                         }
                     }
-                }
 
+                }
             }
         }
 
