@@ -13,6 +13,11 @@ public class Demo {
         System.out.println(objectTest.toString());
         System.out.println(objectTest.getClass().getName());
 
+        objectTest = new Object();
+
+        System.out.println(objectTest.toString());
+        System.out.println(objectTest.getClass().getName());
+
 
     }
 }
