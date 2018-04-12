@@ -1,4 +1,4 @@
-package lesson15;
+package lesson15.equals;
 
 public class Demo {
     public static void main(String[] args) {
@@ -11,6 +11,10 @@ public class Demo {
         System.out.println(file1.equals(file3));
         System.out.println(file1 == file3);
         System.out.println(file1 == someFile);
+
+        User user = new User(1001);
+
+        System.out.println(file1.equals(user));
 
     }
 }
