@@ -19,16 +19,31 @@ public class File {
 
         File file = (File) o;
 
-        if (size != file.size) return false;
-        if (path != null ? !path.equals(file.path) : file.path != null) return false;
-        return extension != null ? extension.equals(file.extension) : file.extension == null;
+        return path.equals(file.path);
     }
 
     @Override
     public int hashCode() {
-        int result = size;
-        result = 31 * result + (path != null ? path.hashCode() : 0);
-        result = 31 * result + (extension != null ? extension.hashCode() : 0);
-        return result;
+        return path.hashCode();
     }
+
+    //    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        File file = (File) o;
+//
+//        if (size != file.size) return false;
+//        if (path != null ? !path.equals(file.path) : file.path != null) return false;
+//        return extension != null ? extension.equals(file.extension) : file.extension == null;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = size;
+//        result = 31 * result + (path != null ? path.hashCode() : 0);
+//        result = 31 * result + (extension != null ? extension.hashCode() : 0);
+//        return result;
+//    }
 }
