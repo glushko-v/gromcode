@@ -3,9 +3,9 @@ package lesson15.Homework;
 public class UserRepository {
     private User[] users = new User[10];
 
-    public UserRepository(User[] users) {
-        this.users = users;
-    }
+//    public UserRepository(User[] users) {
+//        this.users = users;
+//    }
 
 //    public int countUsers() {
 //        int count = 0;
