@@ -7,6 +7,7 @@ public class StringMethods {
         String test = "someStringExample";
 
         System.out.println(test.isEmpty());
+        System.out.println("".isEmpty());
         System.out.println(test.length());
         System.out.println(test.charAt(2));
         System.out.println(test.replace("me", "T"));
