@@ -10,12 +10,19 @@ public class StringMethods {
         System.out.println("".isEmpty());
         System.out.println(test.length());
         System.out.println(test.charAt(2));
-        System.out.println(test.replace("me", "T"));
+//        System.out.println(test.replace("me", "T"));
+
+        String res = test.replace("me", "T");
+        System.out.println(res);
 
         System.out.println(test.replaceAll("me", "T"));
-        System.out.println(test.contains("me"));
 
         System.out.println(test);
+        System.out.println(test.contains("mes"));
+
+        System.out.println(test);
+
+
         String phrase = "Hello there guys";
         System.out.println(Arrays.toString(phrase.split(" ")));
         System.out.println("  test a".trim());
