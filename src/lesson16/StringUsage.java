@@ -2,7 +2,7 @@ package lesson16;
 
 public class StringUsage {
     public static void main(String[] args) {
-        String test = "Some string";
+        String test = "someString";
         String result = test + "_end";
         System.out.println(result);
 
