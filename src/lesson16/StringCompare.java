@@ -7,7 +7,7 @@ public class StringCompare {
         System.out.println(new String("abc") == new String("abc"));
         System.out.println(new String("abc").equals(new String("abc")));
         System.out.println("abc" == "abc");
-        System.out.println("abc".equals("abc"));
+        System.out.println("Abc".equals("abc"));
 
 
         String s1 = "test";
