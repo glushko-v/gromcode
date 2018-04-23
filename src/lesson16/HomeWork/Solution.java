@@ -6,14 +6,13 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "boom crash bla bla d@ bla @#jjjj 124count count555 lalalalalalalala bl12 aa sd lala вл";
+        String test = "boom crash aaaaaaaaa bla bla d@ bla @#jjjj 124count count555 la bl12 aa sd lala вл";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
         System.out.println(countWords(test));
         System.out.println(minWord(test));
         System.out.println(maxWord(test));
-
 
 
     }
@@ -47,12 +46,12 @@ public class Solution {
             if (results[count].length() < results[i].length() && isWord(results[count]) && isWord(results[i])) {
                 count = i;
                 maxWord = results[count];
+
             }
 
+
         }
-
         return maxWord;
-
 
     }
 
@@ -75,8 +74,8 @@ public class Solution {
 
     static boolean isWord(String input) {
         char[] letters = input.toCharArray();
-        for (char letter: letters) {
-            if (!Character.isLetter(letter))return false;
+        for (char letter : letters) {
+            if (!Character.isLetter(letter)) return false;
         }
 
         return true;
