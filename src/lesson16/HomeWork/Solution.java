@@ -6,30 +6,10 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "bla bla bla !@# d@ bla bl12";
+        String test = "boom crash bla bla d@ bla lalalalalalalala bl12 aa sd lala вл";
 
-        String[] words = test.split(" ");
-        char[] letters = test.toCharArray();
-        int count = 0;
-
-        for (char letter: letters) {
-            if (!Character.isWhitespace(letter) && !Character.isLetter(letter))count++;
-        }
-
-        char[] symbols = new char[count];
-
-        /*Цель: не считать слова, где содержатся символы
-
-        1. Разбиваем стринг на массив знаков
-        2. Создаем результирующий массив длиной массива знаков
-        3. Пробегаем по массиву знаков. Если среди них есть символ, записываем его в результирующий массив
-        4. Разбиваем строку по пробелам. Создаем массив слов
-        5. Создаем результирующий массив слов длиной в начальный массив слов
-        5. Пробегаем по массиву слов и одновременно по результирующему массиву знаков
-        5.1. Если слово из массива содержит символ из массива знаков приравниваем его к ""
-        5.2. Если слово не содержит символ - записываем его в результирующий массив слов*/
-
-
+        System.out.println(maxWord(test));
+        System.out.println(minWord(test));
 
 
     }
@@ -47,6 +27,42 @@ public class Solution {
         }
 
         return count;
+
+    }
+
+    static String maxWord(String input) {
+        String[] results = input.split(" ");
+        String maxWord = null;
+        int count = 0;
+
+        for (int i = 0; i < results.length; i++) {
+            if (results[count].length() < results[i].length()) {
+                count = i;
+                maxWord = results[count];
+            }
+
+        }
+
+        return maxWord;
+
+
+    }
+
+    static String minWord(String input) {
+        String[] results = input.split(" ");
+        String minWord = null;
+        int count = 0;
+
+        for (int i = 0; i < results.length; i++) {
+            if (results[count].length() > results[i].length()) {
+                count = i;
+                minWord = results[count];
+            }
+
+        }
+
+        return minWord;
+
 
     }
 
