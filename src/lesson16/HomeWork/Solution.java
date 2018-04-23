@@ -10,8 +10,8 @@ public class Solution {
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
-//        isWord(test);
-        System.out.println(countWords(test));
+        isWord(test);
+
 
 
     }
