@@ -10,7 +10,7 @@ public class Solution {
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
-        isWord(test);
+        System.out.println(countWords(test));
 
 
 
@@ -26,8 +26,8 @@ public class Solution {
 
         for (String result : results) {
 
-            if (result != null && !result.equals("")) {
-//                isWord(result);
+            if (result != null && !result.equals("") && isWord(result)) {
+
                 count++;
             }
         }
@@ -71,21 +71,13 @@ public class Solution {
 
     }
 
-    static void isWord(String input) {
-        String[] results = input.split(" ");
-        for (int i = 0; i < results.length; i++) {
-            char[] symbols = results[i].toCharArray();
-            for (char symbol : symbols) {
-                if (!Character.isLetter(symbol)) {
-                    results[i] = null;
-
-                }
-
-
-            }
-            System.out.print(results[i] + " ");
+    static boolean isWord(String input) {
+        char[] letters = input.toCharArray();
+        for (char letter: letters) {
+            if (!Character.isLetter(letter))return false;
         }
 
+        return true;
 
     }
 
