@@ -11,6 +11,8 @@ public class Solution {
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
         System.out.println(countWords(test));
+        System.out.println(minWord(test));
+        System.out.println(maxWord(test));
 
 
 
@@ -42,7 +44,7 @@ public class Solution {
         int count = 0;
 
         for (int i = 0; i < results.length; i++) {
-            if (results[count].length() < results[i].length()) {
+            if (results[count].length() < results[i].length() && isWord(results[count]) && isWord(results[i])) {
                 count = i;
                 maxWord = results[count];
             }
@@ -60,7 +62,7 @@ public class Solution {
         int count = 0;
 
         for (int i = 0; i < results.length; i++) {
-            if (results[count].length() > results[i].length()) {
+            if (results[count].length() > results[i].length() && isWord(results[count]) && isWord(results[i])) {
                 count = i;
                 minWord = results[count];
             }
