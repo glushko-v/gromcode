@@ -1,18 +1,22 @@
 package lesson16.HomeWork;
 
-import java.util.Arrays;
-
-
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "boom crash aaa bla bla d@ bla @#jjjj 124count count555 la bl12 aa sd lala вл";
+        String test = "122 crash a blaa bla d@ bla @#jjjj 124count111 count555 laa bl12 aa sd lala вk";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
-        System.out.println(countWords(test));
-        System.out.println(minWord(test));
+//        System.out.println(countWords(test));
+//        System.out.println(minWord(test));
         System.out.println(maxWord(test));
+        System.out.println(minWord(test));
+
+
+//        System.out.println(mostCountedWords(test));
+
+
+        //
 
 
     }
@@ -39,34 +43,29 @@ public class Solution {
 
     static String maxWord(String input) {
         String[] results = input.split(" ");
-        String maxWord = null;
-        int count = 0;
+        String maxWord = results[0];
 
-        for (int i = 0; i < results.length; i++) {
-            if (results[count].length() < results[i].length() && isWord(results[count]) && isWord(results[i])) {
-                count = i;
-                maxWord = results[count];
-
+        for (int i = 0; i < results.length - 1; i++) {
+            if (maxWord.length() < results[i + 1].length()) {
+                maxWord = results[i + 1];
             }
-
-
         }
+
+
         return maxWord;
 
     }
 
     static String minWord(String input) {
         String[] results = input.split(" ");
-        String minWord = null;
-        int count = 0;
+        String minWord = results[0];
 
-        for (int i = 0; i < results.length; i++) {
-            if (results[count].length() > results[i].length() && isWord(results[count]) && isWord(results[i])) {
-                count = i;
-                minWord = results[count];
+        for (int i = 0; i < results.length - 1; i++) {
+            if (minWord.length() > results[i + 1].length()) {
+                minWord = results[i + 1];
             }
-
         }
+
 
         return minWord;
 
@@ -80,6 +79,20 @@ public class Solution {
 
         return true;
 
+    }
+
+    static String mostCountedWords(String input) {
+        String[] res = input.split(" ");
+        String word = res[0];
+
+        for (int i = 1; i < res.length - 1; i++) {
+
+            if (word.length() < res[i + 1].length()) word = res[i + 1];
+
+
+        }
+
+        return word;
     }
 
 
