@@ -3,17 +3,15 @@ package lesson16.HomeWork;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "f111 crash a blaaaaaaa bla d@ bla @#jjjj 124count111 count555 laa bl12 aa sd lala вk";
+        String test = "bla crash a bla bla d@ bla @#jjjj 124count111 count555 laa bl12 aa sd lala вk bla";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
 //        System.out.println(countWords(test));
 //        System.out.println(minWord(test));
-        System.out.println(maxWord(test));
-        System.out.println(minWord(test));
-
-
-//        System.out.println(mostCountedWords(test));
+//        System.out.println(maxWord(test));
+//        System.out.println(minWord(test));
+       System.out.println(mostCountedWords(test));
 
 
         //
@@ -96,12 +94,31 @@ public class Solution {
 
     }
 
-    static String mostCountedWords(String input) {
+    static int mostCountedWords(String input) {
         String[] res = input.split(" ");
-//        String word = res[0];
+        String word = null;
+        if (res.length == 0) return 0;
+
+        for (String res1: res) {
+            if(res.length>0 && isWord(res1)){
+                word = res1;
+                break;
+            }
+        }
+
+        if (word == null) return 0;
+
+        int count = 0;
+        int index = 0;
+
+        for (int i = 0; i <res.length-1; i++) {
+            if (word.equals(res[i+1])) count++;
 
 
-        return null;
+        }
+
+
+        return count;
     }
 
 
