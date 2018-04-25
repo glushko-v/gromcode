@@ -65,7 +65,6 @@ public class Solution {
     static String minWord(String input) {
         String[] results = input.split(" ");
         String minWord = null;
-
         if (results.length == 0) return null;
 
         for (String result : results) {
@@ -78,7 +77,7 @@ public class Solution {
         if (minWord == null) return null;
 
         for (String result: results) {
-            if (result.length() < minWord.length() && isWord(result)) minWord = result;
+            if (result.length() < minWord.length() && isWord(result) && result.length() > 0) minWord = result;
         }
 
 
