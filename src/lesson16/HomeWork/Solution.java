@@ -94,33 +94,30 @@ public class Solution {
 
     }
 
-    static int mostCountedWords(String input) {
-        String[] res = input.split(" ");
-        String word = null;
-        if (res.length == 0) return 0;
-        int count =0;
-        int index =0;
+    static String mostCountedWords(String input) {
+        if (input.isEmpty())return null;
 
+        String[] words = input.split(" ");
+        int maxCount = 0;
+        String mostFrequent = null;
 
-
-        for (String res1: res) {
-            if(res.length>0 && isWord(res1)){
-                word = res1;
-                break;
+        for (String word: words) {
+            int count = 0;
+            for (String item: words) {
+                if (word.equals(item) && word.length() > 0 && isWord(item)) count++;
             }
-        }
-
-        if (word == null) return 0;
-
-        for (int i = 0; i <res.length; i++) {
-            word = res[i];
-            for (int j = i+1; j <res.length; j++) {
-                if (word.equals(res[j])) count++;
+            if (count > maxCount){
+                maxCount = count;
+                mostFrequent = word;
             }
+
+
         }
 
 
-        return count;
+
+
+        return mostFrequent;
     }
 
 
