@@ -11,7 +11,7 @@ public class Solution {
 //        System.out.println(minWord(test));
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
-       System.out.println(mostCountedWords(test));
+       System.out.println(mostCountedWord(test));
 
 
         //
@@ -94,7 +94,7 @@ public class Solution {
 
     }
 
-    static String mostCountedWords(String input) {
+    static String mostCountedWord(String input) {
         if (input.isEmpty())return null;
 
         String[] words = input.split(" ");
