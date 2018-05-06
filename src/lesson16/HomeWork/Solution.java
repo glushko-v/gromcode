@@ -1,9 +1,13 @@
 package lesson16.HomeWork;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
+import java.util.Arrays;
+
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "asa bla bla bla asa";
+        String test = "https://phoenix.odessa.net";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -11,10 +15,7 @@ public class Solution {
 //        System.out.println(minWord(test));
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
-       System.out.println(mostCountedWord(test));
-
-
-        //
+        System.out.println(validate(test));
 
 
     }
@@ -118,6 +119,23 @@ public class Solution {
 
 
         return mostFrequent;
+    }
+
+    static boolean validate(String address) {
+        if (address.startsWith("http://") || address.startsWith("https://")){
+            if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")){
+                String[] words = address.split("//");
+                for (int i = 0; i <words.length; i++) {
+                    if (words[1].startsWith(".")) {
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+
+        }
+
+        return false;
     }
 
 
