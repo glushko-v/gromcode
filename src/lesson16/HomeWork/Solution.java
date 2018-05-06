@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "https://phoenix.odessa.net";
+        String test = "https://mail.org";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -54,7 +54,7 @@ public class Solution {
 
         if (maxWord == null) return null;
 
-        for (String result: results) {
+        for (String result : results) {
             if (result.length() > maxWord.length() && isWord(result)) maxWord = result;
         }
         return maxWord;
@@ -75,10 +75,9 @@ public class Solution {
 
         if (minWord == null) return null;
 
-        for (String result: results) {
+        for (String result : results) {
             if (result.length() < minWord.length() && isWord(result) && result.length() > 0) minWord = result;
         }
-
 
 
         return minWord;
@@ -96,18 +95,18 @@ public class Solution {
     }
 
     static String mostCountedWord(String input) {
-        if (input.isEmpty())return null;
+        if (input.isEmpty()) return null;
 
         String[] words = input.split(" ");
         int maxCount = 0;
         String mostFrequent = null;
 
-        for (String word: words) {
+        for (String word : words) {
             int count = 0;
-            for (String item: words) {
+            for (String item : words) {
                 if (word.equals(item) && word.length() > 0 && isWord(item)) count++;
             }
-            if (count > maxCount){
+            if (count > maxCount) {
                 maxCount = count;
                 mostFrequent = word;
             }
@@ -116,24 +115,28 @@ public class Solution {
         }
 
 
-
-
         return mostFrequent;
     }
 
     static boolean validate(String address) {
-        if (address.startsWith("http://") || address.startsWith("https://")){
-            if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")){
-                String[] words = address.split("//");
-                for (int i = 0; i <words.length; i++) {
-                    if (words[1].startsWith(".")) {
-                        return false;
-                    }
-                    else return true;
-                }
-            }
 
+        if (address == null) return false;
+        if (address.startsWith("http://") || address.startsWith("https://")) {
+            if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
+                String[] words = address.split("//");
+                if (words.length == 0) return false;
+
+                char[] syms = words[1].toCharArray();
+
+
+                for (int i = 0; i <words.length; i++) {
+                    if (words[i] == null) return false;
+                }
+
+                return (!words[1].startsWith("."));
+            }
         }
+
 
         return false;
     }
