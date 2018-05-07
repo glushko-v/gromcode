@@ -148,8 +148,8 @@ public class Solution {
                 }
 
 
-                for (int i = 0; i < words.length; i++) {
-                    if (words[i] == null) return false;
+                for (String word : words) {
+                    if (word == null) return false;
                 }
 
 
