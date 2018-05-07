@@ -133,16 +133,16 @@ public class Solution {
                     if (words[i] == null) return false;
                 }
 
-                String[] temp = words[1].split("."); //разделяем по точке
-                char[] syms = temp[1].toCharArray(); //создаем массив символов
-
-
-
-
-                for (char sym: syms) {
-                    if (Character.isLetter(sym) || Character.isDigit(sym)) return true;
-                    else return false;
-                }
+//                String[] temp = words[1].split("."); //разделяем по точке
+//                char[] syms = temp[1].toCharArray(); //создаем массив символов
+//
+//
+//
+//
+//                for (char sym: syms) {
+//                    if (Character.isLetter(sym) || Character.isDigit(sym)) return true;
+//                    else return false;
+//                }
 
                 return (!words[1].startsWith("."));
 
