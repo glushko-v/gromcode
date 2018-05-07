@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "https://false.org";
+        String test = "https://mail.org";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -120,12 +120,14 @@ public class Solution {
 
     static boolean validate(String address) {
 
+
+
         if (address == null) return false;
         if (address.startsWith("http://") || address.startsWith("https://")) {
             if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
-                String[] words = address.split("//");
+                String[] words = address.split("://");
                 if (words.length == 0) return false;
-
+                
                 String temp = null;
 
                 for (String word: words) {
@@ -140,13 +142,15 @@ public class Solution {
                     if (Character.isLetter(sym) || Character.isDigit(sym)) return true;
                 }
 
-                for (int i = 0; i <words.length; i++) {
+
+                for (int i = 0; i < words.length; i++) {
                     if (words[i] == null) return false;
                 }
 
 
 
-//                return (!words[1].startsWith("."));
+                //return (!words[1].startsWith("."));
+
 
 
             }
