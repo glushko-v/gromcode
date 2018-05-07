@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "https://mail.org";
+        String test = "https://www.mail.org";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -134,12 +134,13 @@ public class Solution {
                     if (word.contains(".com")) temp = word.replace(".com", "");
                     if (word.contains(".net")) temp = word.replace(".net", "");
                     if (word.contains(".org")) temp = word.replace(".org", "");
+
                 }
 
                 char[] syms = temp.toCharArray();
 
                 for (char sym: syms) {
-                    if (!Character.isLetter(sym) && !Character.isDigit(sym)) return false;
+                    if (!Character.isLetter(sym) && !Character.isDigit(sym) && sym !='.' ) return false;
 
 
 
@@ -157,10 +158,13 @@ public class Solution {
 
 
             }
+            else return false;
         }
 
+        else return false;
 
-        return true;
+
+
     }
 
 
