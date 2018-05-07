@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "https://government.org";
+        String test = "https://www.government.org";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -142,7 +142,7 @@ public class Solution {
                 char[] syms = temp.toCharArray();
 
                 for (char sym : syms) {
-                    if (!Character.isLetter(sym) && !Character.isDigit(sym) && sym != '.') return false;
+                    if (!Character.isLetter(sym) && !Character.isDigit(sym) ) return false;
 
 
                 }
