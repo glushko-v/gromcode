@@ -127,24 +127,29 @@ public class Solution {
             if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
                 String[] words = address.split("://");
                 if (words.length == 0) return false;
+                
+                String temp = null;
+
+                for (String word: words) {
+                    if (word.contains(".com")) temp = word.replace(".com", "");
+                    if (word.contains(".net")) temp = word.replace(".net", "");
+                    if (word.contains(".org")) temp = word.replace(".org", "");
+                }
+
+                char[] syms = temp.toCharArray();
+
+                for (char sym: syms) {
+                    if (Character.isLetter(sym) || Character.isDigit(sym)) return true;
+                }
 
 
                 for (int i = 0; i < words.length; i++) {
                     if (words[i] == null) return false;
                 }
 
-//                String[] temp = words[1].split("."); //разделяем по точке
-//                char[] syms = temp[1].toCharArray(); //создаем массив символов
-//
-//
-//
-//
-//                for (char sym: syms) {
-//                    if (Character.isLetter(sym) || Character.isDigit(sym)) return true;
-//                    else return false;
-//                }
 
-                return (!words[1].startsWith("."));
+
+                //return (!words[1].startsWith("."));
 
 
 
