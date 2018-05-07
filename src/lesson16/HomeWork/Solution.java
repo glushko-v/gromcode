@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "https://mmm.org";
+        String test = "https://mail.org";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -152,7 +152,7 @@ public class Solution {
 
 
 
-                //return (!words[1].startsWith("."));
+                return (!words[1].startsWith("."));
 
 
 
