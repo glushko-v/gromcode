@@ -120,20 +120,34 @@ public class Solution {
 
     static boolean validate(String address) {
 
+
+
         if (address == null) return false;
         if (address.startsWith("http://") || address.startsWith("https://")) {
             if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
-                String[] words = address.split("//");
+                String[] words = address.split("://");
                 if (words.length == 0) return false;
 
-                char[] syms = words[1].toCharArray();
 
-
-                for (int i = 0; i <words.length; i++) {
+                for (int i = 0; i < words.length; i++) {
                     if (words[i] == null) return false;
                 }
 
+                String[] temp = words[1].split("."); //разделяем по точке
+                char[] syms = temp[1].toCharArray(); //создаем массив символов
+
+
+
+
+                for (char sym: syms) {
+                    if (Character.isLetter(sym) || Character.isDigit(sym)) return true;
+                    else return false;
+                }
+
                 return (!words[1].startsWith("."));
+
+
+
             }
         }
 
