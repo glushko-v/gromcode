@@ -136,6 +136,8 @@ public class Solution {
 
                 }
 
+                if (temp == null) return false;
+
 
                 char[] syms = temp.toCharArray();
 
