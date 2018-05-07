@@ -120,8 +120,6 @@ public class Solution {
 
     static boolean validate(String address) {
 
-
-
         if (address == null) return false;
         if (address.startsWith("http://") || address.startsWith("https://")) {
             if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
@@ -137,7 +135,10 @@ public class Solution {
 
                 }
 
+
                 char[] syms = temp.toCharArray();
+
+                if (syms == null) return false;
 
                 for (char sym: syms) {
                     if (!Character.isLetter(sym) && !Character.isDigit(sym) && sym !='.' ) return false;
