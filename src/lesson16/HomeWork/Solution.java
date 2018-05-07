@@ -120,15 +120,16 @@ public class Solution {
 
     static boolean validate(String address) {
 
-        if (address == null) return false;
+        if (address.isEmpty()) return false;
+//        if (address == null) return false;
         if (address.startsWith("http://") || address.startsWith("https://")) {
             if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
                 String[] words = address.split("://");
                 if (words.length == 0) return false;
-                
+
                 String temp = null;
 
-                for (String word: words) {
+                for (String word : words) {
                     if (word.contains(".com")) temp = word.replace(".com", "");
                     if (word.contains(".net")) temp = word.replace(".net", "");
                     if (word.contains(".org")) temp = word.replace(".org", "");
@@ -138,11 +139,8 @@ public class Solution {
 
                 char[] syms = temp.toCharArray();
 
-                if (syms == null) return false;
-
-                for (char sym: syms) {
-                    if (!Character.isLetter(sym) && !Character.isDigit(sym) && sym !='.' ) return false;
-
+                for (char sym : syms) {
+                    if (!Character.isLetter(sym) && !Character.isDigit(sym) && sym != '.') return false;
 
 
                 }
@@ -153,17 +151,11 @@ public class Solution {
                 }
 
 
-
                 return (!words[1].startsWith("."));
 
 
-
-            }
-            else return false;
-        }
-
-        else return false;
-
+            } else return false;
+        } else return false;
 
 
     }
