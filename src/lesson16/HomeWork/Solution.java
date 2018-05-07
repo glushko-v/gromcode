@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "https://mail.org";
+        String test = "https://false.org";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -126,14 +126,29 @@ public class Solution {
                 String[] words = address.split("//");
                 if (words.length == 0) return false;
 
-                char[] syms = words[1].toCharArray();
+                String temp = null;
 
+                for (String word: words) {
+                    if (word.contains(".com")) temp = word.replace(".com", "");
+                    if (word.contains(".net")) temp = word.replace(".net", "");
+                    if (word.contains(".org")) temp = word.replace(".org", "");
+                }
+
+                char[] syms = temp.toCharArray();
+
+                for (char sym: syms) {
+                    if (Character.isLetter(sym) || Character.isDigit(sym)) return true;
+                }
 
                 for (int i = 0; i <words.length; i++) {
                     if (words[i] == null) return false;
                 }
 
-                return (!words[1].startsWith("."));
+
+
+//                return (!words[1].startsWith("."));
+
+
             }
         }
 
