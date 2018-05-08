@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String test = "https://government.org";
+        String test = "https://www.government.org";
 
 //        System.out.println(maxWord(test));
 //        System.out.println(minWord(test));
@@ -121,20 +121,26 @@ public class Solution {
     static boolean validate(String address) {
 
         if (address.isEmpty()) return false;
-//        if (address == null) return false;
+
         if (address.startsWith("http://") || address.startsWith("https://")) {
             if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
                 String[] words = address.split("://");
                 if (words.length == 0) return false;
 
+                if (words[1].startsWith("www.")) words[1] = words[1].replace("www.", "");
+
+
                 String temp = null;
 
+
                 for (String word : words) {
+
                     if (word.contains(".com")) temp = word.replace(".com", "");
                     if (word.contains(".net")) temp = word.replace(".net", "");
                     if (word.contains(".org")) temp = word.replace(".org", "");
 
                 }
+
 
                 if (temp == null) return false;
 
@@ -142,9 +148,7 @@ public class Solution {
                 char[] syms = temp.toCharArray();
 
                 for (char sym : syms) {
-                    if (!Character.isLetter(sym) && !Character.isDigit(sym) ) return false;
-
-
+                    if (!Character.isLetter(sym) && !Character.isDigit(sym)) return false;
                 }
 
 
