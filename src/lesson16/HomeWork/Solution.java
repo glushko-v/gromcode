@@ -125,6 +125,7 @@ public class Solution {
         if (address.startsWith("http://") || address.startsWith("https://")) {
             if (address.endsWith(".com") || (address.endsWith(".net")) || address.endsWith(".org")) {
                 String[] words = address.split("://");
+                System.out.println(Arrays.toString(words));
                 if (words.length == 0) return false;
 
                 if (words[1].startsWith("www.")) words[1] = words[1].replace("www.", "");
