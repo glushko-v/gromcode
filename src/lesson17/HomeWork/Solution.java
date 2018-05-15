@@ -25,8 +25,11 @@ public class Solution {
         for (String word : words) {
             for (int number: numbers) {
                 if (isDigit(word)){number = Integer.parseInt(word);
-                System.out.println(number);}
-                else System.out.println("not number");
+                    System.out.println(number);
+                break;}
+                else {System.out.println("not number");
+                break;}
+
             }
         }
         return numbers;
