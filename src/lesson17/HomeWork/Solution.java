@@ -6,7 +6,7 @@ public class Solution {
 
     public static void main(String[] args) {
         String test = "aaa 123 qwwa 134 452 888";
-        findNumbers(test);
+        System.out.println(Arrays.toString(findNumbers(test)));
 
     }
 
@@ -20,19 +20,19 @@ public class Solution {
 
 
         int[] numbers = new int[count];
+        int index = 0;
 
-        for (String word : words) {
-            for (int number : numbers) {
-                if (isDigit(word)) {
-                    number = Integer.parseInt(word);
-                    System.out.println(number);
-                    break;
-                } else {
-                    System.out.println("not number");
-                    break;
-                }
+         for (String word: words){
+
+            if (isDigit(word)) {
+                numbers[index] = Integer.parseInt(word);
+                index++;
+//                 System.out.println(numbers[index]);
+
 
             }
+
+
         }
         return numbers;
     }
