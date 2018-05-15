@@ -5,30 +5,32 @@ import java.util.Arrays;
 public class Solution {
 
     public static void main(String[] args) {
-        String test = "aaa 123 a 134 452 888";
+        String test = "aaa 123 qwwa 134 452 888";
         findNumbers(test);
 
     }
 
 
-    static int[] findNumbers(String text)  {
+    static int[] findNumbers(String text) {
         String[] words = text.split(" ");
         int count = 0;
-        for (String word: words) {
-            if(isDigit(word))count++;
+        for (String word : words) {
+            if (isDigit(word)) count++;
         }
-
 
 
         int[] numbers = new int[count];
 
         for (String word : words) {
-            for (int number: numbers) {
-                if (isDigit(word)){number = Integer.parseInt(word);
+            for (int number : numbers) {
+                if (isDigit(word)) {
+                    number = Integer.parseInt(word);
                     System.out.println(number);
-                break;}
-                else {System.out.println("not number");
-                break;}
+                    break;
+                } else {
+                    System.out.println("not number");
+                    break;
+                }
 
             }
         }
@@ -63,12 +65,12 @@ public class Solution {
 //        return numbers;
 //    }
 
-    static boolean isDigit(String input){
+    static boolean isDigit(String input) {
 
         char[] syms = input.toCharArray();
 
-        for (char sym: syms) {
-            if (!Character.isDigit(sym))return false;
+        for (char sym : syms) {
+            if (!Character.isDigit(sym)) return false;
         }
 
         return true;
