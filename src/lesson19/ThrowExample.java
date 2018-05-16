@@ -10,6 +10,8 @@ public class ThrowExample {
 
     private static void test() throws Exception{
 
+        //some code
+
         for (String element: array){
             if(element == null) throw new Exception ("null is detected");
         }
