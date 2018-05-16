@@ -22,12 +22,11 @@ public class Solution {
         int[] numbers = new int[count];
         int index = 0;
 
-         for (String word: words){
+        for (String word : words) {
 
             if (isDigit(word)) {
                 numbers[index] = Integer.parseInt(word);
                 index++;
-//                 System.out.println(numbers[index]);
 
 
             }
