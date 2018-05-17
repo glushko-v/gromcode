@@ -5,10 +5,17 @@ public class Controller {
 
     void put(Storage storage, File file) {
 
+        // проверка формата
+        // проверка размера
+
+        // проверка id
+        // имя не больше 10 символов
+
+
     }
 
 
-    void delete(Storage storage, File file) {
+    void delete (Storage storage, File file) {
 
         for (int i = 0; i < storage.getFiles().length; i++) {
             if (storage.getFiles()[i] != null) {
@@ -27,4 +34,17 @@ public class Controller {
 
         return null;
     }
+
+    boolean checkFormat (Storage storage, File file){
+
+        for (int i = 0; i <storage.getFormatsSupported().length; i++) {
+            if (file.getFormat().equals(storage.getFormatsSupported()[i]))return true;
+        }
+
+        return false;
+    }
+
+
+
+
 }
