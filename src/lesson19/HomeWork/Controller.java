@@ -5,11 +5,13 @@ public class Controller {
 
     void put(Storage storage, File file) {
 
-        // проверка формата
-        // проверка размера
+
+
+        // проверка формата+++
+        // проверка размера+++
 
         // проверка id
-        // имя не больше 10 символов
+        // имя не больше 10 символов+++
 
 
     }
@@ -43,6 +45,27 @@ public class Controller {
 
         return false;
     }
+
+    boolean checkSize (Storage storage, File file){
+
+        long filesTotalSize = 0;
+
+        for (File file1 :storage.getFiles()) {
+            filesTotalSize += file1.getSize();
+        }
+
+        return ((storage.getStorageSize() - filesTotalSize) > file.getSize());
+
+//        return (storage.getStorageSize() >= file.getSize());
+
+    }
+
+    boolean checkFileName (File file) {
+        char[]syms = file.getName().toCharArray();
+
+        return (syms.length <= 9);
+    }
+
 
 
 
