@@ -34,4 +34,8 @@ public class Storage {
     public long getStorageSize() {
         return storageSize;
     }
+
+    public void setFiles(File[] files) {
+        this.files = files;
+    }
 }

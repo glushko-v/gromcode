@@ -3,21 +3,22 @@ package lesson19.HomeWork;
 public class Controller {
 
 
-    void put(Storage storage, File file) {
+    File put(Storage storage, File file) {
+
+        for (File file1: storage.getFiles()) {
+            if (file1.getId() == file.getId()) return null;
+        }
+
+        //TODO put додумать и доделать
+
+        //
 
 
-
-        // проверка формата+++
-        // проверка размера+++
-
-        // проверка id
-        // имя не больше 10 символов+++
-
-
+        return null;
     }
 
 
-    void delete (Storage storage, File file) {
+    void delete(Storage storage, File file) {
 
         for (int i = 0; i < storage.getFiles().length; i++) {
             if (storage.getFiles()[i] != null) {
@@ -37,20 +38,20 @@ public class Controller {
         return null;
     }
 
-    boolean checkFormat (Storage storage, File file){
+    boolean checkFormat(Storage storage, File file) {
 
-        for (int i = 0; i <storage.getFormatsSupported().length; i++) {
-            if (file.getFormat().equals(storage.getFormatsSupported()[i]))return true;
+        for (int i = 0; i < storage.getFormatsSupported().length; i++) {
+            if (file.getFormat().equals(storage.getFormatsSupported()[i])) return true;
         }
 
         return false;
     }
 
-    boolean checkSize (Storage storage, File file){
+    boolean checkSize(Storage storage, File file) {
 
         long filesTotalSize = 0;
 
-        for (File file1 :storage.getFiles()) {
+        for (File file1 : storage.getFiles()) {
             filesTotalSize += file1.getSize();
         }
 
@@ -60,14 +61,11 @@ public class Controller {
 
     }
 
-    boolean checkFileName (File file) {
-        char[]syms = file.getName().toCharArray();
+    boolean checkFileName(File file) {
+        char[] syms = file.getName().toCharArray();
 
         return (syms.length <= 9);
     }
-
-
-
 
 
 }
