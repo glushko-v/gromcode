@@ -14,11 +14,11 @@ public class Controller {
         //5. Файлы равны, если  одинаковый Id и имя
         //6. null check+++
 
-//        if (checkFileName(file)) return null;
+        if (!checkFileName(file)) return null;
         if (file == null) return null;
         if (!checkSize(storage, file)) return null;
         if (!checkId(storage, file)) return null;
-//        if (!checkFormat(storage, file)) return null;
+        if (!checkFormat(storage, file)) return null;
 
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) files[i] = file;
