@@ -13,16 +13,24 @@ public class Demo {
         Controller controller = new Controller();
 
         File[] files = {file1, file2, file3};
+        File[] files1 = {null, null, null};
         String[] formatsSupported = {"txt", "jpg", "doc"};
 
         Storage storage = new Storage(789, files, formatsSupported, "Ukraine", 999999999);
+        Storage storage1 = new Storage(11, files1, formatsSupported, "USA", 999999999);
 
         controller.delete(storage, file1);
         controller.put(storage, file4);
 
+        controller.transferAll(storage, storage1);
+
+        System.out.println(storage1.toString());
+        System.out.println(storage.toString());
 
 
-        System.out.println(Arrays.toString(files));
+
+
+
 
 
     }

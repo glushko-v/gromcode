@@ -1,5 +1,7 @@
 package lesson19.HomeWork;
 
+import java.util.Arrays;
+
 public class Storage {
     long id;
     File[] files;
@@ -37,5 +39,12 @@ public class Storage {
 
     public void setFiles(File[] files) {
         this.files = files;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "id=" + id +
+                ", files=" + Arrays.toString(files);
     }
 }

@@ -2,26 +2,48 @@ package lesson19.HomeWork;
 
 public class Controller {
 
+    File[] transferAll(Storage storageFrom, Storage storageTo){
+
+        //1. проверка свободных ячеек
+        //2. проверка размера хранилища
+        //3. проверка файлов (формат, имя, etc.)
+        //4. пробегаем по массиву файлов storageFrom
+        //5. если файл не равен null, то пробегаем по массиву storageTo, и, если
+        //элемент равет null присваеваем файл из storageTo этому элементу
+        File[] filesFrom = storageFrom.getFiles();
+        File[] filesTo = storageTo.getFiles();
+
+        for (int i = 0; i <filesFrom.length; i++) {
+            if (checkFreeSlots(storageFrom, storageTo)){
+                if (filesFrom[i] != null) {
+                    for (int j = 0; j <filesTo.length; j++) {
+                        if (filesTo[j] == null) {
+                            filesTo[j] = filesFrom[i];
+                            filesFrom[i] = null;
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+
+
+
+        return filesTo;
+    }
+
 
     File put(Storage storage, File file) {
 
         File[] files = storage.getFiles();
 
-        //1. проверка имени на количество букв+++
-        //2. проверка размера+++
-        //3. проверка Id+++
-        //4. проверка формата+++
-        //5. Файлы равны, если  одинаковый Id и имя
-        //6. null check+++
-
-        if (!checkFileName(file)) return null;
-        if (file == null) return null;
-        if (!checkSize(storage, file)) return null;
-        if (!checkId(storage, file)) return null;
-        if (!checkFormat(storage, file)) return null;
+        checkFile(storage, file);
 
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) files[i] = file;
+            break;
         }
 
 
@@ -90,6 +112,45 @@ public class Controller {
             }
         }
         return true;
+    }
+
+    File checkFile(Storage storage, File file){
+
+        if (!checkFileName(file)) return null;
+        if (file == null) return null;
+        if (!checkSize(storage, file)) return null;
+        if (!checkId(storage, file)) return null;
+        if (!checkFormat(storage, file)) return null;
+
+
+        return file;
+    }
+
+    int countFiles(Storage storage){
+        File[] files = storage.getFiles();
+        int count = 0;
+
+        for (File file: files) {
+            if (file != null) count++;
+        }
+
+        return count;
+    }
+
+    int countFreeSlots(Storage storage){
+        int count =0;
+        File[] files = storage.getFiles();
+
+        for (File file : files) {
+            if (file == null) count++;
+        }
+
+        return count;
+    }
+
+    boolean checkFreeSlots (Storage storageFrom, Storage storageTo){
+
+        return (countFreeSlots(storageTo) >= countFiles(storageFrom));
     }
 
 
