@@ -18,7 +18,7 @@ public class Controller {
                 if (filesFrom[i] != null) {
                     for (int j = 0; j <filesTo.length; j++) {
                         if (filesTo[j] == null) {
-                            filesTo[j] = filesFrom[i];
+                            filesTo[j] = checkFile(storageTo, filesFrom[i]);
                             filesFrom[i] = null;
                         }
                     }
@@ -98,8 +98,8 @@ public class Controller {
 
     boolean checkFileName(File file) {
         char[] syms = file.getName().toCharArray();
-
         return (syms.length <= 9);
+
     }
 
     boolean checkId(Storage storage, File file) {
@@ -116,8 +116,9 @@ public class Controller {
 
     File checkFile(Storage storage, File file){
 
-        if (!checkFileName(file)) return null;
+
         if (file == null) return null;
+        if (!checkFileName(file)) return null;
         if (!checkSize(storage, file)) return null;
         if (!checkId(storage, file)) return null;
         if (!checkFormat(storage, file)) return null;
