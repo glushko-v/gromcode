@@ -1,7 +1,7 @@
 package lesson19.HomeWork;
 
 public class File {
-    long id;
+    private long id;
     String name;
     String format;
     long size;
@@ -33,8 +33,8 @@ public class File {
     public String toString() {
         return
                 "id=" + id +
-                " name='" + name + '\'' +
-                " format='" + format + '\'' +
-                " size=" + size;
+                        " name='" + name + '\'' +
+                        " format='" + format + '\'' +
+                        " size=" + size;
     }
 }

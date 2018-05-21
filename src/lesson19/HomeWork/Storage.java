@@ -37,7 +37,7 @@ public class Storage {
         return storageSize;
     }
 
-    
+
     @Override
     public String toString() {
         return
