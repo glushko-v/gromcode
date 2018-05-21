@@ -1,10 +1,10 @@
 package lesson19.HomeWork;
 
 public class File {
-    public long id;
-    String name;
-    String format;
-    long size;
+    private long id;
+    private String name;
+    private String format;
+    private long size;
 
     public File(long id, String name, String format, long size) {
         this.id = id;
