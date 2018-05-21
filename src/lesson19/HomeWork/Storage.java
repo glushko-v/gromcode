@@ -37,10 +37,7 @@ public class Storage {
         return storageSize;
     }
 
-    public void setFiles(File[] files) {
-        this.files = files;
-    }
-
+    
     @Override
     public String toString() {
         return
