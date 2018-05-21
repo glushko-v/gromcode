@@ -1,7 +1,7 @@
 package lesson19.HomeWork;
 
 public class File {
-    private long id;
+    public long id;
     String name;
     String format;
     long size;
