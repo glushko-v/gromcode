@@ -2,14 +2,9 @@ package lesson19.HomeWork;
 
 public class Controller {
 
-    File[] transferAll(Storage storageFrom, Storage storageTo) {
+    File[] transferAll(Storage storageFrom, Storage storageTo) throws IndexOutOfBoundsException {
 
-        //1. проверка свободных ячеек
-        //2. проверка размера хранилища
-        //3. проверка файлов (формат, имя, etc.)
-        //4. пробегаем по массиву файлов storageFrom
-        //5. если файл не равен null, то пробегаем по массиву storageTo, и, если
-        //элемент равет null присваеваем файл из storageTo этому элементу
+
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
 
@@ -27,11 +22,13 @@ public class Controller {
             }
         }
 
+        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
+
 
         return filesTo;
     }
 
-    File transferFile(Storage storageFrom, Storage storageTo, long id) {
+    File transferFile(Storage storageFrom, Storage storageTo, long id) throws IndexOutOfBoundsException {
 
         //1. пробегаем по массиву filesFrom ищем нужный файл с помощью findById
         //2. если файл есть, пробегаем по массиву filesTo и выполняем проверки
@@ -54,12 +51,14 @@ public class Controller {
             break;
         }
 
+        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
+
 
         return fileToTransfer;
     }
 
 
-    File put(Storage storage, File file) {
+    File put(Storage storage, File file) throws IndexOutOfBoundsException {
 
         File[] files = storage.getFiles();
 
@@ -69,6 +68,7 @@ public class Controller {
             if (files[i] == null) files[i] = file;
             break;
         }
+        if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
 
 
         return file;
@@ -80,6 +80,7 @@ public class Controller {
         for (int i = 0; i < storage.getFiles().length; i++) {
             if (storage.getFiles()[i] != null) {
                 if (storage.getFiles()[i].equals(file)) storage.getFiles()[i] = null;
+                break;
 
             }
         }
