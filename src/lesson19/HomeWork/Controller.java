@@ -2,7 +2,7 @@ package lesson19.HomeWork;
 
 public class Controller {
 
-    File[] transferAll(Storage storageFrom, Storage storageTo){
+    File[] transferAll(Storage storageFrom, Storage storageTo) {
 
         //1. проверка свободных ячеек
         //2. проверка размера хранилища
@@ -13,10 +13,10 @@ public class Controller {
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
 
-        for (int i = 0; i <filesFrom.length; i++) {
-            if (checkFreeSlots(storageFrom, storageTo)){
+        for (int i = 0; i < filesFrom.length; i++) {
+            if (checkFreeSlots(storageFrom, storageTo)) {
                 if (filesFrom[i] != null) {
-                    for (int j = 0; j <filesTo.length; j++) {
+                    for (int j = 0; j < filesTo.length; j++) {
                         if (filesTo[j] == null) {
                             filesTo[j] = checkFile(storageTo, filesFrom[i]);
                             filesFrom[i] = null;
@@ -28,10 +28,34 @@ public class Controller {
         }
 
 
-
-
-
         return filesTo;
+    }
+
+    File transferFile(Storage storageFrom, Storage storageTo, long id) {
+
+        //1. пробегаем по массиву filesFrom ищем нужный файл с помощью findById
+        //2. если файл есть, пробегаем по массиву filesTo и выполняем проверки
+        //3. если проверки пройдены, добавляем файл в filesTo и удаляем из filesFrom
+
+
+        File[] filesFrom = storageFrom.getFiles();
+        File[] filesTo = storageTo.getFiles();
+        File fileToTransfer = findbyId(id, storageFrom);
+
+        if (checkFreeSlots(storageFrom, storageTo)) {
+            for (int i = 0; i < filesTo.length; i++) {
+                if (filesTo[i] == null) filesTo[i] = checkFile(storageTo, fileToTransfer);
+                break;
+            }
+        }
+
+        for (int i = 0; i < filesFrom.length; i++) {
+            if (filesFrom[i] == fileToTransfer) filesFrom[i] = null;
+            break;
+        }
+
+
+        return fileToTransfer;
     }
 
 
@@ -51,7 +75,7 @@ public class Controller {
     }
 
 
-     void delete(Storage storage, File file) {
+    void delete(Storage storage, File file) {
 
         for (int i = 0; i < storage.getFiles().length; i++) {
             if (storage.getFiles()[i] != null) {
@@ -86,7 +110,7 @@ public class Controller {
 
         long filesTotalSize = 0;
 
-        for (int i = 0; i <files.length; i++) {
+        for (int i = 0; i < files.length; i++) {
             if (files[i] != null) filesTotalSize += files[i].getSize();
         }
 //
@@ -114,7 +138,7 @@ public class Controller {
         return true;
     }
 
-    File checkFile(Storage storage, File file){
+    File checkFile(Storage storage, File file) {
 
 
         if (file == null) return null;
@@ -127,19 +151,19 @@ public class Controller {
         return file;
     }
 
-    int countFiles(Storage storage){
+    int countFiles(Storage storage) {
         File[] files = storage.getFiles();
         int count = 0;
 
-        for (File file: files) {
+        for (File file : files) {
             if (file != null) count++;
         }
 
         return count;
     }
 
-    int countFreeSlots(Storage storage){
-        int count =0;
+    int countFreeSlots(Storage storage) {
+        int count = 0;
         File[] files = storage.getFiles();
 
         for (File file : files) {
@@ -149,7 +173,7 @@ public class Controller {
         return count;
     }
 
-    boolean checkFreeSlots (Storage storageFrom, Storage storageTo){
+    boolean checkFreeSlots(Storage storageFrom, Storage storageTo) {
 
         return (countFreeSlots(storageTo) >= countFiles(storageFrom));
     }

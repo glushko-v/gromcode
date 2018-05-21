@@ -22,12 +22,16 @@ public class Demo {
         controller.delete(storage, file1);
         controller.put(storage, file4);
 
-        System.out.println(storage.toString());
+        System.out.println(storage1.toString());
 
-        controller.transferAll(storage, storage1);
+        controller.transferFile(storage, storage1, 321);
 
         System.out.println(storage1.toString());
         System.out.println(storage.toString());
+
+
+
+
 
 
 
