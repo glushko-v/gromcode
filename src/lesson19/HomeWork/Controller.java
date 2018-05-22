@@ -30,10 +30,6 @@ public class Controller {
 
     File transferFile(Storage storageFrom, Storage storageTo, long id) throws IndexOutOfBoundsException {
 
-        //1. пробегаем по массиву filesFrom ищем нужный файл с помощью findById
-        //2. если файл есть, пробегаем по массиву filesTo и выполняем проверки
-        //3. если проверки пройдены, добавляем файл в filesTo и удаляем из filesFrom
-
 
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
@@ -63,12 +59,17 @@ public class Controller {
         File[] files = storage.getFiles();
 
         checkFile(storage, file);
+        if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
 
         for (int i = 0; i < files.length; i++) {
-            if (files[i] == null) files[i] = file;
-            break;
+            if (files[i] == null) {
+                files[i] = file;
+                break;
+            }
+
+
         }
-        if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
+
 
 
         return file;
@@ -179,12 +180,14 @@ public class Controller {
         return (countFreeSlots(storageTo) >= countFiles(storageFrom));
     }
 
-    boolean checkDuplicateFiles (Storage storage, File file) {
+    boolean checkDuplicateFiles(Storage storage, File file) {
 
         File[] files = storage.getFiles();
 
-        for (int i = 0; i <files.length; i++) {
-            if (files[i].equals(file)) return false;
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].equals(file)) {
+                return false;
+            }
         }
 
         return true;

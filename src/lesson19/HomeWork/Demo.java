@@ -13,7 +13,7 @@ public class Demo {
 
         Controller controller = new Controller();
 
-        File[] files = {file1, file2, file3};
+        File[] files = {file1, file2, file3, null};
         File[] files1 = {null, file5};
         String[] formatsSupported = {"txt", "jpg", "doc"};
 
@@ -21,6 +21,8 @@ public class Demo {
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", 999999999);
 
         controller.put(storage, file4);
+
+        System.out.println(storage.toString());
 
 
 
