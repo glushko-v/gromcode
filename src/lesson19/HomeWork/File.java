@@ -1,5 +1,7 @@
 package lesson19.HomeWork;
 
+import java.util.Objects;
+
 public class File {
     private long id;
     private String name;
@@ -36,5 +38,20 @@ public class File {
                         " name='" + name + '\'' +
                         " format='" + format + '\'' +
                         " size=" + size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        File file = (File) o;
+        return id == file.id &&
+                Objects.equals(name, file.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name);
     }
 }

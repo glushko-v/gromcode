@@ -179,5 +179,16 @@ public class Controller {
         return (countFreeSlots(storageTo) >= countFiles(storageFrom));
     }
 
+    boolean checkDuplicateFiles (Storage storage, File file) {
+
+        File[] files = storage.getFiles();
+
+        for (int i = 0; i <files.length; i++) {
+            if (files[i].equals(file)) return false;
+        }
+
+        return true;
+    }
+
 
 }
