@@ -35,19 +35,23 @@ public class Controller {
         File[] filesTo = storageTo.getFiles();
         File fileToTransfer = findbyId(id, storageFrom);
 
-        if (checkFreeSlots(storageFrom, storageTo)) {
+        if (checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
+
+//        if (checkFreeSlots(storageFrom, storageTo))
             for (int i = 0; i < filesTo.length; i++) {
-                if (filesTo[i] == null) filesTo[i] = checkFile(storageTo, fileToTransfer);
+                if (filesTo[i] == null) {
+                    filesTo[i] = checkFile(storageTo, fileToTransfer);
+                    break;
+                }
+            }
+
+
+        for (int i = 0; i < filesFrom.length; i++) {
+            if (filesFrom[i] == fileToTransfer) {
+                filesFrom[i] = null;
                 break;
             }
         }
-
-        for (int i = 0; i < filesFrom.length; i++) {
-            if (filesFrom[i] == fileToTransfer) filesFrom[i] = null;
-            break;
-        }
-
-        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
 
 
         return fileToTransfer;
@@ -69,7 +73,6 @@ public class Controller {
 
 
         }
-
 
 
         return file;

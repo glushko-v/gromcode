@@ -21,8 +21,10 @@ public class Demo {
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", 999999999);
 
         controller.put(storage, file4);
+        controller.transferFile(storage, storage1, 321);
 
         System.out.println(storage.toString());
+        System.out.println(storage1.toString());
 
 
 
