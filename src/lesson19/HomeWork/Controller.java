@@ -66,7 +66,7 @@ public class Controller {
 
         File[] files = storage.getFiles();
 
-        checkFile(storage, file);
+        file = checkFile(storage, file);
         if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
 
         for (int i = 0; i < files.length; i++) {
