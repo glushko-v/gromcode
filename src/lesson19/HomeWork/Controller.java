@@ -35,9 +35,10 @@ public class Controller {
         File[] filesTo = storageTo.getFiles();
         File fileToTransfer = findbyId(id, storageFrom);
 
-        if (checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
+        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
 
-//        if (checkFreeSlots(storageFrom, storageTo))
+
+
             for (int i = 0; i < filesTo.length; i++) {
                 if (filesTo[i] == null) {
                     filesTo[i] = checkFile(storageTo, fileToTransfer);
@@ -54,7 +55,10 @@ public class Controller {
         }
 
 
+
+
         return fileToTransfer;
+
     }
 
 
