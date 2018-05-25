@@ -1,8 +1,11 @@
 package lesson19.HomeWork;
 
+import java.sql.SQLOutput;
+
 public class Controller {
 
-    File[] transferAll(Storage storageFrom, Storage storageTo) throws IndexOutOfBoundsException {
+
+    File[] transferAll(Storage storageFrom, Storage storageTo) {
 
 
         File[] filesFrom = storageFrom.getFiles();
@@ -13,7 +16,11 @@ public class Controller {
                 if (filesFrom[i] != null) {
                     for (int j = 0; j < filesTo.length; j++) {
                         if (filesTo[j] == null) {
-                            filesTo[j] = checkFile(storageTo, filesFrom[i]);
+                            try {
+                                filesTo[j] = checkFile(storageTo, filesFrom[i]);
+                            } catch (Exception e) {
+                                System.out.println("Invalid file");
+                            }
                             filesFrom[i] = null;
                         }
                     }
@@ -28,23 +35,26 @@ public class Controller {
         return filesTo;
     }
 
-    File transferFile(Storage storageFrom, Storage storageTo, long id) throws IndexOutOfBoundsException {
+    File transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
 
 
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
-        File fileToTransfer = findbyId(id, storageFrom);
+        File fileToTransfer = findById(id, storageFrom);
 
-        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
+        fileToTransfer = checkFile(storageTo, fileToTransfer);
 
 
+        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("Can not transfer file " +
+                fileToTransfer.getName() + " ID " + fileToTransfer.getId() + " to storage " + storageTo.getId());
 
-            for (int i = 0; i < filesTo.length; i++) {
-                if (filesTo[i] == null) {
-                    filesTo[i] = checkFile(storageTo, fileToTransfer);
-                    break;
-                }
+
+        for (int i = 0; i < filesTo.length; i++) {
+            if (filesTo[i] == null) {
+                filesTo[i] = fileToTransfer;
+                break;
             }
+        }
 
 
         for (int i = 0; i < filesFrom.length; i++) {
@@ -55,18 +65,19 @@ public class Controller {
         }
 
 
-
-
         return fileToTransfer;
 
     }
 
 
-    File put(Storage storage, File file) throws IndexOutOfBoundsException {
+    File put(Storage storage, File file) throws Exception {
 
         File[] files = storage.getFiles();
 
+
         file = checkFile(storage, file);
+
+
         if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
 
         for (int i = 0; i < files.length; i++) {
@@ -76,6 +87,7 @@ public class Controller {
             }
 
 
+
         }
 
 
@@ -83,18 +95,22 @@ public class Controller {
     }
 
 
-    void delete(Storage storage, File file) {
+    void delete(Storage storage, File file) throws Exception {
 
         for (int i = 0; i < storage.getFiles().length; i++) {
-            if (storage.getFiles()[i] != null) {
-                if (storage.getFiles()[i].equals(file)) storage.getFiles()[i] = null;
-                break;
+            if (storage.getFiles()[i] != null)
 
-            }
+                if (storage.getFiles()[i].equals(file)) {
+                    storage.getFiles()[i] = null;
+                    break;
+                }
+                else throw new Exception("Nothing to delete");
+
+
         }
     }
 
-    File findbyId(long id, Storage storage) {
+    private File findById(long id, Storage storage) {
         for (File file : storage.getFiles()) {
             if (file != null) {
                 if (id == file.getId()) return file;
@@ -130,9 +146,10 @@ public class Controller {
     }
 
     boolean checkFileName(File file) {
-        char[] syms = file.getName().toCharArray();
-        return (syms.length <= 9);
 
+        char[] syms = file.getName().toCharArray();
+
+        return (syms.length <= 9);
     }
 
     boolean checkId(Storage storage, File file) {
@@ -147,11 +164,13 @@ public class Controller {
         return true;
     }
 
-    File checkFile(Storage storage, File file) {
+    File checkFile(Storage storage, File file) throws Exception {
 
 
-        if (file == null) return null;
-        if (!checkFileName(file)) return null;
+        if (file == null) throw new NullPointerException();
+
+        if (!checkFileName(file)) throw new Exception("Invalid file name");
+
         if (!checkSize(storage, file)) return null;
         if (!checkId(storage, file)) return null;
         if (!checkFormat(storage, file)) return null;
