@@ -95,7 +95,7 @@ public class Controller {
     }
 
 
-    void delete(Storage storage, File file) throws FileNotFoundException {
+    void delete(Storage storage, File file) throws Exception {
 
         for (int i = 0; i < storage.getFiles().length; i++) {
             if (storage.getFiles()[i] != null)
@@ -105,7 +105,7 @@ public class Controller {
                     break;
                 }
 
-                else throw new FileNotFoundException();
+                else throw new Exception("File not found");
 
 
         }

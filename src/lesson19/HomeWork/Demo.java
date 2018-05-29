@@ -3,7 +3,7 @@ package lesson19.HomeWork;
 import java.util.Arrays;
 
 public class Demo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         File file1 = new File(123456789, "test", "txt", 545);
         File file2 = new File(222222222, "John", "jpg", 4545);
@@ -21,24 +21,8 @@ public class Demo {
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", 999999999);
 
 
-        try {
-            controller.put(storage, file5);
-        }
-
-        catch (NullPointerException npe){
-            System.out.println(npe.getMessage());
-        }
-
-        catch(Exception e) {
-            System.err.println(e.getMessage());
-        }
-
-        try {
-            controller.delete(storage1, file3);
-        }
-        catch (Exception e) {
-            System.err.println("File not found");
-        }
+        controller.transferFile(storage1, storage, 111);
+        controller.delete(storage1, file1);
 
 
 
