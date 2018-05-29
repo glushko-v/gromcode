@@ -24,14 +24,14 @@ public class Demo {
         try{
         controller.put(storage1, file4);}
         catch (Exception e) {
-            System.out.println("Bullshit!");
+            System.out.println("Invalid operation");
         }
 
         try {
             controller.delete(storage1, file1);
         }
         catch (Exception e) {
-            System.out.println("WTF are you talking about?");
+            System.out.println("Wrong");
         }
 
 
