@@ -21,32 +21,24 @@ public class Demo {
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", 999999999);
 
 
-        try{
-        controller.put(storage1, file4);}
-        catch (Exception e) {
-            System.out.println("Invalid operation");
+        try {
+            controller.put(storage, file5);
+        }
+
+        catch (NullPointerException npe){
+            System.out.println(npe.getMessage());
+        }
+
+        catch(Exception e) {
+            System.err.println(e.getMessage());
         }
 
         try {
-            controller.delete(storage1, file1);
+            controller.delete(storage1, file3);
         }
         catch (Exception e) {
-            System.out.println("Wrong");
+            System.err.println("File not found");
         }
-
-
-        System.out.println(storage1.toString());
-        System.out.println(controller.checkFileName(file4));
-
-
-
-
-
-
-
-
-
-
 
 
 

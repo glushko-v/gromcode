@@ -1,5 +1,6 @@
 package lesson19.HomeWork;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLOutput;
 
 public class Controller {
@@ -35,7 +36,7 @@ public class Controller {
         return filesTo;
     }
 
-    File transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
+    File transferFile(Storage storageFrom, Storage storageTo, long id) {
 
 
         File[] filesFrom = storageFrom.getFiles();
@@ -79,14 +80,13 @@ public class Controller {
 
 
         if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
+        if (checkDuplicateFiles(storage, file)) throw new Exception();
 
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) {
                 files[i] = file;
                 break;
             }
-
-
 
         }
 
@@ -95,7 +95,7 @@ public class Controller {
     }
 
 
-    void delete(Storage storage, File file) throws Exception {
+    void delete(Storage storage, File file) throws FileNotFoundException {
 
         for (int i = 0; i < storage.getFiles().length; i++) {
             if (storage.getFiles()[i] != null)
@@ -104,7 +104,8 @@ public class Controller {
                     storage.getFiles()[i] = null;
                     break;
                 }
-                else throw new Exception("Nothing to delete");
+
+                else throw new FileNotFoundException();
 
 
         }
@@ -158,18 +159,18 @@ public class Controller {
 
         for (File file1 : files) {
             if (file1 != null) {
-                if (file1.getId() == file.getId()) return false;
+                if (file1.getId() == file.getId()) ;
             }
         }
         return true;
     }
 
-    File checkFile(Storage storage, File file) throws Exception {
+    File checkFile(Storage storage, File file) {
 
 
-        if (file == null) throw new NullPointerException();
+        if (file == null) return null;
 
-        if (!checkFileName(file)) throw new Exception("Invalid file name");
+        if (!checkFileName(file)) return null;
 
         if (!checkSize(storage, file)) return null;
         if (!checkId(storage, file)) return null;
