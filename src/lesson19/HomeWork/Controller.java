@@ -11,6 +11,7 @@ public class Controller {
 
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
+        if (!isEnoughSpace(storageFrom, storageTo)) throw new Exception("Not enough space");
 
         for (int i = 0; i < filesFrom.length; i++) {
             if (checkFreeSlots(storageFrom, storageTo)) {
@@ -24,7 +25,7 @@ public class Controller {
                         }
                     }
 
-                }
+                } else throw new NullPointerException();
             }
         }
 
@@ -40,6 +41,13 @@ public class Controller {
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
         File fileToTransfer = findById(id, storageFrom);
+
+
+        if (!isFileExists(storageFrom, fileToTransfer)) {
+            throw new Exception("File not found");
+        }
+        if (fileToTransfer == null) return null;
+
 
         fileToTransfer = checkFile(storageTo, fileToTransfer);
 
@@ -95,16 +103,20 @@ public class Controller {
 
     void delete(Storage storage, File file) throws Exception {
 
-        for (int i = 0; i < storage.getFiles().length; i++) {
-            if (storage.getFiles()[i] != null)
+        if (!isFileExists(storage, file)) throw new Exception("File not found");
 
-                if (storage.getFiles()[i].equals(file)) {
-                    storage.getFiles()[i] = null;
+        File[] files = storage.getFiles();
+
+        for (int i = 0; i < files.length; i++) {
+            if (files[i] != null) {
+                if (files[i] == file) {
+                    files[i] = null;
                     break;
-                } else throw new Exception("File not found");
-
-
+                }
+            }
         }
+
+
     }
 
     private File findById(long id, Storage storage) {
@@ -155,7 +167,7 @@ public class Controller {
 
         for (File file1 : files) {
             if (file1 != null) {
-                if (file1.getId() == file.getId()) ;
+                if (file1.getId() == file.getId()) return false;
             }
         }
         return true;
@@ -168,7 +180,7 @@ public class Controller {
 
         if (!checkFileName(file)) throw new Exception("Invalid file name");
 
-        if (!checkSize(storage, file)) throw new Exception("Invalid file size");
+        if (!checkSize(storage, file)) throw new Exception("Not enough space");
         if (!checkId(storage, file)) throw new Exception("Invalid ID");
         if (!checkFormat(storage, file)) throw new Exception("Invalid format");
 
@@ -214,6 +226,31 @@ public class Controller {
         }
 
         return true;
+    }
+
+    boolean isEnoughSpace(Storage storageFrom, Storage storageTo) {
+        File[] filesFrom = storageFrom.getFiles();
+        File[] filesTo = storageTo.getFiles();
+        long filesFromSize = 0;
+        long filesToSize = 0;
+
+        for (int i = 0; i < filesFrom.length; i++) {
+            if (filesFrom[i] != null) filesFromSize += filesFrom[i].getSize();
+        }
+        for (int i = 0; i < filesTo.length; i++) {
+            if (filesTo[i] != null) filesToSize += filesTo[i].getSize();
+        }
+
+        return (filesFromSize <= (storageTo.getStorageSize() - filesToSize));
+
+    }
+
+    boolean isFileExists(Storage storage, File file) {
+
+        if (file == null) return false;
+
+        return (findById(file.getId(), storage) != null);
+
     }
 
 
