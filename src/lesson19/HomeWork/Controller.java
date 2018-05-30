@@ -40,6 +40,7 @@ public class Controller {
 
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
+
         File fileToTransfer = findById(id, storageFrom);
 
 
@@ -86,7 +87,7 @@ public class Controller {
 
 
         if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
-        if (checkDuplicateFiles(storage, file)) throw new Exception();
+        if (!checkDuplicateFiles(storage, file)) throw new Exception("File already in storage");
 
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) {
@@ -119,10 +120,11 @@ public class Controller {
 
     }
 
-    private File findById(long id, Storage storage) {
+    File findById(long id, Storage storage) throws Exception {
         for (File file : storage.getFiles()) {
             if (file != null) {
                 if (id == file.getId()) return file;
+                else throw new Exception("Wrong ID");
             }
         }
 
@@ -147,10 +149,10 @@ public class Controller {
         for (int i = 0; i < files.length; i++) {
             if (files[i] != null) filesTotalSize += files[i].getSize();
         }
-//
+
         return ((storage.getStorageSize() - filesTotalSize) > file.getSize());
 
-//        return (storage.getStorageSize() >= file.getSize());
+
 
     }
 
@@ -161,17 +163,21 @@ public class Controller {
         return (syms.length <= 9);
     }
 
-    boolean checkId(Storage storage, File file) {
-
-        File[] files = storage.getFiles();
-
-        for (File file1 : files) {
-            if (file1 != null) {
-                if (file1.getId() == file.getId()) return false;
-            }
-        }
-        return true;
-    }
+//    boolean checkId(long id, File file) {
+//
+////        File[] files = storage.getFiles();
+////
+////        for (File file1 : files) {
+////            if (file1 != null) {
+////                if (file1.getId() == file.getId()) return false;
+////            }
+////        }
+////        return true;
+//        if (file == null) return false;
+//
+//        return (id == file.getId());
+//
+//    }
 
     private File checkFile(Storage storage, File file) throws Exception {
 
@@ -181,7 +187,7 @@ public class Controller {
         if (!checkFileName(file)) throw new Exception("Invalid file name");
 
         if (!checkSize(storage, file)) throw new Exception("Not enough space");
-        if (!checkId(storage, file)) throw new Exception("Invalid ID");
+
         if (!checkFormat(storage, file)) throw new Exception("Invalid format");
 
 
@@ -220,8 +226,10 @@ public class Controller {
         File[] files = storage.getFiles();
 
         for (int i = 0; i < files.length; i++) {
-            if (files[i].equals(file)) {
-                return false;
+            if (files[i] != null) {
+                if (files[i].equals(file)) {
+                    return false;
+                }
             }
         }
 
@@ -245,7 +253,7 @@ public class Controller {
 
     }
 
-    boolean isFileExists(Storage storage, File file) {
+    boolean isFileExists(Storage storage, File file) throws Exception {
 
         if (file == null) return false;
 
