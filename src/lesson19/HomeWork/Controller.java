@@ -6,7 +6,7 @@ import java.sql.SQLOutput;
 public class Controller {
 
 
-    File[] transferAll(Storage storageFrom, Storage storageTo) {
+    File[] transferAll(Storage storageFrom, Storage storageTo) throws Exception {
 
 
         File[] filesFrom = storageFrom.getFiles();
@@ -17,11 +17,9 @@ public class Controller {
                 if (filesFrom[i] != null) {
                     for (int j = 0; j < filesTo.length; j++) {
                         if (filesTo[j] == null) {
-                            try {
-                                filesTo[j] = checkFile(storageTo, filesFrom[i]);
-                            } catch (Exception e) {
-                                System.out.println("Invalid file");
-                            }
+
+                            filesTo[j] = checkFile(storageTo, filesFrom[i]);
+
                             filesFrom[i] = null;
                         }
                     }
@@ -36,7 +34,7 @@ public class Controller {
         return filesTo;
     }
 
-    File transferFile(Storage storageFrom, Storage storageTo, long id) {
+    File transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
 
 
         File[] filesFrom = storageFrom.getFiles();
@@ -103,9 +101,7 @@ public class Controller {
                 if (storage.getFiles()[i].equals(file)) {
                     storage.getFiles()[i] = null;
                     break;
-                }
-
-                else throw new Exception("File not found");
+                } else throw new Exception("File not found");
 
 
         }
@@ -165,22 +161,22 @@ public class Controller {
         return true;
     }
 
-    File checkFile(Storage storage, File file) {
+    private File checkFile(Storage storage, File file) throws Exception {
 
 
         if (file == null) return null;
 
-        if (!checkFileName(file)) return null;
+        if (!checkFileName(file)) throw new Exception("Invalid file name");
 
-        if (!checkSize(storage, file)) return null;
-        if (!checkId(storage, file)) return null;
-        if (!checkFormat(storage, file)) return null;
+        if (!checkSize(storage, file)) throw new Exception("Invalid file size");
+        if (!checkId(storage, file)) throw new Exception("Invalid ID");
+        if (!checkFormat(storage, file)) throw new Exception("Invalid format");
 
 
         return file;
     }
 
-    int countFiles(Storage storage) {
+    private int countFiles(Storage storage) {
         File[] files = storage.getFiles();
         int count = 0;
 
