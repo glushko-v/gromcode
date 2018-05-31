@@ -132,7 +132,7 @@ public class Controller {
         for (File file : storage.getFiles()) {
             if (file != null) {
                 if (id == file.getId()) return file;
-                else throw new Exception("Invalid ID");
+
             }
         }
 
