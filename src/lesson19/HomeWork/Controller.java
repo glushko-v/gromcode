@@ -11,7 +11,8 @@ public class Controller {
 
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
-        if (!isEnoughSpace(storageFrom, storageTo)) throw new Exception("Not enough space");
+        if (!isEnoughSpace(storageFrom, storageTo)) throw new Exception("Not enough space. Can not transfer files " +
+                "from Storage "  + storageFrom.getId() + " to storage " + storageTo.getId());
 
         for (int i = 0; i < filesFrom.length; i++) {
             if (checkFreeSlots(storageFrom, storageTo)) {
@@ -29,7 +30,8 @@ public class Controller {
             }
         }
 
-        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots");
+        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("No free slots. Can not transfer " +
+                "files " + "from Storage " + storageFrom.getId() + " to storage " + storageTo.getId());
 
 
         return filesTo;
@@ -45,7 +47,8 @@ public class Controller {
 
 
         if (!isFileExists(storageFrom, fileToTransfer)) {
-            throw new Exception("File not found");
+            throw new Exception("File not found. " + "Can not transfer file "
+                    + fileToTransfer.getId() + "from Storage " + storageFrom.getId() + "to Storage " + storageTo.getId());
         }
         if (fileToTransfer == null) return null;
 
@@ -53,8 +56,9 @@ public class Controller {
         fileToTransfer = checkFile(storageTo, fileToTransfer);
 
 
-        if (!checkFreeSlots(storageFrom, storageTo)) throw new IndexOutOfBoundsException("Can not transfer file " +
-                fileToTransfer.getName() + " ID " + fileToTransfer.getId() + " to storage " + storageTo.getId());
+        if (!checkFreeSlots(storageFrom, storageTo))
+            throw new IndexOutOfBoundsException("No free slots. Can not transfer file " +
+                    fileToTransfer.getName() + " ID " + fileToTransfer.getId() + " to storage " + storageTo.getId());
 
 
         for (int i = 0; i < filesTo.length; i++) {
@@ -86,8 +90,11 @@ public class Controller {
         file = checkFile(storage, file);
 
 
-        if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots");
-        if (!checkDuplicateFiles(storage, file)) throw new Exception("File already in storage");
+        if (countFreeSlots(storage) == 0) throw new IndexOutOfBoundsException("No free slots. Can not transfer file "
+                + file.getId() + "to Storage " + storage.getId());
+        if (!checkDuplicateFiles(storage, file))
+            throw new Exception("File already in storage. " + "Can not transfer file "
+                    + file.getId() + "to Storage " + storage.getId());
 
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) {
@@ -104,7 +111,8 @@ public class Controller {
 
     void delete(Storage storage, File file) throws Exception {
 
-        if (!isFileExists(storage, file)) throw new Exception("File not found");
+        if (!isFileExists(storage, file)) throw new Exception("File not found. Can not delete file " + file.getId() +
+        " from Storage " + storage.getId());
 
         File[] files = storage.getFiles();
 
@@ -124,7 +132,7 @@ public class Controller {
         for (File file : storage.getFiles()) {
             if (file != null) {
                 if (id == file.getId()) return file;
-                else throw new Exception("Wrong ID");
+                else throw new Exception("Invalid ID");
             }
         }
 
@@ -151,7 +159,6 @@ public class Controller {
         }
 
         return ((storage.getStorageSize() - filesTotalSize) > file.getSize());
-
 
 
     }
