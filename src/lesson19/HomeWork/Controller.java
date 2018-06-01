@@ -31,7 +31,7 @@ public class Controller {
         }
 
         if (!checkFreeSlots(storageFrom, storageTo))
-            throw new IndexOutOfBoundsException("No free slots. Can not transfer " +
+            throw new Exception("No free slots. Can not transfer " +
                     "files " + "from Storage " + storageFrom.getId() + " to storage " + storageTo.getId());
 
 
@@ -58,7 +58,7 @@ public class Controller {
 
 
         if (!checkFreeSlots(storageFrom, storageTo))
-            throw new IndexOutOfBoundsException("No free slots. Can not transfer file " +
+            throw new Exception("No free slots. Can not transfer file " +
                     fileToTransfer.getName() + " ID " + fileToTransfer.getId() + " to storage " + storageTo.getId());
 
 
