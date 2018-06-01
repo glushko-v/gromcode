@@ -8,6 +8,8 @@ public class Controller {
 
     File[] transferAll(Storage storageFrom, Storage storageTo) throws Exception {
 
+        //
+
 
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
