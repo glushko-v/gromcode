@@ -88,8 +88,6 @@ public class Controller {
 
         File[] files = storage.getFiles();
 
-        file = checkFile(storage, file);
-
         validate(storage, file);
 
 
@@ -250,7 +248,9 @@ public class Controller {
 
     }
 
-    boolean validate(Storage storage, File file) throws Exception {
+    void validate(Storage storage, File file) throws Exception {
+
+        file = checkFile(storage, file);
 
         if (!checkDuplicateFiles(storage, file))
             throw new Exception("File already in storage. " + "Can not transfer file "
@@ -259,7 +259,7 @@ public class Controller {
         if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
                 + file.getId() + " to Storage " + storage.getId());
 
-        return true;
+
     }
 
 
