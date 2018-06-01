@@ -8,7 +8,7 @@ public class Controller {
 
     File[] transferAll(Storage storageFrom, Storage storageTo) throws Exception {
 
-        
+
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
         if (!isEnoughSpace(storageFrom, storageTo)) throw new Exception("Not enough space. Can not transfer files " +
@@ -103,6 +103,8 @@ public class Controller {
 
 
     void delete(Storage storage, File file) throws Exception {
+
+        if (file == null) throw new Exception("Null is detected.");
 
         if (!isFileExists(storage, file)) throw new Exception("File not found. Can not delete file " + file.getId() +
                 " from Storage " + storage.getId());

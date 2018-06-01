@@ -21,8 +21,7 @@ public class Demo {
         Storage storage = new Storage(789, files, formatsSupported, "Ukraine", Long.MAX_VALUE);
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", Long.MAX_VALUE);
 
-        controller.transferAll(storage, storage1);
-        System.out.println(storage1.toString());
+        controller.delete(storage1, file6);
 
 
 
