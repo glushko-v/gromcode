@@ -106,7 +106,7 @@ public class Controller {
         if (!isFileExists(storage, file)) throw new Exception("File not found. Can not delete file " + file.getId() +
                 " from Storage " + storage.getId());
 
-//        validate(storage, file);
+        validate(storage, file);
 
         File[] files = storage.getFiles();
 
