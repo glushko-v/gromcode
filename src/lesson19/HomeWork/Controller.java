@@ -106,7 +106,7 @@ public class Controller {
         if (!isFileExists(storage, file)) throw new Exception("File not found. Can not delete file " + file.getId() +
                 " from Storage " + storage.getId());
 
-        validate(storage, file);
+        validateBeforeDelete(storage, file);
 
         File[] files = storage.getFiles();
 
@@ -117,6 +117,7 @@ public class Controller {
                     break;
                 }
             }
+
         }
 
 
@@ -265,6 +266,21 @@ public class Controller {
         if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
                 + file.getId() + " to Storage " + storage.getId());
 
+
+    }
+
+    void validateBeforeDelete (Storage storage, File file) throws Exception {
+
+        if (file == null) throw new Exception("Null is detected");
+
+        if (!checkFileName(file)) throw new Exception("Invalid file name. Can not transfer file " + file.getId() +
+                " to Storage " + storage.getId());
+
+        if (!checkSize(storage, file)) throw new Exception("Not enough space. Can not transfer file " + file.getId()
+                + " to Storage " + storage.getId());
+
+        if (!checkFormat(storage, file)) throw new Exception("Invalid format. Can not transfer file " + file.getId()
+                + " to Storage " + storage.getId());
 
     }
 
