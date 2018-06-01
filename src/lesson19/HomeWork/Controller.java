@@ -271,16 +271,15 @@ public class Controller {
 
     void validateBeforeDelete (Storage storage, File file) throws Exception {
 
-        if (file == null) throw new Exception("Null is detected");
+        if (file == null) throw new Exception("Null is detected. Can not delete file " + file.getId()
+                + " from Storage " + storage.getId());
 
-        if (!checkFileName(file)) throw new Exception("Invalid file name. Can not transfer file " + file.getId() +
-                " to Storage " + storage.getId());
+        if (!checkFileName(file)) throw new Exception("Invalid file name. Can not delete file " + file.getId() +
+                " from Storage " + storage.getId());
 
-        if (!checkSize(storage, file)) throw new Exception("Not enough space. Can not transfer file " + file.getId()
-                + " to Storage " + storage.getId());
 
-        if (!checkFormat(storage, file)) throw new Exception("Invalid format. Can not transfer file " + file.getId()
-                + " to Storage " + storage.getId());
+        if (!checkFormat(storage, file)) throw new Exception("Invalid format. Can not delete file " + file.getId()
+                + " from Storage " + storage.getId());
 
     }
 
