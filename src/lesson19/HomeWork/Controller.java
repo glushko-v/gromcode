@@ -99,11 +99,13 @@ public class Controller {
         file = checkFile(storage, file);
 
 
-        if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
-                + file.getId() + " to Storage " + storage.getId());
         if (!checkDuplicateFiles(storage, file))
             throw new Exception("File already in storage. " + "Can not transfer file "
                     + file.getId() + " to Storage " + storage.getId());
+
+        if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
+                + file.getId() + " to Storage " + storage.getId());
+
 
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) {

@@ -20,7 +20,7 @@ public class Demo {
         Storage storage = new Storage(789, files, formatsSupported, "Ukraine", Long.MAX_VALUE);
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", 999999999);
 
-        controller.put(storage, file4);
+        controller.put(storage, file3);
 
 
 
