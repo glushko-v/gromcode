@@ -100,7 +100,7 @@ public class Controller {
 
 
         if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
-                + file.getId() + "to Storage " + storage.getId());
+                + file.getId() + " to Storage " + storage.getId());
         if (!checkDuplicateFiles(storage, file))
             throw new Exception("File already in storage. " + "Can not transfer file "
                     + file.getId() + " to Storage " + storage.getId());
@@ -276,6 +276,8 @@ public class Controller {
         return (findById(file.getId(), storage) != null);
 
     }
+
+
 
 
 }
