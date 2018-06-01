@@ -17,12 +17,12 @@ public class Controller {
         for (int i = 0; i < filesFrom.length; i++) {
             validate(storageTo, filesFrom[i]);
             if (checkFreeSlots(storageFrom, storageTo)) {
-                    for (int j = 0; j < filesTo.length; j++) {
-                        if (filesTo[j] == null) {
-                            filesTo[j] = filesFrom[i];
-                            filesFrom[i] = null;
-                        }
+                for (int j = 0; j < filesTo.length; j++) {
+                    if (filesTo[j] == null) {
+                        filesTo[j] = filesFrom[i];
+                        filesFrom[i] = null;
                     }
+                }
 
 
             }
@@ -248,11 +248,14 @@ public class Controller {
 
         if (file == null) throw new Exception("Null is detected");
 
-        if (!checkFileName(file)) throw new Exception("Invalid file name");
+        if (!checkFileName(file)) throw new Exception("Invalid file name. Can not transfer file " + file.getId() +
+                " to Storage " + storage.getId());
 
-        if (!checkSize(storage, file)) throw new Exception("Not enough space");
+        if (!checkSize(storage, file)) throw new Exception("Not enough space. Can not transfer file " + file.getId()
+                + " to Storage " + storage.getId());
 
-        if (!checkFormat(storage, file)) throw new Exception("Invalid format");
+        if (!checkFormat(storage, file)) throw new Exception("Invalid format. Can not transfer file " + file.getId()
+                + " to Storage " + storage.getId());
 
         if (!checkDuplicateFiles(storage, file))
             throw new Exception("File already in storage. " + "Can not transfer file "
