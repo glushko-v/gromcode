@@ -34,10 +34,10 @@ public class File {
     @Override
     public String toString() {
         return
-                "id=" + id +
-                        " name='" + name + '\'' +
-                        " format='" + format + '\'' +
-                        " size=" + size;
+                "id=" + id;
+//                        " name='" + name + '\'' +
+//                        " format='" + format + '\'' +
+//                        " size=" + size;
     }
 
     @Override
