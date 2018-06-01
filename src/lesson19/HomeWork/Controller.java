@@ -17,18 +17,14 @@ public class Controller {
         for (int i = 0; i < filesFrom.length; i++) {
             validate(storageTo, filesFrom[i]);
             if (checkFreeSlots(storageFrom, storageTo)) {
-                if (filesFrom[i] != null) {
                     for (int j = 0; j < filesTo.length; j++) {
                         if (filesTo[j] == null) {
-
-
                             filesTo[j] = filesFrom[i];
-
                             filesFrom[i] = null;
                         }
                     }
 
-                }
+
             }
         }
 
