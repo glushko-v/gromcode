@@ -8,20 +8,25 @@ public class Demo {
         File file1 = new File(123456789, "test", "txt", 36564);
         File file2 = new File(222222222, "John", "jpg", 999999999);
         File file3 = new File(112, "guide", "doc", 99999999);
-        File file4 = new File(321, "ttt1", "txt", 97979);
+        File file4 = new File(321, "ttt1", "doc", 87987);
         File file5 = new File(111, "somefile", "doc", 97898);
         File file6 = null;
 
         Controller controller = new Controller();
 
-        File[] files = {file1, file2, file3};
-        File[] files1 = {null, null, file5, null};
+        File[] files = {file1, file2, file3, null, null};
+        File[] files1 = {null, null, file5, file4};
         String[] formatsSupported = {"txt", "jpg", "doc"};
 
         Storage storage = new Storage(789, files, formatsSupported, "Ukraine", Long.MAX_VALUE);
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", Long.MAX_VALUE);
 
-        controller.delete(storage1, file6);
+        controller.transferAll(storage1, storage);
+        System.out.println(storage1.toString());
+        System.out.println(storage.toString());
+
+
+
 
 
 

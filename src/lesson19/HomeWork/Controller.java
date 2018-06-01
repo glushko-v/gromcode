@@ -15,22 +15,25 @@ public class Controller {
                 "from Storage " + storageFrom.getId() + " to storage " + storageTo.getId());
 
         for (int i = 0; i < filesFrom.length; i++) {
-            validate(storageTo, filesFrom[i]);
-            if (checkFreeSlots(storageFrom, storageTo)) {
-                for (int j = 0; j < filesTo.length; j++) {
-                    if (filesTo[j] == null) {
-                        filesTo[j] = filesFrom[i];
-                        filesFrom[i] = null;
+            if (filesFrom[i] != null) {
+
+                validate(storageTo, filesFrom[i]);
+
+                if (!checkFreeSlots(storageFrom, storageTo))
+                    throw new Exception("No free slots. Can not transfer files" +
+                            " from Storage " + storageFrom.getId() + " Storage " + storageTo.getId());
+                else {
+                    for (int j = 0; j < filesTo.length; j++) {
+                        if (filesTo[j] == null) {
+                            filesTo[j] = filesFrom[i];
+                            filesFrom[i] = null;
+                        }
                     }
                 }
 
 
             }
         }
-
-        if (!checkFreeSlots(storageFrom, storageTo))
-            throw new Exception("No free slots. Can not transfer " +
-                    "files " + "from Storage " + storageFrom.getId() + " to storage " + storageTo.getId());
 
 
         return filesTo;
@@ -44,20 +47,14 @@ public class Controller {
 
         File fileToTransfer = findById(id, storageFrom);
 
+        if (fileToTransfer == null) throw new Exception("Null is detected");
 
         if (!isFileExists(storageFrom, fileToTransfer)) {
             throw new Exception("File not found. " + "Can not transfer file "
                     + fileToTransfer.getId() + "from Storage " + storageFrom.getId() + "to Storage " + storageTo.getId());
         }
-        if (fileToTransfer == null) return null;
 
-
-        fileToTransfer = checkFile(storageTo, fileToTransfer);
-
-
-        if (!checkFreeSlots(storageFrom, storageTo))
-            throw new Exception("No free slots. Can not transfer file " +
-                    fileToTransfer.getName() + " ID " + fileToTransfer.getId() + " to storage " + storageTo.getId());
+        validate(storageTo, fileToTransfer);
 
 
         for (int i = 0; i < filesTo.length; i++) {
