@@ -85,26 +85,12 @@ public class Controller {
 
     File put(Storage storage, File file) throws Exception {
 
-        //1. проверка допустимого формата+++
-        //2. проверка свободного места+++
-        //3. проверка наличия файла в хранилище+++
-        //4. проверка имени файла+++
-        //5. Null point check+++
-        //6. проверка свободных ячеек+++
-
 
         File[] files = storage.getFiles();
 
-
         file = checkFile(storage, file);
 
-
-        if (!checkDuplicateFiles(storage, file))
-            throw new Exception("File already in storage. " + "Can not transfer file "
-                    + file.getId() + " to Storage " + storage.getId());
-
-        if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
-                + file.getId() + " to Storage " + storage.getId());
+        validate(storage, file);
 
 
         for (int i = 0; i < files.length; i++) {
@@ -181,21 +167,6 @@ public class Controller {
         return (syms.length <= 9);
     }
 
-//    boolean checkId(long id, File file) {
-//
-////        File[] files = storage.getFiles();
-////
-////        for (File file1 : files) {
-////            if (file1 != null) {
-////                if (file1.getId() == file.getId()) return false;
-////            }
-////        }
-////        return true;
-//        if (file == null) return false;
-//
-//        return (id == file.getId());
-//
-//    }
 
     private File checkFile(Storage storage, File file) throws Exception {
 
@@ -279,7 +250,17 @@ public class Controller {
 
     }
 
+    boolean validate(Storage storage, File file) throws Exception {
 
+        if (!checkDuplicateFiles(storage, file))
+            throw new Exception("File already in storage. " + "Can not transfer file "
+                    + file.getId() + " to Storage " + storage.getId());
+
+        if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
+                + file.getId() + " to Storage " + storage.getId());
+
+        return true;
+    }
 
 
 }
