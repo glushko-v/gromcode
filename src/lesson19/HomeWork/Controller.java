@@ -11,23 +11,19 @@ public class Controller {
 
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
-        if (!isEnoughSpace(storageFrom, storageTo)) throw new Exception("Not enough space. Can not transfer files " +
-                "from Storage " + storageFrom.getId() + " to storage " + storageTo.getId());
+        isEnoughSpace(storageFrom, storageTo);
 
         for (int i = 0; i < filesFrom.length; i++) {
             if (filesFrom[i] != null) {
 
                 validate(storageTo, filesFrom[i]);
 
-                if (!checkFreeSlots(storageFrom, storageTo))
-                    throw new Exception("No free slots. Can not transfer files" +
-                            " from Storage " + storageFrom.getId() + " Storage " + storageTo.getId());
-                else {
-                    for (int j = 0; j < filesTo.length; j++) {
-                        if (filesTo[j] == null) {
-                            filesTo[j] = filesFrom[i];
-                            filesFrom[i] = null;
-                        }
+                checkFreeSlots(storageFrom, storageTo);
+
+                for (int j = 0; j < filesTo.length; j++) {
+                    if (filesTo[j] == null) {
+                        filesTo[j] = filesFrom[i];
+                        filesFrom[i] = null;
                     }
                 }
 
@@ -49,10 +45,7 @@ public class Controller {
 
         if (fileToTransfer == null) throw new Exception("Null is detected");
 
-        if (!isFileExists(storageFrom, fileToTransfer)) {
-            throw new Exception("File not found. " + "Can not transfer file "
-                    + fileToTransfer.getId() + "from Storage " + storageFrom.getId() + "to Storage " + storageTo.getId());
-        }
+        isFileExists(storageFrom, fileToTransfer);
 
         validate(storageTo, fileToTransfer);
 
@@ -101,12 +94,10 @@ public class Controller {
 
     void delete(Storage storage, File file) throws Exception {
 
-        if (file == null) throw new Exception("Null is detected.");
+        if (file == null) throw new Exception("Null is detected");
 
-        if (!isFileExists(storage, file)) throw new Exception("File not found. Can not delete file " + file.getId() +
-                " from Storage " + storage.getId());
+        isFileExists(storage, file);
 
-        validateBeforeDelete(storage, file);
 
         File[] files = storage.getFiles();
 
@@ -134,16 +125,19 @@ public class Controller {
         return null;
     }
 
-    boolean checkFormat(Storage storage, File file) {
+    void checkFormat(Storage storage, File file) throws Exception {
 
         for (int i = 0; i < storage.getFormatsSupported().length; i++) {
-            if (file.getFormat().equals(storage.getFormatsSupported()[i])) return true;
+            if (!file.getFormat().equals(storage.getFormatsSupported()[i]))
+                throw new Exception("Invalid format. Can not transfer file " + file.getId()
+                        + " to Storage " + storage.getId());
+
         }
 
-        return false;
+
     }
 
-    boolean checkSize(Storage storage, File file) {
+    void checkSize(Storage storage, File file) throws Exception {
 
         File[] files = storage.getFiles();
 
@@ -153,33 +147,21 @@ public class Controller {
             if (files[i] != null) filesTotalSize += files[i].getSize();
         }
 
-        return ((storage.getStorageSize() - filesTotalSize) > file.getSize());
+        if ((storage.getStorageSize() - filesTotalSize) < file.getSize())
+            throw new Exception("Not enough space. Can not transfer file " + file.getId()
+                    + " to Storage " + storage.getId());
 
 
     }
 
-    boolean checkFileName(File file) {
+    void checkFileName(Storage storage, File file) throws Exception {
 
         char[] syms = file.getName().toCharArray();
 
-        return (syms.length <= 9);
+        if (syms.length > 9) throw new Exception("Invalid file name. Can not transfer file " + file.getId() +
+                " to Storage " + storage.getId());
     }
 
-
-    private File checkFile(Storage storage, File file) throws Exception {
-
-
-        if (file == null) return null;
-
-        if (!checkFileName(file)) throw new Exception("Invalid file name");
-
-        if (!checkSize(storage, file)) throw new Exception("Not enough space");
-
-        if (!checkFormat(storage, file)) throw new Exception("Invalid format");
-
-
-        return file;
-    }
 
     private int countFiles(Storage storage) {
         File[] files = storage.getFiles();
@@ -203,25 +185,29 @@ public class Controller {
         return count;
     }
 
-    boolean checkFreeSlots(Storage storageFrom, Storage storageTo) {
+    void checkFreeSlots(Storage storageFrom, Storage storageTo) throws Exception {
 
-        return (countFreeSlots(storageTo) >= countFiles(storageFrom));
+        if (countFreeSlots(storageTo) >= countFiles(storageFrom))
+            throw new Exception("No free slots. Can not transfer files" +
+                    " from Storage " + storageFrom.getId() + " Storage " + storageTo.getId());
     }
 
-    boolean checkDuplicateFiles(Storage storage, File file) {
+    void checkDuplicateFiles(Storage storage, File file) throws Exception {
 
         File[] files = storage.getFiles();
 
         for (int i = 0; i < files.length; i++) {
             if (files[i] != null) {
-                if (files[i].getId() == file.getId()) return false;
+                if (files[i].getId() == file.getId())
+                    throw new Exception("File already in storage. " + "Can not transfer file "
+                            + file.getId() + " to Storage " + storage.getId());
             }
         }
 
-        return true;
+
     }
 
-    boolean isEnoughSpace(Storage storageFrom, Storage storageTo) {
+    void isEnoughSpace(Storage storageFrom, Storage storageTo) throws Exception {
         File[] filesFrom = storageFrom.getFiles();
         File[] filesTo = storageTo.getFiles();
         long filesFromSize = 0;
@@ -234,15 +220,20 @@ public class Controller {
             if (filesTo[i] != null) filesToSize += filesTo[i].getSize();
         }
 
-        return (filesFromSize <= (storageTo.getStorageSize() - filesToSize));
+        if (filesFromSize > (storageTo.getStorageSize() - filesToSize))
+            throw new Exception("Not enough space. Can not transfer files " +
+                    "from Storage " + storageFrom.getId() + " to storage " + storageTo.getId());
+        ;
 
     }
 
-    boolean isFileExists(Storage storage, File file) {
+    void isFileExists(Storage storage, File file) throws Exception {
 
-        if (file == null) return false;
+        if (file == null) throw new Exception("Null is detected");
 
-        return (findById(file.getId(), storage) != null);
+        if (findById(file.getId(), storage) == null)
+            throw new Exception("File not found. Can not delete file " + file.getId() +
+                    " from Storage " + storage.getId());
 
     }
 
@@ -250,18 +241,13 @@ public class Controller {
 
         if (file == null) throw new Exception("Null is detected");
 
-        if (!checkFileName(file)) throw new Exception("Invalid file name. Can not transfer file " + file.getId() +
-                " to Storage " + storage.getId());
+        checkFileName(storage, file);
 
-        if (!checkSize(storage, file)) throw new Exception("Not enough space. Can not transfer file " + file.getId()
-                + " to Storage " + storage.getId());
+        checkSize(storage, file);
 
-        if (!checkFormat(storage, file)) throw new Exception("Invalid format. Can not transfer file " + file.getId()
-                + " to Storage " + storage.getId());
+        checkFormat(storage, file);
 
-        if (!checkDuplicateFiles(storage, file))
-            throw new Exception("File already in storage. " + "Can not transfer file "
-                    + file.getId() + " to Storage " + storage.getId());
+        checkDuplicateFiles(storage, file);
 
         if (countFreeSlots(storage) == 0) throw new Exception("No free slots. Can not transfer file "
                 + file.getId() + " to Storage " + storage.getId());
@@ -269,19 +255,19 @@ public class Controller {
 
     }
 
-    void validateBeforeDelete (Storage storage, File file) throws Exception {
-
-        if (file == null) throw new Exception("Null is detected. Can not delete file " + file.getId()
-                + " from Storage " + storage.getId());
-
-        if (!checkFileName(file)) throw new Exception("Invalid file name. Can not delete file " + file.getId() +
-                " from Storage " + storage.getId());
-
-
-        if (!checkFormat(storage, file)) throw new Exception("Invalid format. Can not delete file " + file.getId()
-                + " from Storage " + storage.getId());
-
-    }
+//    void validateBeforeDelete(Storage storage, File file) throws Exception {
+//
+//        if (file == null) throw new Exception("Null is detected. Can not delete file " + file.getId()
+//                + " from Storage " + storage.getId());
+//
+//        if (!checkFileName(file)) throw new Exception("Invalid file name. Can not delete file " + file.getId() +
+//                " from Storage " + storage.getId());
+//
+//
+//        if (!checkFormat(storage, file)) throw new Exception("Invalid format. Can not delete file " + file.getId()
+//                + " from Storage " + storage.getId());
+//
+//    }
 
 
 }
