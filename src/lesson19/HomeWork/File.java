@@ -11,12 +11,11 @@ public class File {
     public File(long id, String name, String format, long size) throws Exception {
         this.id = id;
         this.name = name;
+        checkFileName();
         this.format = format;
         this.size = size;
 
-        char[] syms = name.toCharArray();
 
-        if (syms.length > 9) throw new Exception("Invalid file name. Can not create file " + name);
     }
 
     public long getId() {
@@ -57,5 +56,12 @@ public class File {
     public int hashCode() {
 
         return Objects.hash(id, name);
+    }
+
+    void checkFileName() throws Exception{
+
+        char[] syms = name.toCharArray();
+
+        if (syms.length > 9) throw new Exception("Invalid file name. Can not create file " + name + " ID " + id);
     }
 }
