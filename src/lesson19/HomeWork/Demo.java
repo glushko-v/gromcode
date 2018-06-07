@@ -11,6 +11,7 @@ public class Demo {
         File file4 = new File(321, "ttt1", "txt", 78798);
         File file5 = new File(111, "somefile", "doc", 97898);
         File file6 = new File(898, "ddd", "jpg", 55);
+        File file7 = null;
 
         Controller controller = new Controller();
 
@@ -21,7 +22,7 @@ public class Demo {
         Storage storage = new Storage(789, files, formatsSupported, "Ukraine", Long.MAX_VALUE);
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", Long.MAX_VALUE);
 
-        controller.transferAll(storage1, storage);
+        controller.delete(storage, file7);
 
 
 

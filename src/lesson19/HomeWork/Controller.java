@@ -91,7 +91,7 @@ public class Controller {
 
     void delete(Storage storage, File file) throws Exception {
 
-        if (file == null) throw new Exception("Null is detected");
+        if (file == null) throw new Exception("Null is detected. Can not delete file from Storage " + storage.getId());
         if (findById(file.getId(), storage) == null)
             throw new Exception("File not found. Can not delete file " + file.getId() +
                     " from Storage " + storage.getId());
