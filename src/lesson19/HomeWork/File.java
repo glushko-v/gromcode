@@ -8,11 +8,15 @@ public class File {
     private String format;
     private long size;
 
-    public File(long id, String name, String format, long size) {
+    public File(long id, String name, String format, long size) throws Exception {
         this.id = id;
         this.name = name;
         this.format = format;
         this.size = size;
+
+        char[] syms = name.toCharArray();
+
+        if (syms.length > 9) throw new Exception("Invalid file name. Can not create file " + name);
     }
 
     public long getId() {
