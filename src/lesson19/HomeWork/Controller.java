@@ -96,15 +96,29 @@ public class Controller {
             throw new Exception("File not found. Can not delete file " + file.getId() +
                     " from Storage " + storage.getId());
 
-        for (int i = 0; i < storage.getFiles().length; i++) {
+
+
+
+        for (int i = 0; i <storage.getFiles().length; i++) {
             if (storage.getFiles()[i] != null) {
-                if (storage.getFiles()[i] == file) {
+                if (findById(file.getId(), storage).equals(storage.getFiles()[i])) {
                     storage.getFiles()[i] = null;
                     break;
                 }
             }
-
         }
+
+//        for (int i = 0; i < storage.getFiles().length; i++) {
+//            if (storage.getFiles()[i] != null) {
+//                if (storage.getFiles()[i].equals(file)) {
+//                    storage.getFiles()[i] = null;
+//                    break;
+//                }
+//            }
+//
+//        }
+
+
 
 
     }

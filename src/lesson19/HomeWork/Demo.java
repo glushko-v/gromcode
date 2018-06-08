@@ -22,7 +22,10 @@ public class Demo {
         Storage storage = new Storage(789, files, formatsSupported, "Ukraine", Long.MAX_VALUE);
         Storage storage1 = new Storage(11, files1, formatsSupported, "USA", Long.MAX_VALUE);
 
-        controller.delete(storage, file7);
+        controller.delete(storage, file3);
+        controller.delete(storage, file2);
+
+        System.out.println(storage.toString());
 
 
 
