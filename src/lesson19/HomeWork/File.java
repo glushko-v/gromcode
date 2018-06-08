@@ -16,6 +16,8 @@ public class File {
         this.size = size;
 
 
+
+
     }
 
     public long getId() {
@@ -62,6 +64,6 @@ public class File {
 
         char[] syms = name.toCharArray();
 
-        if (syms.length > 9) throw new Exception("Invalid file name. Can not create file " + name + " ID " + id);
+        if (syms.length > 10) throw new Exception("Invalid file name. Can not create file " + name + " ID " + id);
     }
 }
