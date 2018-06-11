@@ -22,7 +22,7 @@ public class TransactionDAO {
     }
 
     private void validate(Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
-        if (transaction.getAmount() > utils.getLimitSimpleTransactionsAmount())
+        if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceeded " + transaction.getId() + "can't be saved");
 
         int sum = 0;
