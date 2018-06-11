@@ -36,7 +36,7 @@ public class TransactionDAO {
         if (sum > utils.getLimitTransactionsPerDayAmount())
             throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + " can't be saved");
 
-        if (count > utils.getLimitTransactionsPerDaycount())
+        if (count > utils.getLimitTransactionsPerDayCount())
             throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + " can't be saved");
 
 
@@ -54,7 +54,7 @@ public class TransactionDAO {
         return transactions;
     }
 
-    Transaction[] transactionList(String city) throws BadRequestException {
+    Transaction[] transactionList(String city) {
 
 
         int index = 0;
