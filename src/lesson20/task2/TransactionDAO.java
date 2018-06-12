@@ -17,6 +17,13 @@ public class TransactionDAO {
 
         validate(transaction);
 
+        for (Transaction tr: transactions) {
+            if (tr == null) {
+                tr = transaction;
+                break;
+            }
+        }
+
 
         return transaction;
     }
