@@ -12,16 +12,21 @@ public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
     private Utils utils = new Utils();
 
+    public Transaction[] getTransactions() {
+        return transactions;
+    }
+
     public Transaction save(Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
 
 
         validate(transaction);
 
-        for (Transaction tr : transactions) {
-            if (tr == null) {
-                tr = transaction;
+        for (int i = 0; i <transactions.length; i++) {
+            if (transactions[i] == null) {
+                transactions[i] = transaction;
                 break;
             }
+
         }
 
 
@@ -48,7 +53,7 @@ public class TransactionDAO {
 
 
         checkFreeSlots(transaction);
-        if (checkCity(transaction)) throw new BadRequestException("Invalid city. Can not save transaction "
+        if (!checkCity(transaction)) throw new BadRequestException("Invalid city. Can not save transaction "
                 + transaction.getId());
 
 
@@ -172,7 +177,7 @@ public class TransactionDAO {
     boolean checkCity(Transaction transaction) {
 
         for (String city : utils.getCities()) {
-            if (transaction.getCity() == city) return true;
+            if (city == transaction.getCity()) return true;
         }
 
         return false;
@@ -190,4 +195,6 @@ public class TransactionDAO {
             throw new InternalServerException("No free space. Can not save transaction " + transaction.getId());
 
     }
+
+
 }

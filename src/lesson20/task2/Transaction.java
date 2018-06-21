@@ -61,4 +61,10 @@ public class Transaction {
 
         return Objects.hash(id, city, amount, description, type);
     }
+
+    @Override
+    public String toString() {
+        return
+                "id=" + id;
+    }
 }
