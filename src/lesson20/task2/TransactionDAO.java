@@ -17,7 +17,7 @@ public class TransactionDAO {
 
         validate(transaction);
 
-        for (Transaction tr: transactions) {
+        for (Transaction tr : transactions) {
             if (tr == null) {
                 tr = transaction;
                 break;
@@ -47,10 +47,9 @@ public class TransactionDAO {
             throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + " can't be saved");
 
 
-
         checkFreeSlots(transaction);
-         if (checkCity(transaction)) throw new BadRequestException("Invalid city. Can not save transaction "
-                 + transaction.getId());
+        if (checkCity(transaction)) throw new BadRequestException("Invalid city. Can not save transaction "
+                + transaction.getId());
 
 
     }
@@ -58,15 +57,15 @@ public class TransactionDAO {
     Transaction[] transactionList() {
 
         int index = 0;
-        for (Transaction tr: transactions) {
+        for (Transaction tr : transactions) {
             if (tr != null) index++;
         }
 
         Transaction[] res = new Transaction[index];
 
         int count = 0;
-        for (Transaction tr: transactions) {
-            if (tr != null){
+        for (Transaction tr : transactions) {
+            if (tr != null) {
                 res[count] = tr;
                 count++;
             }
@@ -76,7 +75,11 @@ public class TransactionDAO {
         return res;
     }
 
-    Transaction[] transactionList(String city) {
+    Transaction[] transactionList(String city) throws BadRequestException {
+
+        for (String city1 : utils.getCities()) {
+            if (city1 != city) throw new BadRequestException("Invalid city. Can't print transactions for " + city);
+        }
 
 
         int index = 0;
@@ -102,7 +105,10 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) {
+    Transaction[] transactionList(int amount) throws BadRequestException {
+
+        if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
+                " print transactions for amount " + amount);
 
         int index = 0;
 
