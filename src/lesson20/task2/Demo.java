@@ -60,7 +60,7 @@ public class Demo {
             transactionDAO.save(transaction10);
 //            transactionDAO.save(transaction11);
 
-        System.out.println(Arrays.toString(transactionDAO.transactionList()));
+        System.out.println(Arrays.toString(transactionDAO.transactionList("Odessa")));
 
 
 
