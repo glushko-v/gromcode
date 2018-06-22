@@ -56,7 +56,7 @@ public class TransactionDAO {
         if ((sum + transaction.getAmount()) > utils.getLimitTransactionsPerDayAmount())
             throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + " can't be saved");
 
-        if ((count+1) > utils.getLimitTransactionsPerDayCount())
+        if ((count + 1) > utils.getLimitTransactionsPerDayCount())
             throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + " can't be saved");
 
 
@@ -67,12 +67,16 @@ public class TransactionDAO {
 
     }
 
-    Transaction[] transactionList() {
+    Transaction[] transactionList() throws InternalServerException {
+
+        isDatabaseEmpty();
 
         int index = 0;
         for (Transaction tr : transactions) {
             if (tr != null) index++;
+
         }
+
 
         Transaction[] res = new Transaction[index];
 
@@ -88,11 +92,13 @@ public class TransactionDAO {
         return res;
     }
 
-    Transaction[] transactionList(String city) throws BadRequestException {
+    Transaction[] transactionList(String city) throws BadRequestException, InternalServerException {
 
 
         if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
                 + city);
+
+        isDatabaseEmpty();
 
         int index = 0;
 
@@ -117,10 +123,13 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) throws BadRequestException {
+    Transaction[] transactionList(int amount) throws BadRequestException, InternalServerException {
+
 
         if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
                 " print transactions for amount " + amount);
+
+        isDatabaseEmpty();
 
         int index = 0;
 
@@ -200,6 +209,18 @@ public class TransactionDAO {
 
         if (countFreeSlots <= 0)
             throw new InternalServerException("No free space. Can not save transaction " + transaction.getId());
+
+    }
+
+    void isDatabaseEmpty() throws InternalServerException {
+
+        int index = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null) index++;
+
+        }
+
+        if (index == 0) throw new InternalServerException("Database is empty. Nothing to return");
 
     }
 

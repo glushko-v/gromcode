@@ -15,17 +15,17 @@ public class Controller {
 
     }
 
-    Transaction[] transactionList () {
+    Transaction[] transactionList () throws InternalServerException {
 
         return transactionDAO.transactionList();
     }
 
-    Transaction[] transactionList (String city) throws BadRequestException {
+    Transaction[] transactionList (String city) throws BadRequestException, InternalServerException {
 
         return transactionDAO.transactionList(city);
     }
 
-    Transaction[] transactionList (int amount) throws BadRequestException {
+    Transaction[] transactionList (int amount) throws BadRequestException, InternalServerException {
 
         return transactionDAO.transactionList(amount);
     }
