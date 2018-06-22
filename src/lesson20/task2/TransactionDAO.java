@@ -21,7 +21,7 @@ public class TransactionDAO {
 
         validate(transaction);
 
-        for (int i = 0; i <transactions.length; i++) {
+        for (int i = 0; i < transactions.length; i++) {
             if (transactions[i] == null) {
                 transactions[i] = transaction;
                 break;
@@ -53,7 +53,7 @@ public class TransactionDAO {
 
 
         checkFreeSlots(transaction);
-        if (!checkCity(transaction)) throw new BadRequestException("Invalid city. Can not save transaction "
+        if (!checkCity(transaction.getCity())) throw new BadRequestException("Invalid city. Can not save transaction "
                 + transaction.getId());
 
 
@@ -82,10 +82,9 @@ public class TransactionDAO {
 
     Transaction[] transactionList(String city) throws BadRequestException {
 
-        for (String city1 : utils.getCities()) {
-            if (city1 != city) throw new BadRequestException("Invalid city. Can't print transactions for " + city);
-        }
 
+        if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
+                + city);
 
         int index = 0;
 
@@ -174,10 +173,10 @@ public class TransactionDAO {
         return result;
     }
 
-    boolean checkCity(Transaction transaction) {
+    boolean checkCity(String city) {
 
-        for (String city : utils.getCities()) {
-            if (city == transaction.getCity()) return true;
+        for (String city1 : utils.getCities()) {
+            if (city1 == city) return true;
         }
 
         return false;
