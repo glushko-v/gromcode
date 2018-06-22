@@ -35,12 +35,7 @@ public class TransactionDAO {
 
     private void validate(Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
 
-        //сумма транзакций больше указанного лимита+++
-        //сумма транзакций за день больше дневного лимита
-        //количество транзакций за день больше лимита+++
-        //город не разрешен+++
-        //нету ячеек++
-
+ 
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceeded " + transaction.getId() + "can't be saved");
 
@@ -69,7 +64,6 @@ public class TransactionDAO {
 
     Transaction[] transactionList() {
 
-//        isDatabaseEmpty();
 
         int index = 0;
         for (Transaction tr : transactions) {
@@ -98,7 +92,6 @@ public class TransactionDAO {
         if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
                 + city);
 
-//        isDatabaseEmpty();
 
         int index = 0;
 
@@ -129,7 +122,6 @@ public class TransactionDAO {
         if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
                 " print transactions for amount " + amount);
 
-//        isDatabaseEmpty();
 
         int index = 0;
 
@@ -209,18 +201,6 @@ public class TransactionDAO {
 
         if (countFreeSlots <= 0)
             throw new InternalServerException("No free space. Can not save transaction " + transaction.getId());
-
-    }
-
-    void isDatabaseEmpty() throws InternalServerException {
-
-        int index = 0;
-        for (Transaction tr : transactions) {
-            if (tr != null) index++;
-
-        }
-
-        if (index == 0) throw new InternalServerException("Database is empty. Nothing to return");
 
     }
 
