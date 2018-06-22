@@ -67,9 +67,9 @@ public class TransactionDAO {
 
     }
 
-    Transaction[] transactionList() throws InternalServerException {
+    Transaction[] transactionList() {
 
-        isDatabaseEmpty();
+//        isDatabaseEmpty();
 
         int index = 0;
         for (Transaction tr : transactions) {
@@ -92,13 +92,13 @@ public class TransactionDAO {
         return res;
     }
 
-    Transaction[] transactionList(String city) throws BadRequestException, InternalServerException {
+    Transaction[] transactionList(String city) throws BadRequestException {
 
 
         if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
                 + city);
 
-        isDatabaseEmpty();
+//        isDatabaseEmpty();
 
         int index = 0;
 
@@ -123,13 +123,13 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) throws BadRequestException, InternalServerException {
+    Transaction[] transactionList(int amount) throws BadRequestException {
 
 
         if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
                 " print transactions for amount " + amount);
 
-        isDatabaseEmpty();
+//        isDatabaseEmpty();
 
         int index = 0;
 
