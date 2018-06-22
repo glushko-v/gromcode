@@ -36,6 +36,10 @@ public class Demo {
         Transaction transaction10 = new Transaction(101010, "Odessa", 5, "credit",
                 TransactionType.OUTCOME, new Date());
 
+        Transaction transaction11 = new Transaction(111111, "Odessa", 5, "credit",
+                TransactionType.OUTCOME, new Date());
+
+
 
 
         TransactionDAO transactionDAO = new TransactionDAO();
@@ -56,7 +60,8 @@ public class Demo {
             transactionDAO.save(transaction10);
 
 
-        System.out.println(Arrays.toString(transactionDAO.transactionList("Odessa")));
+
+
 
 
 

@@ -34,6 +34,13 @@ public class TransactionDAO {
     }
 
     private void validate(Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
+
+        //сумма транзакций больше указанного лимита+++
+        //сумма транзакций за день больше дневного лимита
+        //количество транзакций за день больше лимита+++
+        //город не разрешен
+        //нету ячеек
+
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceeded " + transaction.getId() + "can't be saved");
 
@@ -44,6 +51,7 @@ public class TransactionDAO {
             sum += tr.getAmount();
             count++;
         }
+
 
         if (sum > utils.getLimitTransactionsPerDayAmount())
             throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + " can't be saved");
