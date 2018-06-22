@@ -88,7 +88,6 @@ public class TransactionDAO {
 
     Transaction[] transactionList(String city) throws BadRequestException {
 
-        if (city == null) throw new BadRequestException("Null is detected");
 
         if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
                 + city);
