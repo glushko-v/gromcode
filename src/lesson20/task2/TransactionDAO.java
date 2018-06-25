@@ -96,7 +96,7 @@ public class TransactionDAO {
         int index = 0;
 
         for (Transaction transaction : transactions)
-            if (transaction.getCity() == city) {
+            if (transaction.getCity().equals(city)) {
                 index++;
             }
 
@@ -126,8 +126,10 @@ public class TransactionDAO {
         int index = 0;
 
         for (Transaction tr : transactions) {
-            if (tr.getAmount() == amount)
-                index++;
+            if (tr != null) {
+                if (tr.getAmount() == amount)
+                    index++;
+            }
         }
 
         Transaction[] res = new Transaction[index];
