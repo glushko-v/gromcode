@@ -88,11 +88,11 @@ public class TransactionDAO {
 
     public Transaction[] transactionList(String city) throws BadRequestException {
 
-        //
+        
 
 
-        if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
-                + city);
+//        if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
+//                + city);
 
 
         int index = 0;
@@ -107,7 +107,7 @@ public class TransactionDAO {
         int count = 0;
 
         for (int i = 0; i < transactions.length; i++) {
-            if (transactions[i].getCity() == city) {
+            if (transactions[i].getCity().equals(city)) {
                 result[count] = transactions[i];
                 count++;
             }
@@ -121,8 +121,8 @@ public class TransactionDAO {
     public Transaction[] transactionList(int amount) throws BadRequestException {
 
 
-        if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
-                " print transactions for amount " + amount);
+//        if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
+//                " print transactions for amount " + amount);
 
 
         int index = 0;
