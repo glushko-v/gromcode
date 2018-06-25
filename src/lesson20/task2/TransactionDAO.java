@@ -33,7 +33,7 @@ public class TransactionDAO {
         return transaction;
     }
 
-    private void validate(Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
+    public void validate(Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
 
         //сумма транзакций больше указанного лимита+++
         //сумма транзакций за день больше дневного лимита
@@ -67,7 +67,7 @@ public class TransactionDAO {
 
     }
 
-    Transaction[] transactionList() {
+    public Transaction[] transactionList() {
 
         int index = 0;
         for (Transaction tr : transactions) {
@@ -88,7 +88,7 @@ public class TransactionDAO {
         return res;
     }
 
-    Transaction[] transactionList(String city) throws BadRequestException {
+    public Transaction[] transactionList(String city) throws BadRequestException {
 
 
         if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
@@ -117,7 +117,7 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) throws BadRequestException {
+    public Transaction[] transactionList(int amount) throws BadRequestException {
 
         if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
                 " print transactions for amount " + amount);
