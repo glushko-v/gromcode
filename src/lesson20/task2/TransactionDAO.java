@@ -86,9 +86,7 @@ public class TransactionDAO {
         return res;
     }
 
-    public Transaction[] transactionList(String city) throws BadRequestException {
-
-        
+    public Transaction[] transactionList(String city) {
 
 
 //        if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
@@ -118,7 +116,7 @@ public class TransactionDAO {
         return result;
     }
 
-    public Transaction[] transactionList(int amount) throws BadRequestException {
+    public Transaction[] transactionList(int amount) {
 
 
 //        if (amount > utils.getLimitSimpleTransactionAmount()) throw new BadRequestException("Invalid amount. Can't" +
