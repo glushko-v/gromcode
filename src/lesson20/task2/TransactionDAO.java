@@ -88,6 +88,8 @@ public class TransactionDAO {
 
     public Transaction[] transactionList(String city) throws BadRequestException {
 
+        //
+
 
         if (!checkCity(city)) throw new BadRequestException("Invalid city. Can not print transactions for "
                 + city);
