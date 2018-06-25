@@ -48,20 +48,19 @@ public class Demo {
         Controller controller = new Controller();
 
 
-//            transactionDAO.save(transaction1);
-//            transactionDAO.save(transaction2);
-//            transactionDAO.save(transaction3);
-//            transactionDAO.save(transaction4);
-//            transactionDAO.save(transaction5);
-//            transactionDAO.save(transaction6);
-//            transactionDAO.save(transaction7);
-//            transactionDAO.save(transaction8);
-//            transactionDAO.save(transaction9);
-//            transactionDAO.save(transaction10);
+            transactionDAO.save(transaction1);
+            transactionDAO.save(transaction2);
+            transactionDAO.save(transaction3);
+            transactionDAO.save(transaction4);
+            transactionDAO.save(transaction5);
+            transactionDAO.save(transaction6);
+            transactionDAO.save(transaction7);
+            transactionDAO.save(transaction8);
+            transactionDAO.save(transaction9);
+            transactionDAO.save(transaction10);
+//            transactionDAO.save(transaction11);
 
-        controller.save(transaction1);
-
-        System.out.println(Arrays.toString(controller.transactionList()));
+        System.out.println(Arrays.toString(transactionDAO.transactionList("Odessa")));
 
 
 

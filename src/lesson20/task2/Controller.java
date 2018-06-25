@@ -8,24 +8,24 @@ public class Controller {
 
     private TransactionDAO transactionDAO = new TransactionDAO();
 
-    public Transaction save (Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
+    public Transaction save(Transaction transaction) throws LimitExceeded, BadRequestException, InternalServerException {
 
 
         return transactionDAO.save(transaction);
 
     }
 
-    Transaction[] transactionList () {
+    Transaction[] transactionList() {
 
         return transactionDAO.transactionList();
     }
 
-    Transaction[] transactionList (String city) throws BadRequestException {
+    Transaction[] transactionList(String city) throws BadRequestException {
 
         return transactionDAO.transactionList(city);
     }
 
-    Transaction[] transactionList (int amount) throws BadRequestException {
+    Transaction[] transactionList(int amount) throws BadRequestException {
 
         return transactionDAO.transactionList(amount);
     }
