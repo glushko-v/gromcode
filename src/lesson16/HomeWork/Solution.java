@@ -9,12 +9,12 @@ public class Solution {
 
         String test = "https://www.government.org";
 
-//        System.out.println(maxWord(test));
-//        System.out.println(minWord(test));
-//        System.out.println(countWords(test));
-//        System.out.println(minWord(test));
-//        System.out.println(maxWord(test));
-//        System.out.println(minWord(test));
+//        Sys.out.println(maxWord(test));
+//        Sys.out.println(minWord(test));
+//        Sys.out.println(countWords(test));
+//        Sys.out.println(minWord(test));
+//        Sys.out.println(maxWord(test));
+//        Sys.out.println(minWord(test));
         System.out.println(validate(test));
 
 

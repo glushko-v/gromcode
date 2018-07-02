@@ -21,11 +21,11 @@ public class Demo {
 //        int n = 15;
 //        while (n > 0){
 //            User user1 = new User(n, "Ann", "13216");
-//            System.out.println(userRepository.save(user1));
+//            Sys.out.println(userRepository.save(user1));
 //
 //            n--;
 //        }
-//        System.out.println(Arrays.deepToString(userRepository.getUsers()));
+//        Sys.out.println(Arrays.deepToString(userRepository.getUsers()));
 
         userRepository.save(null);
 
