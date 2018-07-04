@@ -24,6 +24,7 @@ public class Demo {
         generalDAO.save(0);
 
 
+
         System.out.println(Arrays.toString(generalDAO.getAll()));
 
     }
