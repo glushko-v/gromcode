@@ -1,11 +1,13 @@
 package lesson27.HomeWork2;
 
-public class UserRepository {
-    private User[] users;
+import java.util.ArrayList;
 
-    public UserRepository(User[] users) {
-        this.users = users;
-    }
+public class UserRepository {
+    private ArrayList<User> users = new ArrayList<>();
+
+//    public UserRepository(User[] users) {
+//        this.users = users;
+//    }
 
     public int countUsers() {
         int count = 0;
@@ -16,9 +18,9 @@ public class UserRepository {
     }
 
 
-    public User[] getUsers() {
-        return users;
-    }
+//    public User[] getUsers() {
+//        return users;
+//    }
 
     public String[] getUserNames() {
         String[] names = new String[countUsers()];
@@ -47,7 +49,8 @@ public class UserRepository {
 
 
     public String getUserNameById(long id) {
-        int index = 0;
+
+//        int index = 0;
         String name = null;
         for (User user : users) {
             if (user != null) {
@@ -99,36 +102,47 @@ public class UserRepository {
         if (user == null) return null;
         if (findById(user.getId()) != null) return null;
 
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] == null) {
-                users[i] = user;
-                return user;
-            }
+        users.add(user);
 
-        }
-        return null;
+//        for (int i = 0; i < users.length; i++) {
+//            if (users[i] == null) {
+//                users[i] = user;
+//                return user;
+//            }
+//
+//        }
+        return user;
     }
 
 
     public User update(User user) {
         if (user == null) return null;
 
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] == findById(user.getId())) {
-                users[i] = user;
-                return users[i];
-            } else return null;
+        users.indexOf(user);
+        users.remove(user);
+        users.add(users.indexOf(user), user);
 
-        }
 
-        return null;
+//        for (int i = 0; i < users.length; i++) {
+//            if (users[i] == findById(user.getId())) {
+//                users[i] = user;
+//                return users[i];
+//            } else return null;
+//
+//        }
+
+        return user;
     }
 
 
     public void delete(long id) {
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] == findById(id)) users[i] = null;
-        }
+
+       
+       users.remove(findById(id));
+
+//        for (int i = 0; i < users.length; i++) {
+//            if (users[i] == findById(id)) users[i] = null;
+//        }
 
 
     }
