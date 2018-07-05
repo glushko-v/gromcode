@@ -12,7 +12,7 @@ public class ArrayListTest {
         Order order2 = new Order(13, 150, "UAH", "Fan", "1234ggg");
         int index = 1;
         int index1 = 5;
-                
+
 
         ArrayList<Order> list = new ArrayList<>();
         ArrayList<Order> list1 = new ArrayList<>();
