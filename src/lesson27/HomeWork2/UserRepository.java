@@ -137,7 +137,7 @@ public class UserRepository {
 
     public void delete(long id) {
 
-       
+
        users.remove(findById(id));
 
 //        for (int i = 0; i < users.length; i++) {
