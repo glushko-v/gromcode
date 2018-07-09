@@ -30,8 +30,12 @@ public class DemoComparator {
 
                 if (!o1.getChannelName().equals(o2.getChannelName()))
                 return o1.getChannelName().compareTo(o2.getChannelName());
+                else if (!o1.getFingerPrint().equals(o2.getFingerPrint()))
+                    return o1.getFingerPrint().compareTo(o2.getFingerPrint());
+                else if (!o1.getDateCreated().equals(o2.getDateCreated()))
+                    return o1.getDateCreated().compareTo(o2.getDateCreated());
 
-                return 0;
+                else return 0;
             }
         };
 
