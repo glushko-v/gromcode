@@ -10,7 +10,7 @@ public class Demo {
         UkrainianBankSystem bankSystem = new UkrainianBankSystem();
 
         bankSystem.withdraw(Denis, 150);
-      
+
         bankSystem.withdraw(Denis, 100);
 
         System.out.println(bankSystem.getTransactions());
