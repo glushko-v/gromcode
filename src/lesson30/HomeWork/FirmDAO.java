@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public class FirmDAO {
 
-    Firm firm1 = new Firm(new Date(), new ArrayList(), new ArrayList());
+
+
 
 }

@@ -1,6 +1,9 @@
 package lesson30.HomeWork;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class Employee {
     private String firstName;
@@ -8,13 +11,15 @@ public class Employee {
     private Date dateHired;
     private Position position;
     private Department department;
+    private ArrayList projects;
 
-    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department) {
+    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department, ArrayList projects) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateHired = dateHired;
         this.position = position;
         this.department = department;
+        this.projects = projects;
     }
 
     public String getFirstName() {
@@ -35,5 +40,9 @@ public class Employee {
 
     public Department getDepartment() {
         return department;
+    }
+
+    public ArrayList getProjects() {
+        return projects;
     }
 }

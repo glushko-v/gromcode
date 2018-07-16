@@ -12,9 +12,9 @@ public class Demo {
         List<Customer> customers = new ArrayList<>();
         Department analyticDepartment = new Department(employees, DepartmentType.ANALYTIC);
 
-        Employee employee1 = new Employee("Alex", "Ivanov", new Date(), Position.ANALYST, analyticDepartment);
-        Employee employee2 = new Employee("Dan", "Petrov", new Date(), Position.ANALYST, analyticDepartment);
-        Employee employee3 = new Employee("Valentin", "Kucher", new Date(), Position.ANALYST, analyticDepartment);
+//        Employee employee1 = new Employee("Alex", "Ivanov", new Date(), Position.ANALYST, analyticDepartment, new Project());
+//        Employee employee2 = new Employee("Dan", "Petrov", new Date(), Position.ANALYST, analyticDepartment, new Project());
+//        Employee employee3 = new Employee("Valentin", "Kucher", new Date(), Position.ANALYST, analyticDepartment, new Project());
 
         Customer customer1 = new Customer("Albert", "Germany", 1500);
         Customer customer2 = new Customer("John", "UK", 500);
@@ -25,6 +25,15 @@ public class Demo {
         DepartmentDAO departmentDAO = new DepartmentDAO();
 
         departments.add(departmentDAO.department);
+//        employees.add(employee1);
+//        employees.add(employee2);
+//        employees.add(employee3);
+
+//        System.out.println(employees);
+
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+
+        employeeDAO.employeesByProject("Alex");
 
     }
 }
