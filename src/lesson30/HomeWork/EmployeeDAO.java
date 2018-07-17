@@ -40,12 +40,9 @@ public class EmployeeDAO {
         ArrayList<Employee> employeesWithoutProject = new ArrayList<>();
 
         for (Employee employee : employees) {
-            for (Project project : employee.getProjects()) {
-                if (project == null) {
-                    employeesWithoutProject.add(employee);
-                    break;
-                }
-            }
+
+            if (employee.getProjects().isEmpty())
+                employeesWithoutProject.add(employee);
         }
 
         return employeesWithoutProject;

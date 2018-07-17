@@ -16,4 +16,12 @@ public class Project {
     public Customer getCustomer() {
         return customer;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "name='" + name + '\'' +
+                ", customer=" + customer +
+                '}';
+    }
 }

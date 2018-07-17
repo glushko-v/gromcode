@@ -1,6 +1,7 @@
 package lesson30.HomeWork;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ public class Demo {
     public static void main(String[] args) {
 
         List<Employee> employees = new ArrayList<>();
+        List<Employee> employees1 = new ArrayList<>();
         List<Department> departments = new ArrayList<>();
         List<Customer> customers = new ArrayList<>();
         Department analyticDepartment = new Department(employees, DepartmentType.ANALYTIC);
@@ -26,6 +28,7 @@ public class Demo {
 
         ArrayList<Project> projects = new ArrayList<>();
         ArrayList<Project> projects1 = new ArrayList<>();
+        ArrayList<Project> projects2 = new ArrayList<>();
 
         projects.add(project);
         projects.add(project3);
@@ -39,7 +42,7 @@ public class Demo {
         Employee employee2 = new Employee("Dan", "Petrov", new Date(), Position.ANALYST, analyticDepartment,
                 projects1);
         Employee employee3 = new Employee("Valentin", "Kucher", new Date(), Position.ANALYST, analyticDepartment,
-                null);
+                projects2);
         Employee employee4 = new Employee("John", "Smith", new Date(), Position.DEVELOPER, engineeringDepartment,
                 projects);
 
@@ -54,12 +57,15 @@ public class Demo {
         employees.add(employee2);
         employees.add(employee4);
 
+        employees1.add(employee3);
+
 //        System.out.println(employees);
 
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.setEmployees(employees);
+        employeeDAO.setEmployees(employees1);
 
-        System.out.println(employeeDAO.employeesByProject("Park"));
+        System.out.println(employeeDAO.employeesWithoutProject());
 
     }
 }
