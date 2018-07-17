@@ -48,5 +48,11 @@ public class EmployeeDAO {
         return employeesWithoutProject;
     }
 
+    public static ArrayList<Employee> employeesByDepartmentWithoutProject (DepartmentType departmentType){
+
+
+        return null;
+    }
+
 
 }
