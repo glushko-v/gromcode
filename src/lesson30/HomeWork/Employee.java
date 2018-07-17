@@ -11,9 +11,9 @@ public class Employee {
     private Date dateHired;
     private Position position;
     private Department department;
-    private ArrayList projects;
+    private ArrayList<Project> projects;
 
-    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department, ArrayList projects) {
+    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department, ArrayList<Project> projects) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateHired = dateHired;
@@ -42,7 +42,17 @@ public class Employee {
         return department;
     }
 
-    public ArrayList getProjects() {
+    public ArrayList<Project> getProjects() {
         return projects;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "Name='" + firstName +
+                ", Surname='" + lastName +
+                ", position=" + position;
+
+
     }
 }

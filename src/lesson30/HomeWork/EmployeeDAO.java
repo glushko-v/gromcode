@@ -15,17 +15,41 @@ public class EmployeeDAO {
     }
 
 
-    public static List<Employee> employeesByProject(String projectName) {
+    public static ArrayList<Employee> employeesByProject(String projectName) {
 
         ArrayList<Employee> employeesByProject = new ArrayList<>();
 
+        for (Employee employee : employees) {
+
+            for (Project project : employee.getProjects()) {
+
+                if (project != null && projectName.equals(project.getName())) {
+                    employeesByProject.add(employee);
+                    break;
+                }
+
+            }
+
+        }
+
+        return employeesByProject;
+    }
+
+    public static ArrayList<Employee> employeesWithoutProject() {
+
+        ArrayList<Employee> employeesWithoutProject = new ArrayList<>();
 
         for (Employee employee : employees) {
-            for (Object project : employee.getProjects()) {
-
+            for (Project project : employee.getProjects()) {
+                if (project == null) {
+                    employeesWithoutProject.add(employee);
+                    break;
+                }
             }
         }
 
-        return null;
+        return employeesWithoutProject;
     }
+
+
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DepartmentDAO  {
 
-    Department department = new Department(new ArrayList(), DepartmentType.ANALYTIC);
+
 
 
 }
