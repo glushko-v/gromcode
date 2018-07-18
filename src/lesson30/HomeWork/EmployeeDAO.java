@@ -48,10 +48,90 @@ public class EmployeeDAO {
         return employeesWithoutProject;
     }
 
-    public static ArrayList<Employee> employeesByDepartmentWithoutProject (DepartmentType departmentType){
+    public static ArrayList<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
+
+        ArrayList<Employee> employeesByDepartmentWithoutProject = new ArrayList<>();
+
+        for (Employee employee : employees) {
+            if (employee.getDepartment().getType().equals(departmentType) && employee.getProjects().isEmpty()) {
+                employeesByDepartmentWithoutProject.add(employee);
+            }
+        }
 
 
         return null;
+    }
+
+    public static ArrayList<Employee> employeesByTeamLead(Employee lead) {
+
+
+        ArrayList<Employee> employeesByTeamLead = new ArrayList<>();
+        Department departmentOfTeamLead = null;
+
+        for (Employee employee : employees) {
+            if (employee.getPosition().equals(lead)) {
+                departmentOfTeamLead = employee.getDepartment();
+            }
+        }
+
+        for (Employee employee : employees) {
+            if (employee.getDepartment().equals(departmentOfTeamLead)) {
+                employeesByTeamLead.add(employee);
+                break;
+            }
+        }
+
+
+        return employeesByTeamLead;
+
+    }
+
+    public static ArrayList<Employee> employeesByProjectEmployee(Employee employee) {
+        ArrayList<Employee> employeesByProjectEmployee = new ArrayList<>();
+
+        for (Employee em : employees) {
+            if (em.getProjects().equals(employee.getProjects())) {
+                employeesByProjectEmployee.add(em);
+                break;
+            }
+        }
+
+        return employeesByProjectEmployee;
+    }
+
+    public static ArrayList<Employee> employeesByCustomerProject(Customer customer) {
+        ArrayList<Employee> employeesByCustomerProject = new ArrayList<>();
+
+        for (Employee employee : employees) {
+            for (Project project : employee.getProjects()) {
+                if (project.getCustomer().equals(customer)) {
+                    employeesByCustomerProject.add(employee);
+                    break;
+                }
+            }
+        }
+
+
+        return employeesByCustomerProject;
+    }
+
+    public static ArrayList<Employee> teamLeadByEmployee(Employee employee) {
+        ArrayList<Employee> teamLeadByEmployee = new ArrayList<>();
+
+
+        //1. Проверяем совпадение проектов входящего employee и каждого employee из списка
+        //2. Если проекты совпадают проверяем совпадение должностей
+
+        for (Employee em : employees) {
+            for (Project project : em.getProjects()) {
+                if (em.getProjects().equals(employee.getProjects())) {
+                   
+                }
+            }
+        }
+
+
+        return teamLeadByEmployee;
     }
 
 
