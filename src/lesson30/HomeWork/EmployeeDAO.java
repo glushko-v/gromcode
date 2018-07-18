@@ -119,13 +119,11 @@ public class EmployeeDAO {
         ArrayList<Employee> teamLeadByEmployee = new ArrayList<>();
 
 
-        //1. Проверяем совпадение проектов входящего employee и каждого employee из списка
-        //2. Если проекты совпадают проверяем совпадение должностей
-
         for (Employee em : employees) {
             for (Project project : em.getProjects()) {
-                if (em.getProjects().equals(employee.getProjects())) {
-                   
+                if (em.getProjects().equals(employee.getProjects()) && em.getPosition().equals(Position.TEAM_LEAD)) {
+                    teamLeadByEmployee.add(em);
+                    break;
                 }
             }
         }
