@@ -36,7 +36,6 @@ public class Demo {
         projects1.add(project2);
 
 
-
         Employee employee1 = new Employee("Alex", "Ivanov", new Date(), Position.ANALYST, analyticDepartment,
                 projects);
         Employee employee2 = new Employee("Dan", "Petrov", new Date(), Position.ANALYST, analyticDepartment,
@@ -45,12 +44,6 @@ public class Demo {
                 projects2);
         Employee employee4 = new Employee("John", "Smith", new Date(), Position.DEVELOPER, engineeringDepartment,
                 projects);
-
-
-
-        FirmDAO firmDAO = new FirmDAO();
-        DepartmentDAO departmentDAO = new DepartmentDAO();
-
 
 
         employees.add(employee1);
