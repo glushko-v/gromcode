@@ -10,6 +10,10 @@ public class ProjectDAO {
         return projects;
     }
 
+    public static void setProjects(List<Project> projects) {
+        ProjectDAO.projects = projects;
+    }
+
     public static ArrayList<Project> projectsByEmployee(Employee employee){
         ArrayList<Project> projectsByEmployee = new ArrayList<>();
 

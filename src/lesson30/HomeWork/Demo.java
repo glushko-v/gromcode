@@ -24,7 +24,7 @@ public class Demo {
         Project project = new Project("Park", customer1);
         Project project1 = new Project("Game", customer2);
         Project project2 = new Project("Fun", customer3);
-        Project project3 = new Project("Test", customer4);
+        Project project3 = new Project("Test", customer1);
 
         ArrayList<Project> projects = new ArrayList<>();
         ArrayList<Project> projects1 = new ArrayList<>();
@@ -58,7 +58,12 @@ public class Demo {
         employeeDAO.setEmployees(employees);
         employeeDAO.setEmployees(employees1);
 
-        System.out.println(employeeDAO.employeesWithoutProject());
+//        System.out.println(employeeDAO.employeesWithoutProject());
+
+        ProjectDAO projectDAO = new ProjectDAO();
+        projectDAO.setProjects(projects);
+
+        System.out.println(projectDAO.projectsByCustomer(customer1));
 
     }
 }
