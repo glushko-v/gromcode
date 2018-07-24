@@ -7,19 +7,17 @@ import java.util.Map;
 public class Solution {
 
 
-    public static Map countSymbols(String text) {
+     static Map countSymbols(String text) {
         Map<Character, Integer> countSymbols = new HashMap<>();
 
-        //результирующий массив с количеством повторений
-        //
 
         char[] syms = text.toCharArray();
-        int index = 0;
+
 
         for (int i = 0; i < syms.length; i++) {
 
             if (Character.isLetter(syms[i]))
-            countSymbols.put(syms[i], count(text, syms[i]));
+            countSymbols.put(syms[i], countSyms(text, syms[i]));
 
 
         }
@@ -28,7 +26,7 @@ public class Solution {
         return countSymbols;
     }
 
-    static int count(String text, char sym) {
+    static int countSyms(String text, char sym) {
         int count = 0;
         char[] syms = text.toCharArray();
 
@@ -39,4 +37,51 @@ public class Solution {
 
         return count;
     }
+
+    static int countWords (String text){
+         int count = 0;
+         String[] words = text.split(" ");
+
+        for (String word: words) {
+            if (isWord(word))count++;
+        }
+
+         return count;
+    }
+
+    static boolean isWord(String text) {
+
+        char[] syms = text.toCharArray();
+
+
+
+
+        for (int i = 0; i <syms.length ; i++) {
+
+            if (!Character.isLetter(syms[i])) return false;
+        }
+
+
+
+        return true;
+
+    }
+
+    static Map words (String text){
+         Map<String, Integer> countWords = new HashMap<>();
+
+
+         String[] words = text.split(" ");
+
+        for (String word: words) {
+            if (isWord(word)){
+                countWords.put(word, countWords(text));
+            }
+        }
+
+
+         return countWords;
+    }
+
+
 }
