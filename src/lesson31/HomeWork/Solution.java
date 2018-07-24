@@ -14,25 +14,29 @@ public class Solution {
         //
 
         char[] syms = text.toCharArray();
-        int index = 1;
+        int index = 0;
 
-        for (int i = 0; i <syms.length; i++) {
-            for (int j = i+1; j <syms.length-1; j++) {
-                if (syms[i]==syms[j]){
-                    index++;
-                    countSymbols.put(syms[i], index);
+        for (int i = 0; i < syms.length; i++) {
 
-                }
-                else {
-                    index = 0;
-                    index++;
-                    countSymbols.put(syms[j], index);
-                }
-            }
+            if (Character.isLetter(syms[i]))
+            countSymbols.put(syms[i], count(text, syms[i]));
+
+
         }
 
 
-
         return countSymbols;
+    }
+
+    static int count(String text, char sym) {
+        int count = 0;
+        char[] syms = text.toCharArray();
+
+        for (int i = 0; i < syms.length; i++) {
+            if (syms[i] == sym) count++;
+        }
+
+
+        return count;
     }
 }
