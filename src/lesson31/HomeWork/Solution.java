@@ -38,12 +38,12 @@ public class Solution {
         return count;
     }
 
-    static int countWords (String text){
+    static int countWords (String text, String word){
          int count = 0;
          String[] words = text.split(" ");
 
-        for (String word: words) {
-            if (isWord(word))count++;
+        for (String wrd: words) {
+            if (isWord(wrd) && wrd.equals(word))count++;
         }
 
          return count;
@@ -53,6 +53,7 @@ public class Solution {
 
         char[] syms = text.toCharArray();
 
+        if (syms.length <= 2) return false;
 
 
 
@@ -68,19 +69,19 @@ public class Solution {
     }
 
     static Map words (String text){
-         Map<String, Integer> countWords = new HashMap<>();
+         Map<String, Integer> numWords = new HashMap<>();
 
 
          String[] words = text.split(" ");
 
-        for (String word: words) {
-            if (isWord(word)){
-                countWords.put(word, countWords(text));
-            }
+
+        for (int i = 0; i <words.length; i++) {
+            if (isWord(words[i]))
+                numWords.put(words[i], countWords(text, words[i]));
         }
 
 
-         return countWords;
+         return numWords;
     }
 
 
