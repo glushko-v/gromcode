@@ -11,49 +11,78 @@ public class Solution {
 
     static void readNumbers() throws IOException {
 
-        //проверка на длину массива++
-        //проверка на длину цифры
-
 
         InputStreamReader reader = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(reader);
 
         String s = br.readLine();
 
+
         String[] array = s.split(" ");
+        int[] digits = stringToDigits(array);
 
         for (int i = 0; i < 2; i++) {
-            if (array.length <= 9) {
-                System.out.println("Wrong");
-                s = br.readLine();
-                array = s.split(" ");
-                if (i == 1) {
-                    System.out.println("Nope");
-                    throw new IOException("Your numbers are wrong");
-                }
-            } else break;
-        }
+
+                if (digits.length != 10) {
+                    System.out.println("Wrong");
+                    s = br.readLine();
+                    array = s.split(" ");
+
+                    if (i == 1) {
+
+                        throw new IOException("Your numbers are wrong");
+                    }
+                } else break;
+            }
+
+
+
+
+
+        br.close();
+
+        System.out.println(sumOfDigits(stringToDigits(array)));
+
+
+    }
+
+    private static int[] stringToDigits(String[] array) {
 
 
         int[] digits = new int[array.length];
-        int sum = 0;
-
 
         for (int i = 0; i < array.length; i++) {
 
 
             digits[i] = Integer.parseInt(array[i]);
-            sum += digits[i];
 
 
         }
 
-
-        System.out.println(Arrays.toString(digits));
-        System.out.println(sum);
-
-
+        return digits;
     }
+
+    private static int sumOfDigits(int[] digits) {
+        int sum = 0;
+
+        for (int i = 0; i < digits.length; i++) {
+            sum += digits[i];
+        }
+
+
+        return sum;
+    }
+
+//    private static int[] validateDigits (int[] digits){
+//
+//        for (int i = 0; i <digits.length; i++) {
+//            if (digits[i] > 99) return digits;
+//
+//        }
+//
+//        return digits;
+//    }
+
 }
 
 
