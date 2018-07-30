@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Solution {
@@ -21,22 +22,22 @@ public class Solution {
         String[] array = s.split(" ");
         int[] digits = stringToDigits(array);
 
+
+
         for (int i = 0; i < 2; i++) {
 
-                if (digits.length != 10) {
-                    System.out.println("Wrong");
-                    s = br.readLine();
-                    array = s.split(" ");
+            if (digits.length != 10) {
 
-                    if (i == 1) {
+                System.out.println("Wrong");
+                s = br.readLine();
+                array = s.split(" ");
 
-                        throw new IOException("Your numbers are wrong");
-                    }
-                } else break;
-            }
+                if (i == 1) {
 
-
-
+                    throw new IOException("Your numbers are wrong");
+                }
+            } else break;
+        }
 
 
         br.close();
@@ -54,7 +55,17 @@ public class Solution {
         for (int i = 0; i < array.length; i++) {
 
 
-            digits[i] = Integer.parseInt(array[i]);
+            char[] syms = array[i].toCharArray();
+            for (char sym : syms) {
+                if (!Character.isDigit(sym)) {
+                    System.out.println("Error");
+                    break;
+
+                } else {
+                    digits[i] = Integer.parseInt(array[i]);
+                }
+
+            }
 
 
         }
@@ -73,15 +84,20 @@ public class Solution {
         return sum;
     }
 
-//    private static int[] validateDigits (int[] digits){
+//    private static boolean validateDigits(int[] digits) {
 //
-//        for (int i = 0; i <digits.length; i++) {
-//            if (digits[i] > 99) return digits;
+//        for (int i = 0; i <digits.length ; i++) {
+//
+//            if (digits[i] > 99) {
+//                return false;
+//            }
 //
 //        }
 //
-//        return digits;
+//        return true;
+//
 //    }
+
 
 }
 
