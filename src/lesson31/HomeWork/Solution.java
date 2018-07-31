@@ -59,8 +59,9 @@ public class Solution {
 
         for (int i = 0; i <syms.length ; i++) {
 
-            if (!Character.isLetter(syms[i])) return false;
-        }
+
+            if (!Character.isLetter(syms[i])) return false;/*
+*/        }
 
 
 
