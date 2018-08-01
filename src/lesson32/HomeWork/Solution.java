@@ -28,7 +28,7 @@ public class Solution {
             int[] digits = stringToDigits(array);
 
 
-            if (digits.length != 10) {
+            if (digits.length != 10 || !validateDigits(digits)) {
 
                 System.out.println("Wrong");
                 s = br.readLine();
