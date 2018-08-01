@@ -28,7 +28,7 @@ public class Solution {
             int[] digits = stringToDigits(array);
 
 
-            if (digits.length != 10 || !validateDigits(digits)) {
+            if (digits.length != 10 || !validateDigits(digits) || !validateStrings(array)) {
 
                 System.out.println("Wrong");
                 s = br.readLine();
@@ -60,14 +60,9 @@ public class Solution {
 
         for (int i = 0; i < array.length; i++) {
 
-            if (!isDigit(array[i])) {
-                System.out.println("Error");
-                break;
-
-
-
-            } else digits[i] = Integer.parseInt(array[i]);
-
+            if (isDigit(array[i]))
+             digits[i] = Integer.parseInt(array[i]);
+            else break;
 
         }
 
@@ -104,6 +99,15 @@ public class Solution {
             if (digits[i] > 100) return false;
 
         }
+        return true;
+    }
+
+    static boolean validateStrings(String[] words){
+
+        for (int i = 0; i <words.length ; i++) {
+            if (!isDigit(words[i])) return false;
+        }
+
         return true;
     }
 
