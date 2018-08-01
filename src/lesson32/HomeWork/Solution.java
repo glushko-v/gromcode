@@ -21,11 +21,11 @@ public class Solution {
 
 
         String[] array = s.split(" ");
-        int[] digits = stringToDigits(array);
+
 
 
         for (int i = 0; i < 2; i++) {
-
+            int[] digits = stringToDigits(array);
 
 
             if (digits.length != 10 || !validateDigits(digits)) {
@@ -60,7 +60,7 @@ public class Solution {
 
         for (int i = 0; i < array.length; i++) {
 
-            if (isDigit(array[i]) || digits[i] > 100) {
+            if (!isDigit(array[i])) {
                 System.out.println("Error");
                 break;
 
@@ -98,7 +98,15 @@ public class Solution {
         return true;
     }
 
-   
+    static boolean validateDigits(int[] digits) {
+
+        for (int i = 0; i < digits.length; i++) {
+            if (digits[i] > 100) return false;
+
+        }
+        return true;
+    }
+
 
 }
 
