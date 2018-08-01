@@ -24,20 +24,20 @@ public class Solution {
 
 
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 2; i > 0; i--) {
             int[] digits = stringToDigits(array);
 
 
             if (digits.length != 10 || !validateDigits(digits) || !validateStrings(array)) {
 
-                System.out.println("Wrong");
+                System.out.println("Your numbers are wrong. You have " + i + " attempts to try again");
                 s = br.readLine();
                 array = s.split(" ");
 
 
                 if (i == 1) {
 
-                    System.out.println("Your numbers are wrong");
+                    System.out.println("Your numbers are wrong. Number of attempts exceed.");
                     break;
                 }
             } else {
