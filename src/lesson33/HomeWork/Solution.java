@@ -47,7 +47,7 @@ public class Solution {
         System.out.println("Please enter file path to read");
 
         try {
-            br.readLine();
+            ReadWriteFile.readFile(br.readLine());
         } catch (IOException e) {
             System.err.println("Reading from keyboard failed");
         } finally {

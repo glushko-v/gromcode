@@ -8,7 +8,7 @@ public class ReadWriteFile {
 
 
 
-    private static void readFile(String path) {
+    public static void readFile(String path) {
         FileReader reader;
         try {
             reader = new FileReader(path);
@@ -34,7 +34,7 @@ public class ReadWriteFile {
 
     }
 
-    private static void writeFile(String path) {
+    static void writeFile(String path) {
 
         FileWriter writer = null;
         BufferedWriter bufferedWriter = null;
