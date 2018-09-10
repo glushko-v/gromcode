@@ -1,4 +1,4 @@
-package lesson33;
+package lesson34;
 
 import org.apache.commons.io.IOUtils;
 
@@ -9,30 +9,26 @@ public class ReadWriteFile {
 
 
     public static void readFile(String path) {
-        FileReader reader;
-        try {
-            reader = new FileReader(path);
-        } catch (FileNotFoundException e) {
-            System.err.println("File doesn't exist");
-            return;
-        }
 
-        BufferedReader br = new BufferedReader(reader);
-
-        try {
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
             }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File doesn't exist");
+            return;
         } catch (IOException e) {
             System.err.println("Reading from file " + path + " failed");
-        } finally {
-            IOUtils.closeQuietly(br);
-            IOUtils.closeQuietly(reader);
         }
 
-
     }
+
+
+
+
+
 
     static void writeFile(String path) {
 
