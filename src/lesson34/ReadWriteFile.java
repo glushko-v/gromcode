@@ -30,24 +30,18 @@ public class ReadWriteFile {
 
 
 
-    static void writeFile(String path) {
+    static void writeFile(String path) throws InterruptedException {
 
-        FileWriter writer = null;
-        BufferedWriter bufferedWriter = null;
-        try {
-            writer = new FileWriter(path, true);
-            bufferedWriter = new BufferedWriter(writer);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true)))
+        {
             bufferedWriter.append("\n");
             bufferedWriter.append(" asldkja");
-
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             System.err.println("Can't write to file");
-            return;
-        } finally {
-            IOUtils.closeQuietly(bufferedWriter);
-            IOUtils.closeQuietly(writer);
         }
 
+        
     }
 
     public static void writeToFileFromConsole(String path){
