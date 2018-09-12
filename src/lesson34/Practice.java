@@ -28,9 +28,12 @@ public class Practice {
             String line;
 
             while ((line = br.readLine()) != null) {
-                res.append(line);
-            }
 
+                res.append(line);
+                res.append("\n");
+
+            }
+            res.replace(res.length() - 1, res.length(), "");
         } catch (FileNotFoundException e) {
             System.err.println("File doesn't exist");
 
