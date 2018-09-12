@@ -6,7 +6,8 @@ public class Practice {
 
     public static void main(String[] args) throws Exception {
 
-        copyFileContent("C:\\TEST\\test.txt", "C:\\TEST\\test2.txt");
+        copyFileContent("C:\\TEMP\\test.txt", "C:\\TEMP\\test1.txt");
+
 
     }
 
@@ -30,7 +31,7 @@ public class Practice {
             while ((line = br.readLine()) != null) {
 
                 res.append(line);
-                res.append("\n");
+                res.append("\r\n");
 
             }
             res.replace(res.length() - 1, res.length(), "");
