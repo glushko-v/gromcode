@@ -30,7 +30,7 @@ public class Practice {
             while ((line = br.readLine()) != null) {
 
                 res.append(line);
-                res.append("\n");
+                res.append("\r\n");
 
             }
             res.replace(res.length() - 1, res.length(), "");
