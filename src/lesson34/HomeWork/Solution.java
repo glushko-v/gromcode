@@ -87,4 +87,36 @@ public class Solution {
             System.err.println("Error");
         }
     }
+
+    public void transferSentences (String fileFromPath, String fileToPath, String word){
+        //считать текст из файла1
+        //если файлы содержат слово записать их в возвращаемый стринг
+        //записать возвращаемый стринг в файл2
+    }
+
+    private StringBuffer readSentences (String path){
+        StringBuffer content = new StringBuffer();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))){
+
+            String line = br.readLine();
+
+            while(line != null) {
+                if (line.endsWith(".") && line.length() > 10 && line.startsWith(".")) {
+
+                    content.append(line);
+                    content.append("\r\n");
+                }
+            }
+
+        }
+        catch (FileNotFoundException e) {
+            System.err.println("File not found");
+        }
+        catch (IOException e){
+            System.err.println("Can't read file from " + path);
+        }
+
+        return content;
+    }
 }
