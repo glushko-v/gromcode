@@ -6,7 +6,7 @@ public class Practice {
 
     public static void main(String[] args) throws Exception {
 
-        copyFileContent("C:\\TEMP\\test.txt", "C:\\TEMP\\test1.txt");
+        copyFileContent("C:\\TEST\\test.txt", "C:\\TEST\\test2.txt");
 
 
     }
