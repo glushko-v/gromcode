@@ -47,13 +47,14 @@ public class Solution {
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))){
 
-            String line = br.readLine();
+            String line;
 
-            while(line != null) {
+            while((line = br.readLine())  != null) {
                 content.append(line);
                 content.append("\r\n");
-            }
 
+            }
+            content.replace(content.length() - 1, content.length(), "");
         }
         catch (FileNotFoundException e) {
             System.err.println("File not found");
