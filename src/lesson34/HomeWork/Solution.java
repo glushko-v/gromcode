@@ -85,6 +85,7 @@ public class Solution {
     public void transferSentences(String fileFromPath, String fileToPath) {
 
         writeToFile(fileToPath, readSentences(fileFromPath));
+
     }
 
     private StringBuffer readSentences(String path) {
@@ -98,8 +99,7 @@ public class Solution {
             while ((line = br.readLine()) != null) {
 
                 for (int i = 0; i < validateSentence(line).length; i++) {
-                    content.append(validateSentence(line)[i]);
-                    content.append("\r\n");
+                    content.append(validateSentence(line)[i] + ".");
 
                 }
 
@@ -140,5 +140,16 @@ public class Solution {
 
         return res;
 
+    }
+
+    void deleteSentences(String path, String line) {
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
+            for (int i = 0; i < validateSentence(line).length; i++) {
+                bw.append("");
+            }
+        } catch (IOException e) {
+            System.err.println("Error");
+        }
     }
 }
