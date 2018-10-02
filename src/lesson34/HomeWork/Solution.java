@@ -1,11 +1,11 @@
 package lesson34.HomeWork;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Solution {
 
-    public void transferFileContent (String fileFromPath, String fileToPath) throws Exception {
-
+    public void transferFileContent(String fileFromPath, String fileToPath) throws Exception {
 
 
         validate(fileFromPath, fileToPath);
@@ -15,14 +15,12 @@ public class Solution {
         deleteFromFile(fileFromPath);
 
 
-
-
     }
 
-    private void validate (String fileFromPath, String fileToPath) throws Exception {
+    private void validate(String fileFromPath, String fileToPath) throws Exception {
 
         File fileFrom = new File(fileFromPath);
-        File fileTo = new File (fileToPath);
+        File fileTo = new File(fileToPath);
 
         if (!fileFrom.exists()) {
             throw new FileNotFoundException("File " + fileFrom + " does not exist");
@@ -42,24 +40,22 @@ public class Solution {
 
     }
 
-    private StringBuffer readFromFile (String path){
+    private StringBuffer readFromFile(String path) {
         StringBuffer content = new StringBuffer();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))){
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
             String line;
 
-            while((line = br.readLine())  != null) {
+            while ((line = br.readLine()) != null) {
                 content.append(line);
                 content.append("\r\n");
 
             }
             content.replace(content.length() - 1, content.length(), "");
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("File not found");
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.err.println("Can't read file from " + path);
         }
 
@@ -67,57 +63,82 @@ public class Solution {
         return content;
     }
 
-    private void writeToFile (String path, StringBuffer content){
+    private void writeToFile(String path, StringBuffer content) {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
             bw.append(content);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.err.println("Can't write to file");
         }
     }
 
-    void deleteFromFile(String path){
+    void deleteFromFile(String path) {
 
 
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
             bw.append("");
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.err.println("Error");
         }
     }
 
-    public void transferSentences (String fileFromPath, String fileToPath, String word){
-        //считать текст из файла1
-        //если файлы содержат слово записать их в возвращаемый стринг
-        //записать возвращаемый стринг в файл2
+    public void transferSentences(String fileFromPath, String fileToPath) {
+
+        writeToFile(fileToPath, readSentences(fileFromPath));
     }
 
-    private StringBuffer readSentences (String path){
+    private StringBuffer readSentences(String path) {
         StringBuffer content = new StringBuffer();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))){
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
-            String line = br.readLine();
+            String line;
 
-            while(line != null) {
-                if (line.endsWith(".") && line.length() > 10 && line.startsWith(".")) {
 
-                    content.append(line);
+            while ((line = br.readLine()) != null) {
+
+                for (int i = 0; i < validateSentence(line).length; i++) {
+                    content.append(validateSentence(line)[i]);
                     content.append("\r\n");
+
                 }
+
+
             }
 
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("File not found");
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.err.println("Can't read file from " + path);
         }
 
         return content;
+    }
+
+    String[] validateSentence(String line) {
+
+        String[] sentences = line.split("\\.");
+        int count = 0;
+        for (int i = 0; i < sentences.length; i++) {
+
+            if (sentences[i].length() > 10) count++;
+
+        }
+
+        String[] res = new String[count];
+
+        int index = 0;
+        for (int i = 0; i < sentences.length; i++) {
+
+            if (sentences[i].length() > 10) {
+                res[index] = sentences[i];
+                index++;
+            }
+
+
+        }
+
+        return res;
+
     }
 }
