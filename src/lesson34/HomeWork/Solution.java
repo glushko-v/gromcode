@@ -82,9 +82,28 @@ public class Solution {
         }
     }
 
+    void writetoFileTrial (String path, StringBuffer content){
+
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
+
+            bw.append(content + ".");
+
+        } catch (IOException e) {
+            System.err.println("Error");
+        }
+
+
+    }
+
+
+
     public void transferSentences(String fileFromPath, String fileToPath) {
 
         writeToFile(fileToPath, readSentences(fileFromPath));
+//        deleteFromFile(fileFromPath);
+        writetoFileTrial(fileFromPath, deleteContent(fileFromPath));
+
 
     }
 
@@ -123,6 +142,7 @@ public class Solution {
 
             if (sentences[i].length() > 10) count++;
 
+
         }
 
         String[] res = new String[count];
@@ -142,14 +162,55 @@ public class Solution {
 
     }
 
-    void deleteSentences(String path, String line) {
+    String[] deleteSentences(String line) {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
-            for (int i = 0; i < validateSentence(line).length; i++) {
-                bw.append("");
+        String[] sentences = line.split("\\.");
+
+        //1. сделать сплит стринга
+        //2. сделать валидацию на больше 10 символов
+        //3. если элемент массива удовлетворяет условию, заменить его на ""
+        int count = 0;
+
+        for (int i = 0; i <sentences.length; i++) {
+            if (sentences[i].length() < 10) count++;
+        }
+
+        String[] res = new String[count];
+
+        int index = 0;
+
+        for (int i = 0; i <sentences.length; i++) {
+            if (sentences[i].length() < 10) {
+                res[index] = sentences[i].replaceAll("\\.", "");
+                index++;
             }
-        } catch (IOException e) {
+
+        }
+        return res;
+
+
+    }
+
+    StringBuffer deleteContent (String path){
+
+        StringBuffer content = new StringBuffer();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+
+
+            while ((line = br.readLine()) != null){
+                for (int i = 0; i <deleteSentences(line).length; i++) {
+                    content.append(deleteSentences(line)[i]);
+                }
+            }
+
+        }
+
+        catch (IOException e){
             System.err.println("Error");
         }
+
+        return content;
     }
 }

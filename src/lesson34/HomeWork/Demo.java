@@ -10,6 +10,7 @@ public class Demo {
 
         solution.transferSentences("C:\\TEST\\test.txt", "C:\\TEST\\test2.txt");
 //        System.out.println(Arrays.toString(solution.validateSentence("Hello.My name is nigga mazafaka.I'm a hussla.Yep")));
+//       solution.deleteContent("C:\\TEST\\test.txt");
 
 
 
