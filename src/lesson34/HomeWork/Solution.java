@@ -1,6 +1,13 @@
 package lesson34.HomeWork;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.util.Arrays;
 
 public class Solution {
@@ -82,7 +89,7 @@ public class Solution {
         }
     }
 
-    void writetoFileTrial (String path, StringBuffer content){
+    void removeContent(String path, StringBuffer content) {
 
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
@@ -97,12 +104,13 @@ public class Solution {
     }
 
 
+    public void transferSentences(String fileFromPath, String fileToPath) throws Exception {
 
-    public void transferSentences(String fileFromPath, String fileToPath) {
+        validate(fileFromPath, fileToPath);
 
         writeToFile(fileToPath, readSentences(fileFromPath));
-//        deleteFromFile(fileFromPath);
-        writetoFileTrial(fileFromPath, deleteContent(fileFromPath));
+
+        removeContent(fileFromPath, deleteContent(fileFromPath));
 
 
     }
@@ -166,12 +174,9 @@ public class Solution {
 
         String[] sentences = line.split("\\.");
 
-        //1. сделать сплит стринга
-        //2. сделать валидацию на больше 10 символов
-        //3. если элемент массива удовлетворяет условию, заменить его на ""
         int count = 0;
 
-        for (int i = 0; i <sentences.length; i++) {
+        for (int i = 0; i < sentences.length; i++) {
             if (sentences[i].length() < 10) count++;
         }
 
@@ -179,7 +184,7 @@ public class Solution {
 
         int index = 0;
 
-        for (int i = 0; i <sentences.length; i++) {
+        for (int i = 0; i < sentences.length; i++) {
             if (sentences[i].length() < 10) {
                 res[index] = sentences[i].replaceAll("\\.", "");
                 index++;
@@ -191,7 +196,7 @@ public class Solution {
 
     }
 
-    StringBuffer deleteContent (String path){
+    StringBuffer deleteContent(String path) {
 
         StringBuffer content = new StringBuffer();
 
@@ -199,18 +204,45 @@ public class Solution {
             String line;
 
 
-            while ((line = br.readLine()) != null){
-                for (int i = 0; i <deleteSentences(line).length; i++) {
+            while ((line = br.readLine()) != null) {
+                for (int i = 0; i < deleteSentences(line).length; i++) {
                     content.append(deleteSentences(line)[i]);
                 }
             }
 
-        }
-
-        catch (IOException e){
+        } catch (IOException e) {
             System.err.println("Error");
         }
 
         return content;
+    }
+
+    void copyFileContent(String fileFromPath, String fileToPath) throws Exception {
+
+
+
+        validate(fileFromPath, fileToPath);
+
+        Path fileFrom, fileTo;
+        fileFrom = Paths.get(fileFromPath).toAbsolutePath();
+        fileTo = Paths.get(fileToPath).toAbsolutePath();
+
+
+
+
+        Files.copy(fileFrom, fileTo);
+
+
+    }
+
+    void copyFileContentApacheIO(String fileFromPath, String fileToPath) throws Exception {
+
+        validate(fileFromPath, fileToPath);
+
+        File fileFrom = new File(fileFromPath);
+        File fileTo = new File(fileToPath);
+
+        FileUtils.copyFile(fileFrom, fileTo);
+
     }
 }
