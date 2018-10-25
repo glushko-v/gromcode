@@ -1,12 +1,14 @@
 package lesson35.Demo;
 
+import lesson35.repository.HotelRepository;
+
 public class DemoUser {
 
     public static void main(String[] args) {
 
-         long id =(long)(Math.random()*10000);
+        HotelRepository hotelRepository = new HotelRepository();
 
-        System.out.println(id);
+        hotelRepository.test();
 
 
     }
