@@ -34,4 +34,16 @@ public class Hotel {
     public String getStreet() {
         return street;
     }
+
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
+
+    public static Hotel hotel45 = new Hotel(145, "Konrad", "Turkey", "Istanbul", "Some street");
 }

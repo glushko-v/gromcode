@@ -20,4 +20,34 @@ public class Room {
         this.dateAvailableFrom = dateAvailableFrom;
         this.hotel = hotel;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getNumberOfGuests() {
+        return numberOfGuests;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public boolean isBreakfastIncluded() {
+        return breakfastIncluded;
+    }
+
+    public boolean isPetsAllowed() {
+        return petsAllowed;
+    }
+
+    public Date getDateAvailableFrom() {
+        return dateAvailableFrom;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public static Room room1 = new Room(111, 2, 100, false, false, new Date(22-12-2018), Hotel.hotel45);
 }

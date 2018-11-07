@@ -19,6 +19,12 @@ public class DemoHotel {
 //        hotelRepository.addHotel(hotel1);
 //        hotelRepository.addHotel(hotel2);
 
+        hotelRepository.addHotel(Hotel.hotel45);
+
+
+
+
+
 
 
 

@@ -1,12 +1,10 @@
 package lesson35.repository;
 
-import gromcode.main.lesson4.test1;
+
 import lesson35.model.Hotel;
 
 import java.io.*;
-import java.util.Scanner;
-import java.util.regex.*;
-import java.util.Arrays;
+
 
 public class HotelRepository {
 
@@ -15,14 +13,40 @@ public class HotelRepository {
 
         if (!validateId(hotel.getId())) throw new Exception("Hotel with id " + hotel.getId() + " already exists");
 
-        writeHotelDataToFile(readHotelData(hotel));
+
+        writeHotelDataToFile(readHotelData(hotel), true);
 
 
         return hotel;
     }
 
-    public void deleteHotel(){
-        //1. 
+    public void deleteHotel(long hotelId) {
+
+
+        StringBuffer input = new StringBuffer();
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\HotelDb.txt"))) {
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                String[] lines = line.split(",");
+
+                if (Long.parseLong(lines[0]) != hotelId) {
+                    input.append(line);
+                    input.append("\r\n");
+                }
+
+            }
+
+
+        } catch (IOException e) {
+            System.err.println("Error");
+        }
+
+        writeHotelDataToFile(input, false);
 
 
     }
@@ -42,8 +66,8 @@ public class HotelRepository {
 
     }
 
-    public void writeHotelDataToFile(StringBuffer hotelData) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TEST\\HotelDb.txt", true))) {
+    public void writeHotelDataToFile(StringBuffer hotelData, boolean append) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TEST\\HotelDb.txt", append))) {
 
             bw.append(hotelData);
             bw.append("\r\n");
@@ -92,7 +116,9 @@ public class HotelRepository {
         long[] idsFinal = new long[idsArray.length];
 
         for (int i = 0; i < idsArray.length; i++) {
-            idsFinal[i] = Long.parseLong(idsArray[i]);
+            if (!idsArray[i].isEmpty()) {
+                idsFinal[i] = Long.parseLong(idsArray[i]);
+            } else break;
         }
 
 
@@ -110,4 +136,6 @@ public class HotelRepository {
         return true;
     }
 
+
 }
+
