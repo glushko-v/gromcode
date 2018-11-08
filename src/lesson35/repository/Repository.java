@@ -2,7 +2,9 @@ package lesson35.repository;
 
 public abstract class Repository {
 
-    public void test() {
-        System.out.println("test");
-    }
+    //1. считывание id из файла и его валидация
+    //2. удаление из файла
+    //3. добавление?
+
+
 }

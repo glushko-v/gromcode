@@ -8,9 +8,7 @@ import java.util.Date;
 public class DemoRoom {
     public static void main(String[] args) {
 
-        RoomRepository roomRepository = new RoomRepository();
 
-        roomRepository.test();
 
 
     }
