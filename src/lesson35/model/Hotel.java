@@ -46,4 +46,7 @@ public class Hotel {
     }
 
     public static Hotel hotel45 = new Hotel(145, "Konrad", "Turkey", "Istanbul", "Some street");
+    public static Hotel hotel = new Hotel(111, "Hilton", "Ukraine", "Kiev", "Shevchevnko");
+    public static Hotel hotel1 = new Hotel(222, "Ibis", "Belgium", "Brussels", "Unknown");
+    public static Hotel hotel2 = new Hotel(333, "4Seasons", "Spain", "Madrid", "test");
 }

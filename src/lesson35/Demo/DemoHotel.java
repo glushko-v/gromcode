@@ -9,9 +9,7 @@ public class DemoHotel {
 
     public static void main(String[] args) throws Exception {
 
-        Hotel hotel = new Hotel(111, "Hilton", "Ukraine", "Kiev", "Shevchevnko");
-        Hotel hotel1 = new Hotel(222, "Ibis", "Belgium", "Brussels", "Unknown");
-        Hotel hotel2 = new Hotel(333, "4Seasons", "Spain", "Madrid", "test");
+
 
         HotelRepository hotelRepository = new HotelRepository();
 
@@ -19,7 +17,7 @@ public class DemoHotel {
 //        hotelRepository.addHotel(hotel1);
 //        hotelRepository.addHotel(hotel2);
 
-        hotelRepository.addHotel(Hotel.hotel45);
+
 
 
 
