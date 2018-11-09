@@ -1,5 +1,7 @@
 package lesson35.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Room {
@@ -49,9 +51,22 @@ public class Room {
         return hotel;
     }
 
+    public static SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+    public static Date date1;
 
 
-    public static Room room1 = new Room(111, 2, 100, false, false, new Date(22-12-2018), Hotel.hotel45);
+    static {
+        try {
+
+            date1 = sdf.parse("20-12-2018");
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Room room1 = new Room(111, 2, 100, false, false, date1, Hotel.hotel45);
     public static Room room2 = new Room(222, 1, 50, true, false, new Date(22-12-2018), Hotel.hotel);
     public static Room room3 = new Room(333, 2, 150, true, false, new Date(22-12-2018), Hotel.hotel2);
     public static Room room4 = new Room(444, 3, 200, false, false, new Date(22-12-2018), Hotel.hotel1);
