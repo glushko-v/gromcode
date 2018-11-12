@@ -16,4 +16,29 @@ public class User {
         this.country = country;
         this.userType = userType;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public static User user1 = new User(111, "John", "112233", "USA", UserType.USER);
+    public static User user2 = new User(222, "Alex", "0000", "Belarus", UserType.ADMIN);
+    public static User user3 = new User(222, "Vlad", "98765231", "Ukraine", UserType.USER);
+
 }

@@ -5,7 +5,7 @@ import lesson35.model.Room;
 
 import java.io.*;
 
-public abstract class Repository<T extends Room, Hotel> {
+public abstract class Repository {
 
 
     //1. считывание id из файла и его валидация

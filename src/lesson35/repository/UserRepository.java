@@ -2,26 +2,58 @@ package lesson35.repository;
 
 import lesson35.model.User;
 
-public class UserRepository {
+public class UserRepository extends Repository {
 
-    //считывание данных - считывание файла
-    //обработка данных - маппинг данных
 
-    public User registerUser (User user){
-        //save user to Db (file)
-        // через сеттер
+
+    public User registerUser (User user, String path) throws Exception {
+
+        if (!validateId(user.getId(), path)) throw new Exception("Hotel with id " + user.getId() + " already exists");
+
+
+        writeDataToFile(readUserData(user), true, path);
+
 
         return user;
     }
 
-    void login (String userName, String password){
-        //1. считываем с консоли имя пользователя
-        //2. пробегаемся по массиву имен пользователя и ищем совпадение
-        //3. считываем с коносоли пароль
-        //4. пробегаемся по массиву паролей и ищем совпадение
-        //3. если логин и пароль совпадают, то выводим "Login is successful"
-        //4. передаем логин и id юзера???
+    public StringBuffer readUserData(User user) {
+
+        StringBuffer userData = new StringBuffer();
+
+        userData.append(user.getId() + "," + " ");
+        userData.append(user.getUserName() + "," + " ");
+        userData.append(user.getPassword() + "," + " ");
+        userData.append(user.getCountry() + "," + " ");
+        userData.append(user.getUserType());
+
+
+        return userData;
+
     }
 
+    void login (String userName, String password){
+        
 
+    }
+
+    @Override
+    public long[] readIdFromFile(String path) {
+        return super.readIdFromFile(path);
+    }
+
+    @Override
+    public void delete(long id, String path) {
+        super.delete(id, path);
+    }
+
+    @Override
+    public void writeDataToFile(StringBuffer data, boolean append, String path) {
+        super.writeDataToFile(data, append, path);
+    }
+
+    @Override
+    boolean validateId(long id, String path) {
+        return super.validateId(id, path);
+    }
 }
