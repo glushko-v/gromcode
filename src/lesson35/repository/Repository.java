@@ -114,9 +114,9 @@ public abstract class Repository<T extends Room, Hotel> {
     }
 
 
-    abstract StringBuffer readRoomData(T room);
-
-    abstract T addRoom(T room, String path) throws Exception;
+//    abstract StringBuffer readRoomData(T room);
+//
+//    abstract T addRoom(T room, String path) throws Exception;
 
 
 

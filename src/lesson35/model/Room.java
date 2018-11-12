@@ -53,12 +53,18 @@ public class Room {
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
     public static Date date1;
+    public static Date date2;
+    public static Date date3;
+    public static Date date4;
 
 
     static {
         try {
 
             date1 = sdf.parse("20-12-2018");
+            date2 = sdf.parse("20-12-2018");
+            date3 = sdf.parse("20-12-2018");
+            date4 = sdf.parse("20-12-2018");
 
         } catch (ParseException e) {
             e.printStackTrace();

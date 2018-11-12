@@ -24,7 +24,7 @@ public class RoomRepository extends Repository {
         return super.validateId(id, path);
     }
 
-    @Override
+
     StringBuffer readRoomData(Room room) {
         StringBuffer roomData = new StringBuffer();
 
@@ -41,7 +41,7 @@ public class RoomRepository extends Repository {
         return roomData;
     }
 
-    @Override
+
     Room addRoom(Room room, String path) throws Exception {
 
         if (!validateId(room.getId(), path)) throw new Exception("Room with id " + room.getId() + " already exists");
