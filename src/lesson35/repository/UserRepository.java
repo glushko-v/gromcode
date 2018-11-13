@@ -33,7 +33,7 @@ public class UserRepository extends Repository {
     }
 
     void login (String userName, String password){
-        
+
 
     }
 
@@ -55,5 +55,20 @@ public class UserRepository extends Repository {
     @Override
     boolean validateId(long id, String path) {
         return super.validateId(id, path);
+    }
+
+    void bookRoom(long roomId, long userId, long hotelId) throws Exception{
+        //1. ищем совпадения по id в базе юзеров+++
+        //2. ищем совпадения по id в базе отелей+++
+        //3. ищем совпадения по id в базе комнат+++
+        //4. проверяем у комнаты DateAvailableFrom
+        //5. если комната не занята, используем setDateAvailableFrom
+
+        if (validateId(roomId, "C:\\TEMP\\RoomDb.txt")) throw new Exception("Room with ID " + roomId + " doesn't exist");
+        if (validateId(userId, "C:\\TEMP\\UserDb.txt")) throw new Exception("User with ID " + userId + " doesn't exist");
+        if (validateId(hotelId, "C:\\TEMP\\HotelDb.txt")) throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
+
+
+
     }
 }

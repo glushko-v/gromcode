@@ -51,6 +51,10 @@ public class Room {
         return hotel;
     }
 
+    public void setDateAvailableFrom(Date dateAvailableFrom) {
+        this.dateAvailableFrom = dateAvailableFrom;
+    }
+
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
     public static Date date1;
     public static Date date2;

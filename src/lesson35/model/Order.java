@@ -2,6 +2,9 @@ package lesson35.model;
 
 import java.util.Date;
 
+import static lesson35.model.Room.date1;
+import static lesson35.model.Room.date2;
+
 public class Order {
     private long id;
     private User user;
@@ -23,47 +26,33 @@ public class Order {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Room getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
 
     public Date getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
-    }
 
     public Date getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
-    }
 
     public double getMoneyPaid() {
         return moneyPaid;
     }
 
-    public void setMoneyPaid(double moneyPaid) {
-        this.moneyPaid = moneyPaid;
-    }
+    public static Order order1 = new Order(111, User.user1, Room.room1, date1, new Date(), 100);
+    public static Order order2 = new Order(222, User.user2, Room.room2, date2, new Date(), 100);
+
+
 }
