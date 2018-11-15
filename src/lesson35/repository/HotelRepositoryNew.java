@@ -3,6 +3,9 @@ package lesson35.repository;
 import lesson35.model.Hotel;
 
 public class HotelRepositoryNew extends Repository<Hotel> {
+
+
+
     @Override
     public long[] readIdFromFile(String path) {
         return super.readIdFromFile(path);

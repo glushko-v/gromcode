@@ -7,9 +7,9 @@ import lesson35.model.User;
 
 import java.io.*;
 
-public abstract class Repository <T> {
+public abstract class Repository<T> {
 
-
+    long id;
 
 
     public long[] readIdFromFile(String path) {
@@ -115,11 +115,6 @@ public abstract class Repository <T> {
 
 
     public abstract T add(T t, String path) throws Exception;
-
-
-
-
-
 
 
 }

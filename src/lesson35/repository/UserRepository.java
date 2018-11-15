@@ -1,6 +1,7 @@
 package lesson35.repository;
 
 import lesson35.model.Filter;
+import lesson35.model.Order;
 import lesson35.model.User;
 
 import java.util.ArrayList;
@@ -72,6 +73,9 @@ public class UserRepository extends Repository<User> {
         //3.1 при совпадении забираем из файла соответствующую комнту
         //4. проверяем у комнаты DateAvailableFrom
         //5. если комната не занята, используем setDateAvailableFrom
+        //6. создаем объект класса Order
+
+
 
         if (validateId(roomId, "C:\\TEMP\\RoomDb.txt"))
             throw new Exception("Room with ID " + roomId + " doesn't exist");
