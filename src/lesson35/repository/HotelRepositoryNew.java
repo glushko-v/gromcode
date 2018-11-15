@@ -2,7 +2,7 @@ package lesson35.repository;
 
 import lesson35.model.Hotel;
 
-public class HotelRepositoryNew extends Repository {
+public class HotelRepositoryNew extends Repository<Hotel> {
     @Override
     public long[] readIdFromFile(String path) {
         return super.readIdFromFile(path);
@@ -38,8 +38,24 @@ public class HotelRepositoryNew extends Repository {
 
     }
 
-    public Hotel addHotel(Hotel hotel, String path) throws Exception {
+//    public Hotel addHotel(Hotel hotel, String path) throws Exception {
+//
+//        if (!validateId(hotel.getId(), path)) throw new Exception("Hotel with id " + hotel.getId() + " already exists");
+//
+//
+//        writeDataToFile(readHotelData(hotel), true, path);
+//
+//
+//        return hotel;
+//    }
 
+    public Hotel findHotelByName(String name){
+
+        return null;
+    }
+
+    @Override
+    public Hotel add(Hotel hotel, String path) throws Exception {
         if (!validateId(hotel.getId(), path)) throw new Exception("Hotel with id " + hotel.getId() + " already exists");
 
 

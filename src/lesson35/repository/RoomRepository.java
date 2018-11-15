@@ -2,7 +2,7 @@ package lesson35.repository;
 
 import lesson35.model.Room;
 
-public class RoomRepository extends Repository {
+public class RoomRepository extends Repository<Room> {
 
     @Override
     public long[] readIdFromFile(String path) {
@@ -42,8 +42,20 @@ public class RoomRepository extends Repository {
     }
 
 
-    Room addRoom(Room room, String path) throws Exception {
+//    Room addRoom(Room room, String path) throws Exception {
+//
+//        if (!validateId(room.getId(), path)) throw new Exception("Room with id " + room.getId() + " already exists");
+//
+//
+//        writeDataToFile(readRoomData(room), true, path);
+//
+//
+//
+//        return room;
+//    }
 
+    @Override
+    public Room add(Room room, String path) throws Exception {
         if (!validateId(room.getId(), path)) throw new Exception("Room with id " + room.getId() + " already exists");
 
 

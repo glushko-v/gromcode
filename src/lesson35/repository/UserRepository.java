@@ -1,20 +1,15 @@
 package lesson35.repository;
 
+import lesson35.model.Filter;
 import lesson35.model.User;
 
-public class UserRepository extends Repository {
+import java.util.ArrayList;
+
+public class UserRepository extends Repository<User> {
 
 
-
-    public User registerUser (User user, String path) throws Exception {
-
-        if (!validateId(user.getId(), path)) throw new Exception("Hotel with id " + user.getId() + " already exists");
-
-
-        writeDataToFile(readUserData(user), true, path);
-
-
-        return user;
+    public User registerUser(User user, String path) throws Exception {
+       return add(user, path);
     }
 
     public StringBuffer readUserData(User user) {
@@ -32,7 +27,7 @@ public class UserRepository extends Repository {
 
     }
 
-    void login (String userName, String password){
+    void login(String userName, String password) {
 
 
     }
@@ -57,20 +52,46 @@ public class UserRepository extends Repository {
         return super.validateId(id, path);
     }
 
-    void bookRoom(long roomId, long userId, long hotelId) throws Exception{
+    @Override
+    public User add(User user, String path) throws Exception {
+        if (!validateId(user.getId(), path)) throw new Exception("User with id " + user.getId() + " already exists");
+
+
+        writeDataToFile(readUserData(user), true, path);
+
+
+        return user;
+    }
+
+    void bookRoom(long roomId, long userId, long hotelId) throws Exception {
         //1. ищем совпадения по id в базе юзеров+++
+        //1.1 при совпадении забираем из файла соответствующего юзера
         //2. ищем совпадения по id в базе отелей+++
+        //2.1 при совпадении забираем из файла соответствующий отель
         //3. ищем совпадения по id в базе комнат+++
+        //3.1 при совпадении забираем из файла соответствующую комнту
         //4. проверяем у комнаты DateAvailableFrom
         //5. если комната не занята, используем setDateAvailableFrom
 
-        if (validateId(roomId, "C:\\TEMP\\RoomDb.txt")) throw new Exception("Room with ID " + roomId + " doesn't exist");
-        if (validateId(userId, "C:\\TEMP\\UserDb.txt")) throw new Exception("User with ID " + userId + " doesn't exist");
-        if (validateId(hotelId, "C:\\TEMP\\HotelDb.txt")) throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
-
+        if (validateId(roomId, "C:\\TEMP\\RoomDb.txt"))
+            throw new Exception("Room with ID " + roomId + " doesn't exist");
+        if (validateId(userId, "C:\\TEMP\\UserDb.txt"))
+            throw new Exception("User with ID " + userId + " doesn't exist");
+        if (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
+            throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
 
 
 
 
     }
+
+    ArrayList<Filter> findRooms(Filter filter){
+
+
+
+        return null;
+    }
+
+
+
 }

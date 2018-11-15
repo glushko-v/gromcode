@@ -1,16 +1,16 @@
 package lesson35.repository;
 
+
 import lesson35.model.Hotel;
 import lesson35.model.Room;
+import lesson35.model.User;
 
 import java.io.*;
 
-public abstract class Repository {
+public abstract class Repository <T> {
 
 
-    //1. считывание id из файла и его валидация
-    //2. удаление из файла
-    //3. добавление?
+
 
     public long[] readIdFromFile(String path) {
 
@@ -114,9 +114,8 @@ public abstract class Repository {
     }
 
 
-//    abstract StringBuffer readRoomData(T room);
-//
-//    abstract T addRoom(T room, String path) throws Exception;
+    public abstract T add(T t, String path) throws Exception;
+
 
 
 
