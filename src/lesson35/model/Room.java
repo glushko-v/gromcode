@@ -80,4 +80,28 @@ public class Room {
     public static Room room2 = new Room(222, 1, 50, true, false, new Date(22-12-2018), Hotel.hotel);
     public static Room room3 = new Room(333, 2, 150, true, false, new Date(22-12-2018), Hotel.hotel2);
     public static Room room4 = new Room(444, 3, 200, false, false, new Date(22-12-2018), Hotel.hotel1);
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setBreakfastIncluded(boolean breakfastIncluded) {
+        this.breakfastIncluded = breakfastIncluded;
+    }
+
+    public void setPetsAllowed(boolean petsAllowed) {
+        this.petsAllowed = petsAllowed;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
 }

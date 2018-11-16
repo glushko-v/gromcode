@@ -115,6 +115,7 @@ public abstract class Repository<T> {
 
 
     public abstract T add(T t, String path) throws Exception;
+    public abstract T findById(long id, String path);
 
 
 }

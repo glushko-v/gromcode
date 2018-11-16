@@ -38,15 +38,34 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return "Hotel{" +
+        return
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                '}';
+                        ", name='" + name + '\'' +
+                        ", city='" + city + '\'';
     }
 
     public static Hotel hotel45 = new Hotel(145, "Konrad", "Turkey", "Istanbul", "Some street");
     public static Hotel hotel = new Hotel(111, "Hilton", "Ukraine", "Kiev", "Shevchevnko");
     public static Hotel hotel1 = new Hotel(222, "Ibis", "Belgium", "Brussels", "Unknown");
     public static Hotel hotel2 = new Hotel(333, "4Seasons", "Spain", "Madrid", "test");
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
 }

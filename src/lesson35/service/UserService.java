@@ -7,13 +7,13 @@ public class UserService {
 
     private UserRepository userRepository = new UserRepository();
 
-    public User registerUser (User user){
+    public User registerUser (User user) throws Exception {
         // check business logic:
         //1. no empty fields
         //2. 18+ age
 
         //if logic ok:
 
-        return userRepository.registerUser(user);
+        return userRepository.registerUser(user, "C:\\TEST\\UserDb.txt");
     }
 }

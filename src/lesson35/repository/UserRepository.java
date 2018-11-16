@@ -1,16 +1,21 @@
 package lesson35.repository;
 
+import lesson35.UserType;
 import lesson35.model.Filter;
+import lesson35.model.Hotel;
 import lesson35.model.Order;
 import lesson35.model.User;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserRepository extends Repository<User> {
 
 
     public User registerUser(User user, String path) throws Exception {
-       return add(user, path);
+        return add(user, path);
     }
 
     public StringBuffer readUserData(User user) {
@@ -76,7 +81,6 @@ public class UserRepository extends Repository<User> {
         //6. создаем объект класса Order
 
 
-
         if (validateId(roomId, "C:\\TEMP\\RoomDb.txt"))
             throw new Exception("Room with ID " + roomId + " doesn't exist");
         if (validateId(userId, "C:\\TEMP\\UserDb.txt"))
@@ -85,17 +89,68 @@ public class UserRepository extends Repository<User> {
             throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
 
 
-
-
     }
 
-    ArrayList<Filter> findRooms(Filter filter){
 
+
+
+    @Override
+    public User findById(long id, String path) {
+        StringBuffer userInfo = new StringBuffer();
+        User user = new User(0, null, null, null, null);
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                String[] lines = line.split(", ");
+
+                for (int i = 0; i < lines.length; i++) {
+
+                    if (id == Long.parseLong(lines[0])) {
+                        userInfo.append(lines[0] + ", ");
+                        userInfo.append(lines[1] + ", ");
+                        userInfo.append(lines[2] + ", ");
+                        userInfo.append(lines[3] + ", ");
+                        userInfo.append(lines[4]);
+                    }
+
+                    break;
+
+
+
+                }
+
+            }
+        } catch (IOException e) {
+            System.err.println("Can't read file");
+        }
+
+        String userString = userInfo.toString();
+
+        String[] userData = userString.split(",");
+
+        for (int i = 0; i <userData.length; i++) {
+
+            user.setId(Long.parseLong(userData[0]));
+            user.setUserName(userData[1]);
+            user.setPassword(userData[2]);
+            user.setCountry(userData[3]);
+            user.setUserType(UserType.valueOf(userData[4]));
+
+        }
+
+
+        return user;
+    }
+
+    ArrayList<Filter> findRooms(Filter filter) {
 
 
         return null;
     }
-
 
 
 }

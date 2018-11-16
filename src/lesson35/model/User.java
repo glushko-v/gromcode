@@ -37,8 +37,30 @@ public class User {
         return userType;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
     public static User user1 = new User(111, "John", "112233", "USA", UserType.USER);
     public static User user2 = new User(222, "Alex", "0000", "Belarus", UserType.ADMIN);
     public static User user3 = new User(222, "Vlad", "98765231", "Ukraine", UserType.USER);
+
+
 
 }
