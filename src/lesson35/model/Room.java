@@ -1,5 +1,9 @@
 package lesson35.model;
 
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -103,5 +107,59 @@ public class Room {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    public static Room findById(long roomId, long hotelId){
+        StringBuffer roomInfo = new StringBuffer();
+        Room room = new Room(0, 0, 0, false, false, null, null);
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\RoomDb.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                String[] lines = line.split(", ");
+
+                for (int i = 0; i < lines.length; i++) {
+
+                    if (roomId == Long.parseLong(lines[0])) {
+                        roomInfo.append(lines[0] + ", ");
+                        roomInfo.append(lines[1] + ", ");
+                        roomInfo.append(lines[2] + ", ");
+                        roomInfo.append(lines[3] + ", ");
+                        roomInfo.append(lines[5] + ", ");
+                        roomInfo.append(lines[6]);
+                    }
+
+                    break;
+
+
+
+                }
+
+            }
+        } catch (IOException e) {
+            System.err.println("Can't read file");
+        }
+
+        String roomString = roomInfo.toString();
+
+        String[] roomData = roomString.split(",");
+
+        for (int i = 0; i <roomData.length; i++) {
+
+            room.setId(Long.parseLong(roomData[0]));
+            room.setNumberOfGuests(Integer.parseInt(roomData[1]));
+            room.setPrice(Integer.parseInt(roomData[2]));
+            room.setBreakfastIncluded(Boolean.getBoolean(roomData[3]));
+            room.setPetsAllowed(Boolean.getBoolean(roomData[4]));
+            room.setDateAvailableFrom(new Date());
+            room.setHotel(Hotel.findById(hotelId));
+
+        }
+
+
+        return room;
     }
 }

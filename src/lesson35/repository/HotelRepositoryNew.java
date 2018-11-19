@@ -71,53 +71,7 @@ public class HotelRepositoryNew extends Repository<Hotel> {
         return hotel;
     }
 
-    @Override
-    public Hotel findById(long id, String path) {
-        Hotel hotel = new Hotel(0, null, null, null, null);
-
-        StringBuffer hotelInfo = new StringBuffer();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line;
-
-            while ((line = br.readLine()) != null) {
-
-                String[] lines = line.split(", ");
-
-                for (int i = 0; i < lines.length; i++) {
-
-                    if (id == Long.parseLong(lines[0])) {
-                        hotelInfo.append(lines[0] + ", ");
-                        hotelInfo.append(lines[1] + ", ");
-                        hotelInfo.append(lines[2] + ", ");
-                        hotelInfo.append(lines[3] + ", ");
-                        hotelInfo.append(lines[4]);
-                    }
-
-                    break;
 
 
-                }
 
-            }
-        } catch (IOException e) {
-            System.err.println("Can't read file");
-        }
-
-        String hotelString = hotelInfo.toString();
-
-        String[] hotelData = hotelString.split(",");
-
-        for (int i = 0; i < hotelData.length; i++) {
-
-            hotel.setId(Long.parseLong(hotelData[0]));
-            hotel.setName(hotelData[1]);
-            hotel.setCountry(hotelData[2]);
-            hotel.setCity(hotelData[3]);
-            hotel.setStreet(hotelData[4]);
-
-        }
-
-        return hotel;
-    }
 }

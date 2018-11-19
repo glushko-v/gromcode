@@ -1,5 +1,11 @@
 package lesson35.model;
 
+
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Hotel {
     private long id;
     private String name;
@@ -68,4 +74,57 @@ public class Hotel {
     public void setStreet(String street) {
         this.street = street;
     }
+
+    public static Hotel findById(long id) {
+        StringBuffer hotelInfo = new StringBuffer();
+        Hotel hotel = new Hotel(0, null, null, null, null);
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\HotelDb.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                String[] lines = line.split(", ");
+
+                for (int i = 0; i < lines.length; i++) {
+
+                    if (id == Long.parseLong(lines[0])) {
+                        hotelInfo.append(lines[0] + ", ");
+                        hotelInfo.append(lines[1] + ", ");
+                        hotelInfo.append(lines[2] + ", ");
+                        hotelInfo.append(lines[3] + ", ");
+                        hotelInfo.append(lines[4]);
+                    }
+
+                    break;
+
+
+
+                }
+
+            }
+        } catch (IOException e) {
+            System.err.println("Can't read file");
+        }
+
+        String hotelString = hotelInfo.toString();
+
+        String[] hotelData = hotelString.split(",");
+
+        for (int i = 0; i <hotelData.length; i++) {
+
+            hotel.setId(Long.parseLong(hotelData[0]));
+            hotel.setName(hotelData[1]);
+            hotel.setCity(hotelData[2]);
+            hotel.setCountry(hotelData[3]);
+            hotel.setStreet(hotelData[4]);
+
+        }
+
+
+        return hotel;
+    }
+
+
 }

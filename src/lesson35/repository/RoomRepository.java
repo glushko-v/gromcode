@@ -3,6 +3,7 @@ package lesson35.repository;
 import lesson35.UserType;
 import lesson35.model.Room;
 import lesson35.model.User;
+import lesson35.repository.HotelRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -73,8 +74,5 @@ public class RoomRepository extends Repository<Room> {
         return room;
     }
 
-    @Override
-    public Room findById(long id, String path) {
-        return null;
-    }
+
 }
