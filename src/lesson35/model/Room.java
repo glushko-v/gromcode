@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Room {
@@ -59,20 +60,30 @@ public class Room {
         this.dateAvailableFrom = dateAvailableFrom;
     }
 
-    public static SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+
+    public static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+    public static Calendar calendar = Calendar.getInstance();
+
+    public static String dateString = "20-12-2018";
+    public static String dateString1 = "01-01-2019";
+    public static String dateString2 = "23-11-2018";
+    public static String dateString3 = "23-11-2018";
+
     public static Date date1;
     public static Date date2;
     public static Date date3;
     public static Date date4;
+    public static Date date;
 
 
     static {
         try {
 
-            date1 = sdf.parse("20-12-2018");
-            date2 = sdf.parse("20-12-2018");
-            date3 = sdf.parse("20-12-2018");
-            date4 = sdf.parse("20-12-2018");
+            date1 = sdf.parse(dateString);
+            date2 = sdf.parse(dateString1);
+            date3 = sdf.parse(dateString2);
+            date4 = sdf.parse(dateString3);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -81,9 +92,9 @@ public class Room {
 
 
     public static Room room1 = new Room(111, 2, 100, false, false, date1, Hotel.hotel45);
-    public static Room room2 = new Room(222, 1, 50, true, false, new Date(22-12-2018), Hotel.hotel);
-    public static Room room3 = new Room(333, 2, 150, true, false, new Date(22-12-2018), Hotel.hotel2);
-    public static Room room4 = new Room(444, 3, 200, false, false, new Date(22-12-2018), Hotel.hotel1);
+    public static Room room2 = new Room(222, 1, 50, true, false, new Date(22 - 12 - 2018), Hotel.hotel);
+    public static Room room3 = new Room(333, 2, 150, true, false, new Date(22 - 12 - 2018), Hotel.hotel2);
+    public static Room room4 = new Room(444, 3, 200, false, false, new Date(22 - 12 - 2018), Hotel.hotel1);
 
     public void setId(long id) {
         this.id = id;
@@ -109,7 +120,7 @@ public class Room {
         this.hotel = hotel;
     }
 
-    public static Room findById(long roomId, long hotelId){
+    public static Room findById(long roomId, long hotelId) {
         StringBuffer roomInfo = new StringBuffer();
         Room room = new Room(0, 0, 0, false, false, null, null);
 
@@ -135,7 +146,6 @@ public class Room {
                     break;
 
 
-
                 }
 
             }
@@ -147,7 +157,7 @@ public class Room {
 
         String[] roomData = roomString.split(",");
 
-        for (int i = 0; i <roomData.length; i++) {
+        for (int i = 0; i < roomData.length; i++) {
 
             room.setId(Long.parseLong(roomData[0]));
             room.setNumberOfGuests(Integer.parseInt(roomData[1]));

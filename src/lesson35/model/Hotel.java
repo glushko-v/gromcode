@@ -44,10 +44,9 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return
-                "id=" + id +
-                        ", name='" + name + '\'' +
-                        ", city='" + city + '\'';
+        return name + ", " + city;
+
+
     }
 
     public static Hotel hotel45 = new Hotel(145, "Konrad", "Turkey", "Istanbul", "Some street");
