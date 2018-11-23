@@ -136,6 +136,12 @@ public class HotelRepository {
         return true;
     }
 
+    public Hotel findHotelbyName(String name){
+
+
+        return null;
+    }
+
 
 }
 

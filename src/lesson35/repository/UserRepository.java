@@ -10,13 +10,6 @@ import java.util.Date;
 public class UserRepository extends Repository<User> {
 
 
-
-
-
-
-
-
-
     public User registerUser(User user, String path) throws Exception {
         return add(user, path);
     }
@@ -110,8 +103,8 @@ public class UserRepository extends Repository<User> {
                     date, Room.findById(roomId, hotelId).getPrice());
 
             orderData.append(order.getId() + ", ");
-            orderData.append(order.getUser() + ", ");
-            orderData.append(order.getRoom() + ", ");
+            orderData.append(userId + ", ");
+            orderData.append(roomId + ", ");
             orderData.append(order.getDateFrom() + ", ");
             orderData.append(order.getDateTo() + ", ");
             orderData.append(order.getMoneyPaid());
@@ -124,6 +117,36 @@ public class UserRepository extends Repository<User> {
 
 
     }
+
+    void cancelReservation(long roomId, long userId, long hotelId) throws Exception {
+        /*
+        1. Проверяем id комнаты++
+        2. Проверяем id юзера ++
+        3. если совпадения, то
+        3.1 устанавливаем dateAvailableFrom на начальную дату++
+        3.2 удаляем ордер из файла:
+        3.2.1 Ищем совпадения по id юзера и комнаты
+        3.2.2 Удаляем соответствующую строку
+
+        */
+        if (validateId(roomId, "C:\\TEMP\\RoomDb.txt"))
+            throw new Exception("Room with ID " + roomId + " doesn't exist");
+        if (validateId(userId, "C:\\TEMP\\UserDb.txt"))
+            throw new Exception("User with ID " + userId + " doesn't exist");
+        if (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
+            throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
+
+        if ((!validateId(userId, "C:\\TEMP\\UserDb.txt")) && (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
+                && (!validateId(roomId, "C:\\TEMP\\RoomDb.txt"))){
+            Room.findById(roomId, hotelId).setDateAvailableFrom(Room.findById(roomId, hotelId).getDateAvailableFrom());
+            delete(Order.findById(userId, roomId, hotelId).getId(), "C:\\TEMP\\Order.txt");
+
+        }
+
+
+    }
+
+
 
 
 }

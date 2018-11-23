@@ -1,6 +1,7 @@
 package lesson35.repository;
 
 import lesson35.UserType;
+import lesson35.model.Filter;
 import lesson35.model.Room;
 import lesson35.model.User;
 import lesson35.repository.HotelRepository;
@@ -8,6 +9,7 @@ import lesson35.repository.HotelRepository;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 
 public class RoomRepository extends Repository<Room> {
@@ -73,6 +75,20 @@ public class RoomRepository extends Repository<Room> {
 
         return room;
     }
+
+    public Collection<Room> findRooms(Filter filter){
+
+        /*
+        1. Создаем коллекцию
+        2. Если поле не равно null добавляем в коллекцию
+        3. Возвращаем коллекцию
+        */
+
+
+        return null;
+    }
+
+
 
 
 }
