@@ -6,6 +6,8 @@ import lesson35.model.Room;
 import lesson35.model.User;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public abstract class Repository<T> {
 
@@ -115,6 +117,25 @@ public abstract class Repository<T> {
 
 
     public abstract T add(T t, String path) throws Exception;
+
+//    public Collection<T> returnObjects(String path){
+//
+//        ArrayList<T> objectList = new ArrayList<>();
+//
+//        try (BufferedReader br = new BufferedReader(new FileReader(path))){
+//
+//        }
+//        catch (Exception e){
+//            System.err.println("Can't read file");
+//        }
+//
+//
+//
+//
+//
+//
+//        return objectList;
+//    }
 
 
 

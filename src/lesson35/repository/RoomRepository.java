@@ -9,6 +9,7 @@ import lesson35.repository.HotelRepository;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -78,6 +79,8 @@ public class RoomRepository extends Repository<Room> {
 
     public Collection<Room> findRooms(Filter filter){
 
+
+
         /*
         1. Создаем коллекцию
         2. Если поле не равно null добавляем в коллекцию
@@ -87,6 +90,10 @@ public class RoomRepository extends Repository<Room> {
 
         return null;
     }
+
+
+
+
 
 
 

@@ -2,9 +2,13 @@ package lesson35.repository;
 
 
 import lesson35.model.Hotel;
+import lesson35.model.Room;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class HotelRepositoryNew extends Repository<Hotel> {
 
@@ -71,7 +75,54 @@ public class HotelRepositoryNew extends Repository<Hotel> {
         return hotel;
     }
 
+    public Collection<Hotel> returnObjects(String path){
 
+        /*
+        1. Считать строку из файла
+        2. Преобразовать строку в объект
+        3. Добавить объект в коллекцию
+        */
+
+        ArrayList<Hotel> objectList = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))){
+            String line;
+
+            while((line = br.readLine()) != null){
+
+                Hotel hotel = new Hotel(0, null, null, null, null);
+
+
+                String[] lines = line.split(",");
+
+                for (int i = 0; i <lines.length; i++) {
+                    hotel.setId(Long.parseLong(lines[0]));
+                    hotel.setName(lines[1]);
+                    hotel.setCountry(lines[3]);
+                    hotel.setCity(lines[2]);
+                    hotel.setStreet(lines[4]);
+                }
+                objectList.add(hotel);
+
+
+
+
+            }
+
+
+        }
+        catch (Exception e){
+            System.err.println("Can't read file");
+        }
+
+
+
+
+
+        
+        return objectList;
+
+    }
 
 
 }
