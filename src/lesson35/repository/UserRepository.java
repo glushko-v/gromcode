@@ -5,6 +5,7 @@ import lesson35.model.*;
 
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
 public class UserRepository extends Repository<User> {
@@ -146,7 +147,8 @@ public class UserRepository extends Repository<User> {
 
     }
 
-
-
-
+    @Override
+    public Collection<?> returnObjects(String path) {
+        return super.returnObjects(path);
+    }
 }

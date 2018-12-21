@@ -77,6 +77,11 @@ public class RoomRepository extends Repository<Room> {
         return room;
     }
 
+    @Override
+    public Collection<?> returnObjects(String path) {
+        return super.returnObjects(path);
+    }
+
     public Collection<Room> findRooms(Filter filter){
 
 

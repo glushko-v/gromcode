@@ -5,6 +5,7 @@ import lesson35.repository.HotelRepository;
 import lesson35.repository.HotelRepositoryNew;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 public class DemoHotel {
 
@@ -13,7 +14,8 @@ public class DemoHotel {
 
 
         HotelRepositoryNew hotelRepositoryNew = new HotelRepositoryNew();
-        System.out.println(hotelRepositoryNew.returnObjects("C:\\TEST\\HotelDb.txt"));
+//        System.out.println((hotelRepositoryNew.returnObjects("C:\\TEST\\HotelDb.txt"));
+        hotelRepositoryNew.findHotelByName("lala");
 
 
 //        hotelRepository.addHotel(hotel);
