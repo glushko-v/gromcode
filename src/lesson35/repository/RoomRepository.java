@@ -46,7 +46,6 @@ public class RoomRepository extends Repository<Room> {
         roomData.append(room.getHotel());
 
 
-
         return roomData;
     }
 
@@ -71,28 +70,25 @@ public class RoomRepository extends Repository<Room> {
         writeDataToFile(readRoomData(room), true, path);
 
 
-
         return room;
     }
 
-    public List<Room> returnRooms(){
-
-
+    public List<Room> returnRooms() {
 
 
         ArrayList<Room> objectList = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\RoomDb.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\RoomDb.txt"))) {
             String line;
 
-            while((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
 
                 Room room = new Room(0, 0, 0, false, false, null, null);
 
 
                 String[] lines = line.split(",");
 
-                for (int i = 0; i <lines.length; i++) {
+                for (int i = 0; i < lines.length; i++) {
                     room.setId(Long.parseLong(lines[0]));
                     room.setNumberOfGuests(Integer.parseInt(lines[1]));
                     room.setPrice(Double.parseDouble(lines[2]));
@@ -104,46 +100,34 @@ public class RoomRepository extends Repository<Room> {
                 objectList.add(room);
 
 
-
-
             }
 
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.err.println("Can't read file");
         }
-
-
-
-
 
 
         return objectList;
 
     }
 
-    public Collection<Room> findRooms(Filter filter){
+    public Collection<Room> findRooms(Filter filter) {
 
         ArrayList<Room> rooms = new ArrayList<>();
 
+        for (Room room : returnRooms()) {
+            if (room.getPrice() == filter.getPrice() || room.getNumberOfGuests() == filter.getNumberOfGuests()
+                    || room.isBreakfastIncluded() == filter.isBreakfastIncluded() || room.isPetsAllowed() == filter.isPetsAllowed()
+                    || room.getDateAvailableFrom().equals(filter.getDateAvailableFrom()) ||
+                    room.getHotel().getCountry().equals(filter.getCountry()) || room.getHotel().getCity().equals(filter.getCity())) {
+                rooms.add(room);
+            }
+        }
 
-
-        /*
-        1. Создаем коллекцию
-        2. Если поле не равно null добавляем в коллекцию
-        3. Возвращаем коллекцию
-        */
-
-
-        return null;
+       
+        return rooms;
     }
-
-
-
-
-
-
 
 
 }

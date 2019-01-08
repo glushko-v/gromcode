@@ -49,4 +49,6 @@ public class Filter {
     public String getCity() {
         return city;
     }
+
+    public static Filter filter = new Filter(0, 200, true, false, new Date(), "Turkey", "Istanbul");
 }
