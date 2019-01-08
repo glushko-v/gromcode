@@ -1,17 +1,15 @@
 package lesson35.repository;
 
-import lesson35.UserType;
 import lesson35.model.Filter;
+import lesson35.model.Hotel;
 import lesson35.model.Room;
-import lesson35.model.User;
-import lesson35.repository.HotelRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class RoomRepository extends Repository<Room> {
 
@@ -77,12 +75,57 @@ public class RoomRepository extends Repository<Room> {
         return room;
     }
 
-    @Override
-    public Collection<?> returnObjects(String path) {
-        return super.returnObjects(path);
+    public List<Room> returnRooms(){
+
+
+
+
+        ArrayList<Room> objectList = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\RoomDb.txt"))){
+            String line;
+
+            while((line = br.readLine()) != null){
+
+                Room room = new Room(0, 0, 0, false, false, null, null);
+
+
+                String[] lines = line.split(",");
+
+                for (int i = 0; i <lines.length; i++) {
+                    room.setId(Long.parseLong(lines[0]));
+                    room.setNumberOfGuests(Integer.parseInt(lines[1]));
+                    room.setPrice(Double.parseDouble(lines[2]));
+                    room.setBreakfastIncluded(Boolean.getBoolean(lines[3]));
+                    room.setPetsAllowed(Boolean.getBoolean(lines[4]));
+                    room.setDateAvailableFrom(new Date());
+                    room.setHotel(Hotel.findById(Long.parseLong(lines[6])));
+                }
+                objectList.add(room);
+
+
+
+
+            }
+
+
+        }
+        catch (Exception e){
+            System.err.println("Can't read file");
+        }
+
+
+
+
+
+
+        return objectList;
+
     }
 
     public Collection<Room> findRooms(Filter filter){
+
+        ArrayList<Room> rooms = new ArrayList<>();
 
 
 

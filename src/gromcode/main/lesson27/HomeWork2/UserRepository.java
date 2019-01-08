@@ -5,9 +5,7 @@ import java.util.ArrayList;
 public class UserRepository {
     private ArrayList<User> users = new ArrayList<>();
 
-//    public UserRepository(User[] users) {
-//        this.users = users;
-//    }
+
 
     public int countUsers() {
         int count = 0;
@@ -18,9 +16,7 @@ public class UserRepository {
     }
 
 
-//    public User[] getUsers() {
-//        return users;
-//    }
+
 
     public String[] getUserNames() {
         String[] names = new String[countUsers()];

@@ -1,12 +1,13 @@
 package lesson35.repository;
 
 
+import lesson35.UserType;
 import lesson35.model.*;
 
 
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.*;
 
 public class UserRepository extends Repository<User> {
 
@@ -138,7 +139,7 @@ public class UserRepository extends Repository<User> {
             throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
 
         if ((!validateId(userId, "C:\\TEMP\\UserDb.txt")) && (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
-                && (!validateId(roomId, "C:\\TEMP\\RoomDb.txt"))){
+                && (!validateId(roomId, "C:\\TEMP\\RoomDb.txt"))) {
             Room.findById(roomId, hotelId).setDateAvailableFrom(Room.findById(roomId, hotelId).getDateAvailableFrom());
             delete(Order.findById(userId, roomId, hotelId).getId(), "C:\\TEMP\\Order.txt");
 
@@ -147,8 +148,41 @@ public class UserRepository extends Repository<User> {
 
     }
 
-    @Override
-    public Collection<?> returnObjects(String path) {
-        return super.returnObjects(path);
+    public List<User> returnUsers() {
+
+
+        ArrayList<User> objectList = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\UserDb.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                User user = new User(0, null, null, null, null);
+
+
+                String[] lines = line.split(",");
+
+                for (int i = 0; i < lines.length; i++) {
+                    user.setId(Long.parseLong(lines[0]));
+                    user.setUserName(lines[1]);
+                    user.setPassword(lines[2]);
+                    user.setCountry(lines[3]);
+                    user.setUserType(UserType.valueOf(lines[4]));
+                }
+                objectList.add(user);
+
+
+            }
+
+
+        } catch (Exception e) {
+            System.err.println("Can't read file");
+        }
+
+
+        return objectList;
+
     }
+
 }

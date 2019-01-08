@@ -3,52 +3,35 @@ package lesson35.repository;
 
 import lesson35.model.Hotel;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public class HotelRepository extends Repository<Hotel> {
 
 
-public class HotelRepository {
-
-
-    public Hotel addHotel(Hotel hotel) throws Exception {
-
-        if (!validateId(hotel.getId())) throw new Exception("Hotel with id " + hotel.getId() + " already exists");
-
-
-        writeHotelDataToFile(readHotelData(hotel), true);
-
-
-        return hotel;
+    @Override
+    public long[] readIdFromFile(String path) {
+        return super.readIdFromFile(path);
     }
 
-    public void deleteHotel(long hotelId) {
+    @Override
+    public void delete(long id, String path) {
+        super.delete(id, path);
+    }
 
+    @Override
+    public void writeDataToFile(StringBuffer data, boolean append, String path) {
+        super.writeDataToFile(data, append, path);
+    }
 
-        StringBuffer input = new StringBuffer();
-
-
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\HotelDb.txt"))) {
-
-            String line;
-
-            while ((line = br.readLine()) != null) {
-
-                String[] lines = line.split(",");
-
-                if (Long.parseLong(lines[0]) != hotelId) {
-                    input.append(line);
-                    input.append("\r\n");
-                }
-
-            }
-
-
-        } catch (IOException e) {
-            System.err.println("Error");
-        }
-
-        writeHotelDataToFile(input, false);
-
-
+    @Override
+    boolean validateId(long id, String path) {
+        return super.validateId(id, path);
     }
 
     public StringBuffer readHotelData(Hotel hotel) {
@@ -66,82 +49,142 @@ public class HotelRepository {
 
     }
 
-    public void writeHotelDataToFile(StringBuffer hotelData, boolean append) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TEST\\HotelDb.txt", append))) {
+//    public Hotel addHotel(Hotel hotel, String path) throws Exception {
+//
+//        if (!validateId(hotel.getId(), path)) throw new Exception("Hotel with id " + hotel.getId() + " already exists");
+//
+//
+//        writeDataToFile(readHotelData(hotel), true, path);
+//
+//
+//        return hotel;
+//    }
 
-            bw.append(hotelData);
-            bw.append("\r\n");
-        } catch (IOException e) {
-            System.err.println("Error");
-        }
-    }
+    public Hotel findHotelByName(String name) {
 
-
-    public long[] readIdFromFile() {
-
-        StringBuffer ids = new StringBuffer();
+        Hotel hotel = new Hotel(0, null, null, null, null);
+        StringBuffer content = new StringBuffer();
 
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\HotelDb.txt"))) {
             String line;
 
-
             while ((line = br.readLine()) != null) {
 
-
                 String[] lines = line.split(",");
-
-
                 for (int i = 0; i < lines.length; i++) {
-
-                    if (lines[i].matches("[0-9]+")) {
-
-                        ids.append(lines[i]);
-                        ids.append("\n");
-
-                    }
-
-
+                    content.append(lines[i] + ",");
                 }
 
 
             }
 
+            String dataString = content.toString();
+            dataString = dataString.trim();
+            String[] hotels = dataString.split(",");
+
+            for (int i = 1; i < hotels.length; i += 5) {
+                if (hotels[i].equals(" " + name)) {
+                    hotel.setId(Long.parseLong(hotels[i - 1]));
+                    hotel.setName(hotels[i]);
+                    hotel.setCity(hotels[i + 1]);
+                    hotel.setCountry(hotels[i + 2]);
+                    hotel.setStreet(hotels[i + 3]);
+
+                }
+
+            }
+
 
         } catch (IOException e) {
-            System.err.println("Error");
-        }
-
-        String stringIds = ids.toString();
-        String[] idsArray = stringIds.split("\n");
-        long[] idsFinal = new long[idsArray.length];
-
-        for (int i = 0; i < idsArray.length; i++) {
-            if (!idsArray[i].isEmpty()) {
-                idsFinal[i] = Long.parseLong(idsArray[i]);
-            } else break;
+            System.err.println("Can't read file");
         }
 
 
-        return idsFinal;
+        return hotel;
+
 
 
     }
 
-    public boolean validateId(long id) {
 
-        for (int i = 0; i < readIdFromFile().length; i++) {
-            if (readIdFromFile()[i] == id) return false;
-        }
 
-        return true;
+    @Override
+    public Hotel add(Hotel hotel, String path) throws Exception {
+        if (!validateId(hotel.getId(), path)) throw new Exception("Hotel with id " + hotel.getId() + " already exists");
+
+
+        writeDataToFile(readHotelData(hotel), true, path);
+
+
+        return hotel;
     }
 
-    public Hotel findHotelbyName(String name){
+
+    public List<Hotel> returnHotels() {
 
 
-        return null;
+        ArrayList<Hotel> objectList = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\TEST\\HotelDb.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                Hotel hotel = new Hotel(0, null, null, null, null);
+
+
+                String[] lines = line.split(", ");
+
+                for (int i = 0; i < lines.length; i++) {
+                    hotel.setId(Long.parseLong(lines[0]));
+                    hotel.setName(lines[1]);
+                    hotel.setCountry(lines[3]);
+                    hotel.setCity(lines[2]);
+                    hotel.setStreet(lines[4]);
+                }
+                objectList.add(hotel);
+
+
+            }
+
+
+        } catch (Exception e) {
+            System.err.println("Can't read file");
+        }
+
+
+        return objectList;
+
+    }
+
+    public List<Hotel> findHotelByCity(String city){
+
+        ArrayList<Hotel> hotelsByCity = new ArrayList<>();
+
+
+
+        for (Hotel hotel: returnHotels()) {
+            if (hotel.getCity().equals(city)){
+                hotelsByCity.add(hotel);
+            }
+        }
+
+
+        return hotelsByCity;
+    }
+
+    public List<Hotel> findByName(String name) {
+
+        ArrayList<Hotel> hotelsByName = new ArrayList<>();
+
+        for (Hotel hotel: returnHotels()) {
+            if (hotel.getName().equals(name)){
+                hotelsByName.add(hotel);
+            }
+        }
+
+        return hotelsByName;
     }
 
 
 }
-
