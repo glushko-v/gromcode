@@ -10,8 +10,7 @@ public class DemoHotel {
 
 
         HotelRepository hotelRepository = new HotelRepository();
-//        System.out.println((hotelRepository.returnHotels().get(0)));
-//        System.out.println(hotelRepository.findHotelByCity("Istanbul"));
+
         System.out.println(hotelRepository.findByName("Ibis"));
 
 

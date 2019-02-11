@@ -49,16 +49,6 @@ public class HotelRepository extends Repository<Hotel> {
 
     }
 
-//    public Hotel addHotel(Hotel hotel, String path) throws Exception {
-//
-//        if (!validateId(hotel.getId(), path)) throw new Exception("Hotel with id " + hotel.getId() + " already exists");
-//
-//
-//        writeDataToFile(readHotelData(hotel), true, path);
-//
-//
-//        return hotel;
-//    }
 
     public Hotel findHotelByName(String name) {
 

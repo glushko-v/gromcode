@@ -1,15 +1,10 @@
 package lesson35.repository;
 
-import lesson35.model.Filter;
-import lesson35.model.Hotel;
-import lesson35.model.Room;
+import lesson35.model.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class RoomRepository extends Repository<Room> {
 
@@ -50,17 +45,7 @@ public class RoomRepository extends Repository<Room> {
     }
 
 
-//    Room addRoom(Room room, String path) throws Exception {
-//
-//        if (!validateId(room.getId(), path)) throw new Exception("Room with id " + room.getId() + " already exists");
-//
-//
-//        writeDataToFile(readRoomData(room), true, path);
-//
-//
-//
-//        return room;
-//    }
+
 
     @Override
     public Room add(Room room, String path) throws Exception {
@@ -125,8 +110,70 @@ public class RoomRepository extends Repository<Room> {
             }
         }
 
-       
+
         return rooms;
+    }
+
+    void bookRoom(long roomId, long userId, long hotelId) throws Exception {
+
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 3);
+        Date date = calendar.getTime();
+
+
+        StringBuffer orderData = new StringBuffer();
+
+        if (validateId(roomId, "C:\\TEMP\\RoomDb.txt"))
+            throw new Exception("Room with ID " + roomId + " doesn't exist");
+        if (validateId(userId, "C:\\TEMP\\UserDb.txt"))
+            throw new Exception("User with ID " + userId + " doesn't exist");
+        if (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
+            throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
+
+        if (Room.findById(roomId, hotelId).getDateAvailableFrom().compareTo(new Date()) < 0)
+            throw new Exception("Room " + roomId + " is not available");
+
+
+        if ((!validateId(userId, "C:\\TEMP\\UserDb.txt")) && (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
+                && (!validateId(roomId, "C:\\TEMP\\RoomDb.txt"))) {
+
+            Order order = new Order(111, User.findById(userId), Room.findById(roomId, hotelId), new Date(),
+                    date, Room.findById(roomId, hotelId).getPrice());
+
+            orderData.append(order.getId() + ", ");
+            orderData.append(userId + ", ");
+            orderData.append(roomId + ", ");
+            orderData.append(order.getDateFrom() + ", ");
+            orderData.append(order.getDateTo() + ", ");
+            orderData.append(order.getMoneyPaid());
+
+
+            writeDataToFile(orderData, true, "C:\\TEMP\\Order.txt");
+
+
+        }
+
+
+    }
+
+    void cancelReservation(long roomId, long userId, long hotelId) throws Exception {
+
+        if (validateId(roomId, "C:\\TEMP\\RoomDb.txt"))
+            throw new Exception("Room with ID " + roomId + " doesn't exist");
+        if (validateId(userId, "C:\\TEMP\\UserDb.txt"))
+            throw new Exception("User with ID " + userId + " doesn't exist");
+        if (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
+            throw new Exception("Hotel with ID " + hotelId + " doesn't exist");
+
+        if ((!validateId(userId, "C:\\TEMP\\UserDb.txt")) && (validateId(hotelId, "C:\\TEMP\\HotelDb.txt"))
+                && (!validateId(roomId, "C:\\TEMP\\RoomDb.txt"))) {
+            Room.findById(roomId, hotelId).setDateAvailableFrom(Room.findById(roomId, hotelId).getDateAvailableFrom());
+            delete(Order.findById(userId, roomId, hotelId).getId(), "C:\\TEMP\\Order.txt");
+
+        }
+
+
     }
 
 
